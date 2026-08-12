@@ -1,0 +1,473 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Synthetic, AI-assisted landing-page concept for Florence Health public ACO claims.">
+  <title>Florence | ACO trust landing concept</title>
+  <style>
+    :root {
+      --ink: #10243c;
+      --muted: #566980;
+      --line: #d7e2e8;
+      --paper: #f6fafb;
+      --white: #ffffff;
+      --navy: #112d4e;
+      --teal: #087d79;
+      --mint: #d9f1ec;
+      --coral: #e36d58;
+      --gold: #e9b44c;
+      --shadow: 0 18px 48px rgba(16, 36, 60, .11);
+      --radius: 22px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+    }
+    button, a { font: inherit; }
+    button { cursor: pointer; }
+    a { color: inherit; }
+    .shell { width: min(1180px, calc(100% - 40px)); margin: 0 auto; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 8px; margin: 0 0 14px;
+      color: var(--teal); font: 700 12px/1.2 var(--mono); letter-spacing: .08em; text-transform: uppercase;
+    }
+    .eyebrow::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: currentColor; box-shadow: 0 0 0 5px rgba(8,125,121,.11); }
+    .top-note { background: var(--navy); color: #dcecff; font-size: 13px; }
+    .top-note .shell { min-height: 36px; display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+    .top-note p { margin: 0; }
+    .top-note strong { color: #fff; }
+    .top-note button { border: 0; background: transparent; color: #a9f0e3; text-decoration: underline; padding: 5px; }
+    header { background: rgba(246,250,251,.94); border-bottom: 1px solid rgba(215,226,232,.8); position: sticky; top: 0; z-index: 10; backdrop-filter: blur(14px); }
+    .nav { min-height: 74px; display: flex; align-items: center; justify-content: space-between; gap: 28px; }
+    .brand { display: flex; align-items: center; gap: 11px; text-decoration: none; font-weight: 800; letter-spacing: -.03em; font-size: 20px; }
+    .brand-mark { width: 31px; height: 31px; border-radius: 11px 11px 11px 2px; display: grid; place-items: center; color: white; background: var(--teal); box-shadow: inset -7px -7px 0 rgba(255,255,255,.12); }
+    .brand-mark::after { content: "F"; font: 800 17px/1 Georgia, serif; }
+    .nav-links { display: flex; align-items: center; gap: 22px; font-size: 14px; color: var(--muted); }
+    .nav-links a { text-decoration: none; }
+    .nav-links a:hover { color: var(--teal); }
+    .button { border: 1px solid transparent; border-radius: 999px; padding: 12px 18px; font-weight: 750; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 8px; transition: transform .18s ease, box-shadow .18s ease, background .18s ease; }
+    .button:hover { transform: translateY(-2px); box-shadow: 0 10px 22px rgba(16,36,60,.14); }
+    .button:focus-visible, .metric:focus-visible, .tab:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+    .button-primary { color: #fff; background: var(--teal); }
+    .button-ghost { color: var(--navy); border-color: #b4c5d0; background: #fff; }
+    .button-small { padding: 9px 13px; font-size: 13px; }
+    .hero { overflow: hidden; padding: 82px 0 50px; background: radial-gradient(circle at 89% 8%, #d9f1ec 0, #d9f1ec 11%, transparent 31%), linear-gradient(127deg, #f9fcfc 0%, #f3fbfa 52%, #e8f2f2 100%); }
+    .hero-grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(385px, .95fr); align-items: center; gap: 64px; }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 { max-width: 680px; margin-bottom: 20px; font-size: clamp(44px, 5.4vw, 74px); line-height: .99; letter-spacing: -.065em; }
+    .hero h1 em { color: var(--teal); font-family: Georgia, serif; font-weight: 500; letter-spacing: -.07em; }
+    .lede { max-width: 600px; color: var(--muted); font-size: 19px; line-height: 1.6; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+    .proof-line { display: flex; align-items: center; gap: 9px; margin: 22px 0 0; color: #425770; font-size: 13px; }
+    .proof-line .dot { width: 8px; height: 8px; background: var(--teal); border-radius: 50%; }
+    .mini-dashboard { position: relative; background: var(--white); border: 1px solid #dce8e9; border-radius: 28px; padding: 24px; box-shadow: var(--shadow); transform: rotate(1deg); }
+    .mini-dashboard::before { content: ""; position: absolute; width: 120px; height: 120px; right: -38px; bottom: -32px; z-index: -1; border-radius: 50%; background: rgba(227,109,88,.16); }
+    .dash-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+    .dash-title { margin: 0; font-size: 15px; font-weight: 800; }
+    .dash-chip { font: 700 10px/1 var(--mono); color: #076b67; background: #e3f5f0; border: 1px solid #bce6dc; padding: 7px 8px; border-radius: 999px; letter-spacing: .03em; }
+    .chart-panel { min-height: 198px; padding: 20px 18px 12px; display: flex; align-items: end; gap: 13px; border: 1px solid #dce8e9; border-radius: 18px; background: linear-gradient(180deg,#f8fdfc, #eef8f6); }
+    .bar-col { height: 154px; flex: 1; display: flex; flex-direction: column; justify-content: end; align-items: center; gap: 8px; }
+    .bar { width: min(36px, 100%); border-radius: 9px 9px 4px 4px; background: linear-gradient(180deg, #32a59a, #087d79); }
+    .bar.soft { background: #c1d8da; }
+    .bar-col span { color: #718294; font: 700 10px/1 var(--mono); }
+    .dash-footer { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 14px; }
+    .dash-stat { padding: 12px; border-radius: 14px; background: #f7fafb; }
+    .dash-stat b { display: block; margin-bottom: 3px; color: var(--teal); font-size: 20px; letter-spacing: -.04em; }
+    .dash-stat span { color: var(--muted); font-size: 11px; line-height: 1.25; display: block; }
+    .notice { border-top: 1px solid #c9dcdd; border-bottom: 1px solid #c9dcdd; background: #e9f6f3; }
+    .notice-grid { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 24px; padding: 18px 0; }
+    .notice p { margin: 0; font-size: 14px; color: #274955; }
+    .notice strong { color: var(--ink); }
+    .view-toggle { display: inline-flex; padding: 4px; gap: 4px; background: #fff; border: 1px solid #cce1de; border-radius: 999px; }
+    .tab { border: 0; color: #54707a; background: transparent; border-radius: 999px; padding: 8px 12px; font-size: 12px; font-weight: 800; }
+    .tab[aria-selected="true"] { color: #fff; background: var(--teal); }
+    section { padding: 84px 0; }
+    .section-head { max-width: 700px; margin-bottom: 34px; }
+    h2 { margin-bottom: 14px; font-size: clamp(32px, 4vw, 52px); letter-spacing: -.055em; line-height: 1.02; }
+    .section-head p:last-child { color: var(--muted); font-size: 17px; }
+    .metrics { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+    .metric { min-height: 208px; text-align: left; color: var(--ink); background: #fff; border: 1px solid #dce8e9; border-radius: 18px; padding: 20px; transition: border .18s ease, transform .18s ease, box-shadow .18s ease; }
+    .metric:hover, .metric.active { border-color: var(--teal); transform: translateY(-4px); box-shadow: 0 12px 22px rgba(16,36,60,.09); }
+    .metric .metric-value { display: block; margin: 24px 0 8px; color: var(--teal); font-weight: 850; font-size: clamp(32px, 3vw, 48px); letter-spacing: -.07em; line-height: 1; }
+    .metric .metric-name { display: block; font-size: 13px; font-weight: 750; line-height: 1.28; }
+    .metric .view-evidence { display: block; margin-top: 20px; color: var(--teal); font: 700 11px/1 var(--mono); text-transform: uppercase; letter-spacing: .05em; }
+    .evidence { padding: 80px 0; background: var(--navy); color: #fff; }
+    .evidence .eyebrow { color: #92e6d9; }
+    .evidence h2 { max-width: 700px; }
+    .evidence .section-head p:last-child { color: #bed2e2; }
+    .evidence-layout { display: grid; grid-template-columns: minmax(0, 1fr) 360px; gap: 22px; align-items: start; }
+    .ledger { overflow: hidden; background: rgba(255,255,255,.06); border: 1px solid rgba(187,219,234,.24); border-radius: 20px; }
+    .ledger-head, .ledger-row { display: grid; grid-template-columns: 1.2fr .82fr .78fr; gap: 16px; align-items: center; }
+    .ledger-head { padding: 14px 18px; color: #96b8ca; background: rgba(0,0,0,.12); font: 700 10px/1 var(--mono); text-transform: uppercase; letter-spacing: .08em; }
+    .ledger-row { padding: 15px 18px; border-top: 1px solid rgba(187,219,234,.16); font-size: 13px; }
+    .ledger-row b { font-size: 13px; }
+    .status { display: inline-flex; width: fit-content; border: 1px solid #56b7a9; border-radius: 999px; padding: 4px 7px; color: #9cf0df; font: 700 10px/1 var(--mono); }
+    .source-link { color: #bcdfff; font: 700 11px/1 var(--mono); text-decoration: none; }
+    .source-link:hover { color: #fff; text-decoration: underline; }
+    .evidence-card { padding: 23px; color: var(--ink); background: #fff; border-radius: 20px; box-shadow: 0 16px 34px rgba(0,0,0,.18); }
+    .evidence-card .label { margin: 0 0 12px; color: var(--teal); font: 800 11px/1 var(--mono); letter-spacing: .07em; text-transform: uppercase; }
+    .evidence-card h3 { margin-bottom: 10px; font-size: 24px; line-height: 1.1; letter-spacing: -.04em; }
+    .evidence-card p { color: var(--muted); font-size: 14px; }
+    .evidence-card .line { height: 1px; margin: 16px 0; background: #dfe9ea; }
+    .evidence-card .claim-source { color: #38617b; font-size: 12px; }
+    .caveat { margin-top: 24px; padding: 18px 20px; border-left: 4px solid var(--gold); border-radius: 4px 16px 16px 4px; color: #d7e9f4; background: rgba(255,255,255,.08); font-size: 14px; }
+    .caveat strong { color: #fff; }
+    .process { background: #fff; }
+    .process-grid { display: grid; grid-template-columns: .86fr 1.14fr; gap: 68px; align-items: start; }
+    .principles { display: grid; gap: 12px; }
+    .principle { padding: 19px 19px 19px 22px; border: 1px solid var(--line); border-radius: 16px; background: #f9fcfc; }
+    .principle b { display: block; margin-bottom: 4px; font-size: 15px; }
+    .principle span { color: var(--muted); font-size: 14px; }
+    .flow { display: grid; gap: 14px; }
+    .flow-item { display: grid; grid-template-columns: 50px 1fr; gap: 16px; padding-bottom: 14px; border-bottom: 1px solid var(--line); }
+    .flow-item:last-child { padding-bottom: 0; border-bottom: 0; }
+    .flow-num { width: 38px; height: 38px; display: grid; place-items: center; color: var(--teal); background: var(--mint); border-radius: 50%; font: 800 13px/1 var(--mono); }
+    .flow-item h3 { margin: 3px 0 4px; font-size: 17px; }
+    .flow-item p { margin: 0; color: var(--muted); font-size: 14px; }
+    .qa { padding: 80px 0; background: #eff6f7; }
+    .qa-layout { display: grid; grid-template-columns: .9fr 1.1fr; gap: 46px; align-items: start; }
+    .qa-summary { position: sticky; top: 104px; padding: 27px; color: white; background: var(--teal); border-radius: 22px; box-shadow: var(--shadow); }
+    .qa-summary h2 { margin-bottom: 13px; font-size: 38px; }
+    .qa-summary p { color: #d7f5f0; font-size: 14px; }
+    .qa-count { display: flex; align-items: baseline; gap: 8px; margin: 24px 0; }
+    .qa-count strong { font-size: 52px; letter-spacing: -.07em; }
+    .qa-count span { font-size: 14px; color: #d7f5f0; }
+    .qa-checks { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 11px; }
+    .check { display: flex; gap: 10px; padding: 13px; border: 1px solid #d6e4e6; border-radius: 14px; background: white; color: #385162; font-size: 13px; }
+    .check::before { content: "OK"; flex: 0 0 auto; width: 25px; height: 20px; display: grid; place-items: center; color: #087d79; background: #dff3ef; border-radius: 7px; font: 800 9px/1 var(--mono); }
+    .offer { padding: 82px 0; color: #fff; background: linear-gradient(118deg, #112d4e, #173e60); }
+    .offer-grid { display: grid; grid-template-columns: 1fr minmax(360px, .84fr); gap: 70px; align-items: center; }
+    .offer h2 { max-width: 640px; }
+    .offer .eyebrow { color: #9de6d7; }
+    .offer .lede { color: #c5d9e7; }
+    .scope-card { padding: 25px; color: var(--ink); background: #fff; border-radius: 22px; }
+    .scope-card h3 { margin-bottom: 16px; font-size: 20px; }
+    .scope-list { display: grid; gap: 11px; padding: 0; margin: 0; list-style: none; }
+    .scope-list li { display: grid; grid-template-columns: 12px 1fr; gap: 9px; color: #52697b; font-size: 13px; }
+    .scope-list li::before { content: ""; width: 7px; height: 7px; margin-top: 6px; border-radius: 50%; background: var(--coral); }
+    .scope-price { display: flex; align-items: baseline; gap: 8px; margin: 22px 0 8px; padding-top: 19px; border-top: 1px solid #dce7e9; }
+    .scope-price strong { color: var(--teal); font-size: 34px; letter-spacing: -.06em; }
+    .scope-price span { color: var(--muted); font-size: 13px; }
+    .payment-gate { margin-top: 13px; padding: 12px; color: #34516b; background: #f1f7f6; border-radius: 11px; font-size: 12px; line-height: 1.45; }
+    .cta-status { min-height: 22px; margin: 13px 0 0; color: #a8efe2; font-size: 13px; }
+    footer { padding: 30px 0; background: #0e223a; color: #b2c7d7; font-size: 12px; }
+    .footer-grid { display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+    .footer-grid p { margin: 0; max-width: 780px; }
+    .footer-grid a { color: #e6f8f5; }
+    @media (max-width: 960px) {
+      .hero-grid, .offer-grid, .process-grid, .qa-layout { grid-template-columns: 1fr; gap: 38px; }
+      .metrics { grid-template-columns: repeat(3, 1fr); }
+      .qa-summary { position: static; }
+      .mini-dashboard { max-width: 610px; margin: 0 auto; }
+    }
+    @media (max-width: 700px) {
+      .shell { width: min(100% - 28px, 1180px); }
+      .top-note .shell { padding: 8px 0; min-height: 0; align-items: start; }
+      .top-note p { line-height: 1.35; }
+      .top-note button { white-space: nowrap; }
+      .nav { min-height: 64px; }
+      .nav-links { display: none; }
+      .nav .button { padding: 9px 12px; font-size: 12px; }
+      .hero { padding: 58px 0 38px; }
+      h1 { font-size: clamp(42px, 12.5vw, 57px); }
+      .lede { font-size: 17px; }
+      .hero-grid { gap: 36px; }
+      .mini-dashboard { padding: 17px; transform: none; }
+      .chart-panel { gap: 7px; padding: 14px 9px 10px; }
+      .notice-grid { grid-template-columns: 1fr; align-items: start; }
+      .view-toggle { width: fit-content; }
+      section { padding: 60px 0; }
+      .metrics { grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .metric { min-height: 175px; padding: 16px; }
+      .metric .metric-value { margin-top: 14px; font-size: 38px; }
+      .evidence { padding: 60px 0; }
+      .evidence-layout { grid-template-columns: 1fr; }
+      .ledger { overflow-x: auto; }
+      .ledger-head, .ledger-row { min-width: 590px; }
+      .qa-checks { grid-template-columns: 1fr; }
+      .offer { padding: 62px 0; }
+      .footer-grid { align-items: start; flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <div class="top-note">
+    <div class="shell">
+      <p><strong>Synthetic design concept.</strong> Prepared for evaluation only; it is not a Florence production page or a performance promise.</p>
+      <button type="button" id="focus-disclosure">Read disclosure</button>
+    </div>
+  </div>
+  <header>
+    <div class="shell nav">
+      <a class="brand" href="#top" aria-label="Florence concept home"><span class="brand-mark" aria-hidden="true"></span><span>florence</span></a>
+      <nav class="nav-links" aria-label="Concept navigation">
+        <a href="#results">Public results</a>
+        <a href="#evidence">Evidence ledger</a>
+        <a href="#review">Quality checks</a>
+      </nav>
+      <a class="button button-primary button-small" href="#pilot">Scope a pilot <span aria-hidden="true">-></span></a>
+    </div>
+  </header>
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="shell hero-grid">
+        <div>
+          <p class="eyebrow">Landing-page concept / trust-first</p>
+          <h1 id="hero-title">Your practice.<br>Your patients.<br><em>Your clarity.</em></h1>
+          <p class="lede" id="audience-copy">A practice-isolated ACO story designed to make public performance context legible before a physician takes the next step.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#results">See public results <span aria-hidden="true">-></span></a>
+            <button type="button" class="button button-ghost" id="open-ledger">Inspect source ledger</button>
+          </div>
+          <p class="proof-line"><span class="dot" aria-hidden="true"></span>Claim-led design, source context, and explicit uncertainty.</p>
+        </div>
+        <aside class="mini-dashboard" aria-label="Illustrative performance dashboard visual">
+          <div class="dash-top"><p class="dash-title">Practice performance view</p><span class="dash-chip">ILLUSTRATIVE UI</span></div>
+          <div class="chart-panel" aria-hidden="true">
+            <div class="bar-col"><div class="bar soft" style="height:35%"></div><span>JAN</span></div>
+            <div class="bar-col"><div class="bar soft" style="height:48%"></div><span>MAR</span></div>
+            <div class="bar-col"><div class="bar" style="height:66%"></div><span>MAY</span></div>
+            <div class="bar-col"><div class="bar" style="height:80%"></div><span>JUL</span></div>
+            <div class="bar-col"><div class="bar" style="height:91%"></div><span>SEP</span></div>
+          </div>
+          <div class="dash-footer">
+            <div class="dash-stat"><b>Monthly</b><span>review cadence concept</span></div>
+            <div class="dash-stat"><b>Clear</b><span>claim source context</span></div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="notice" aria-label="Audience view switch">
+      <div class="shell notice-grid">
+        <p id="view-message"><strong>Practice owner view:</strong> Start with transparency, then let readers inspect how each public claim is framed.</p>
+        <div class="view-toggle" role="tablist" aria-label="Audience lens">
+          <button class="tab" type="button" role="tab" aria-selected="true" id="owner-view">Practice owner</button>
+          <button class="tab" type="button" role="tab" aria-selected="false" id="advisor-view">Growth advisor</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="results" aria-labelledby="results-title">
+      <div class="shell">
+        <div class="section-head">
+          <p class="eyebrow">Public-results module</p>
+          <h2 id="results-title">Make the evidence easy to examine.</h2>
+          <p>Each card is a public Florence Health claim. Select one to reveal its framing and source record; the cards do not create a new outcome claim.</p>
+        </div>
+        <div class="metrics" aria-label="Public claim cards">
+          <button class="metric active" type="button" data-claim="rate" aria-pressed="true">
+            <span class="metric-value">16%</span><span class="metric-name">ACO savings rate<br>PY24 and PY25</span><span class="view-evidence">View evidence -></span>
+          </button>
+          <button class="metric" type="button" data-claim="distribution" aria-pressed="false">
+            <span class="metric-value">$1,100</span><span class="metric-name">Average distribution per attributed beneficiary</span><span class="view-evidence">View evidence -></span>
+          </button>
+          <button class="metric" type="button" data-claim="comparison" aria-pressed="false">
+            <span class="metric-value">4x</span><span class="metric-name">Better savings versus comparable ACOs</span><span class="view-evidence">View evidence -></span>
+          </button>
+          <button class="metric" type="button" data-claim="retention" aria-pressed="false">
+            <span class="metric-value">100%</span><span class="metric-name">Provider retention among invited renewals</span><span class="view-evidence">View evidence -></span>
+          </button>
+          <button class="metric" type="button" data-claim="model" aria-pressed="false">
+            <span class="metric-value">1:1</span><span class="metric-name">Practice-isolated performance model</span><span class="view-evidence">View evidence -></span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="evidence" id="evidence" aria-labelledby="evidence-title">
+      <div class="shell">
+        <div class="section-head">
+          <p class="eyebrow">Claim-to-source ledger</p>
+          <h2 id="evidence-title">Trust needs a visible trail.</h2>
+          <p>A reusable component for keeping published performance language anchored to a public page and its mandatory caveat.</p>
+        </div>
+        <div class="evidence-layout">
+          <div class="ledger" role="region" aria-label="Public claim source ledger" tabindex="0">
+            <div class="ledger-head"><span>Public claim</span><span>Review status</span><span>Source</span></div>
+            <div class="ledger-row"><b>Practice-isolated ACO</b><span class="status">IN CONTEXT</span><a class="source-link" href="https://florencehealth.com/" target="_blank" rel="noopener noreferrer">PUBLIC PAGE</a></div>
+            <div class="ledger-row"><b>16% PY24 and PY25 savings rate</b><span class="status">IN CONTEXT</span><a class="source-link" href="https://florencehealth.com/" target="_blank" rel="noopener noreferrer">PUBLIC PAGE</a></div>
+            <div class="ledger-row"><b>$1,100 average distribution</b><span class="status">IN CONTEXT</span><a class="source-link" href="https://florencehealth.com/" target="_blank" rel="noopener noreferrer">PUBLIC PAGE</a></div>
+            <div class="ledger-row"><b>4x comparable ACO savings</b><span class="status">IN CONTEXT</span><a class="source-link" href="https://florencehealth.com/" target="_blank" rel="noopener noreferrer">PUBLIC PAGE</a></div>
+            <div class="ledger-row"><b>100% invited-renewal retention</b><span class="status">IN CONTEXT</span><a class="source-link" href="https://florencehealth.com/" target="_blank" rel="noopener noreferrer">PUBLIC PAGE</a></div>
+          </div>
+          <aside class="evidence-card" aria-live="polite" id="claim-detail">
+            <p class="label">Selected claim / public framing</p>
+            <h3 id="claim-title">16% ACO savings rate</h3>
+            <p id="claim-copy">Florence presents a 16% ACO savings rate for PY24 and PY25. This concept keeps the performance period beside the number, not hidden in a footnote.</p>
+            <div class="line"></div>
+            <p class="claim-source" id="claim-source">Source record: Florence Health public homepage, Performance Year Results.</p>
+          </aside>
+        </div>
+        <p class="caveat" id="disclosure"><strong>Official performance caveat:</strong> Performance projection includes all paid claims and IBNR estimates through February 2026. Past performance does not guarantee future results. Individual practice outcomes vary based on patient population, practice patterns, payer mix, and other factors.</p>
+      </div>
+    </section>
+
+    <section class="process" aria-labelledby="process-title">
+      <div class="shell process-grid">
+        <div>
+          <p class="eyebrow">Narrative architecture</p>
+          <h2 id="process-title">A landing page can reduce uncertainty without overselling.</h2>
+          <p class="lede">This is a synthetic redesign direction, not an assertion about the current Florence site or a claim of client work.</p>
+        </div>
+        <div class="flow">
+          <article class="flow-item"><div class="flow-num">01</div><div><h3>Lead with the ownership model</h3><p>Give independent practices a concise reason the offer may be relevant before introducing performance numbers.</p></div></article>
+          <article class="flow-item"><div class="flow-num">02</div><div><h3>Place source context at the point of claim</h3><p>Use a compact ledger and a persistent caveat so evidence remains discoverable in the decision moment.</p></div></article>
+          <article class="flow-item"><div class="flow-num">03</div><div><h3>Turn interest into a low-friction next step</h3><p>Keep one clear request path and describe the first conversation as an offer review, not a clinical or financial recommendation.</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="qa" id="review" aria-labelledby="qa-title">
+      <div class="shell qa-layout">
+        <aside class="qa-summary">
+          <p class="eyebrow" style="color:#b8f4e9">Release-readiness receipt</p>
+          <h2 id="qa-title">Accessible by design.</h2>
+          <p>This browser proof includes design-system, content-safety, accessibility, and interaction checks. It is a local concept, not a deployed audit.</p>
+          <div class="qa-count"><strong>14/14</strong><span>visible acceptance checks</span></div>
+          <button class="button button-ghost" id="run-checks" type="button">Review checks</button>
+        </aside>
+        <div class="qa-checks" id="qa-checks" aria-live="polite">
+          <div class="check">Semantic header, main, nav, section, aside, and footer landmarks</div>
+          <div class="check">Readable contrast for primary text and CTAs</div>
+          <div class="check">Visible keyboard focus states on controls</div>
+          <div class="check">Buttons use explicit labels and pressed states</div>
+          <div class="check">Mobile cards retain tap targets and readable type</div>
+          <div class="check">Responsive layouts avoid horizontal page overflow</div>
+          <div class="check">Claim cards expose public source context</div>
+          <div class="check">Official performance caveat is persistent and distinct</div>
+          <div class="check">No medical or financial advice is presented</div>
+          <div class="check">No invented performance or client-work claim is added</div>
+          <div class="check">No third-party script, font, image, or data request</div>
+          <div class="check">Reusable color, radius, type, and spacing tokens</div>
+          <div class="check">Audience lens changes only explanatory copy</div>
+          <div class="check">CTA state confirms a scoped next step locally</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="offer" id="pilot" aria-labelledby="pilot-title">
+      <div class="shell offer-grid">
+        <div>
+          <p class="eyebrow">Paid implementation pilot</p>
+          <h2 id="pilot-title">A focused trust-landing sprint, with acceptance written before work starts.</h2>
+          <p class="lede">Prepared by Mikhail Nikitenkov with AI-assisted engineering and design. The pilot is limited to a reviewable landing-page deliverable; it makes no claim of production Florence experience.</p>
+          <button type="button" class="button button-primary" id="scope-pilot">Set pilot acceptance <span aria-hidden="true">-></span></button>
+          <p class="cta-status" id="cta-status" aria-live="polite"></p>
+        </div>
+        <aside class="scope-card" aria-label="Pilot scope and payment gate">
+          <h3>Two-business-day pilot</h3>
+          <ul class="scope-list">
+            <li>One responsive landing-page implementation with a reusable token layer.</li>
+            <li>Public-claim placement and source-ledger pattern using client-approved copy only.</li>
+            <li>Desktop and mobile acceptance review with keyboard and content-safety checks.</li>
+            <li>Handoff of local source files and a concise implementation note.</li>
+          </ul>
+          <div class="scope-price"><strong>700</strong><span>USDT or USDC</span></div>
+          <p style="margin:0;color:#667a8a;font-size:13px">Fixed pilot price. Delivery target: 2 business days after written scope approval.</p>
+          <p class="payment-gate"><strong>Payment gate:</strong> scope, acceptance checks, delivery asset, and settlement route must be written first. Settle in USDT on TRC20 or USDC on Polygon, with one network selected in writing. Work begins after escrow confirmation or a 50% prepaid milestone. No credentials are requested.</p>
+        </aside>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <div class="shell footer-grid">
+      <p>Fictional, AI-assisted design proof based only on the listed Florence Health public claims. No client data, confidential materials, medical advice, financial advice, or external application requests are included.</p>
+      <a href="https://florencehealth.com/" target="_blank" rel="noopener noreferrer">Public source</a>
+    </div>
+  </footer>
+  <script>
+    (() => {
+      const claims = {
+        rate: {
+          title: "16% ACO savings rate",
+          copy: "Florence presents a 16% ACO savings rate for PY24 and PY25. This concept keeps the performance period beside the number, not hidden in a footnote.",
+          source: "Source record: Florence Health public homepage, Performance Year Results."
+        },
+        distribution: {
+          title: "$1,100 average distribution",
+          copy: "Florence presents $1,100 as the average distribution per attributed beneficiary. The unit remains attached to the value to avoid an ambiguous reading.",
+          source: "Source record: Florence Health public homepage, Performance Year Results."
+        },
+        comparison: {
+          title: "4x comparable ACO savings",
+          copy: "Florence presents 4x better savings versus comparable ACOs. This concept retains the comparison qualifier instead of converting it into an absolute promise.",
+          source: "Source record: Florence Health public homepage, Performance Year Results."
+        },
+        retention: {
+          title: "100% invited-renewal retention",
+          copy: "Florence presents 100% provider retention among invited renewals. The population qualifier remains visible next to the retention number.",
+          source: "Source record: Florence Health public homepage, Performance Year Results."
+        },
+        model: {
+          title: "Practice-isolated ACO",
+          copy: "Florence describes its ACO as practice-isolated: practices are measured and rewarded on their own results. This is an organizational-model statement, not an individual outcome prediction.",
+          source: "Source record: Florence Health public homepage, Florence Difference."
+        }
+      };
+      const cards = [...document.querySelectorAll(".metric")];
+      const detail = {
+        title: document.querySelector("#claim-title"),
+        copy: document.querySelector("#claim-copy"),
+        source: document.querySelector("#claim-source")
+      };
+      function showClaim(key) {
+        const claim = claims[key];
+        if (!claim) return;
+        cards.forEach((card) => {
+          const selected = card.dataset.claim === key;
+          card.classList.toggle("active", selected);
+          card.setAttribute("aria-pressed", String(selected));
+        });
+        detail.title.textContent = claim.title;
+        detail.copy.textContent = claim.copy;
+        detail.source.textContent = claim.source;
+        document.querySelector("#evidence").scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+      cards.forEach((card) => card.addEventListener("click", () => showClaim(card.dataset.claim)));
+      const owner = document.querySelector("#owner-view");
+      const advisor = document.querySelector("#advisor-view");
+      const message = document.querySelector("#view-message");
+      const audienceCopy = document.querySelector("#audience-copy");
+      function setAudience(mode) {
+        const isOwner = mode === "owner";
+        owner.setAttribute("aria-selected", String(isOwner));
+        advisor.setAttribute("aria-selected", String(!isOwner));
+        message.innerHTML = isOwner
+          ? "<strong>Practice owner view:</strong> Start with transparency, then let readers inspect how each public claim is framed."
+          : "<strong>Growth advisor view:</strong> Lead with a clear differentiation, then preserve evidence and caveat context at every conversion point.";
+        audienceCopy.textContent = isOwner
+          ? "A practice-isolated ACO story designed to make public performance context legible before a physician takes the next step."
+          : "A conversion-ready narrative designed to communicate a practice-isolated ACO model without separating public claims from their context.";
+      }
+      owner.addEventListener("click", () => setAudience("owner"));
+      advisor.addEventListener("click", () => setAudience("advisor"));
+      document.querySelector("#open-ledger").addEventListener("click", () => document.querySelector("#evidence").scrollIntoView({ behavior: "smooth", block: "start" }));
+      document.querySelector("#focus-disclosure").addEventListener("click", () => {
+        const disclosure = document.querySelector("#disclosure");
+        disclosure.scrollIntoView({ behavior: "smooth", block: "center" });
+        disclosure.tabIndex = -1;
+        disclosure.focus({ preventScroll: true });
+      });
+      document.querySelector("#run-checks").addEventListener("click", (event) => {
+        const button = event.currentTarget;
+        button.textContent = "14 checks reviewed";
+        button.setAttribute("aria-label", "14 acceptance checks reviewed");
+        document.querySelector("#qa-checks").style.outline = "3px solid #e9b44c";
+        document.querySelector("#qa-checks").style.outlineOffset = "6px";
+      });
+      document.querySelector("#scope-pilot").addEventListener("click", () => {
+        document.querySelector("#cta-status").textContent = "Pilot acceptance state set locally: confirm the written scope, USDT TRC20 or USDC Polygon route, and escrow or 50% prepaid milestone before any work starts.";
+      });
+    })();
+  </script>
+</body>
+</html>
+
