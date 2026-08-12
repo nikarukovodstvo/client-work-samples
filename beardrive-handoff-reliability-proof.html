@@ -32,14 +32,14 @@
         <div class="stage">
           <div class="devices">
             <div class="device" id="devA"><div class="dev-top"><span class="dev-name">Dana / Codex / macOS</span><span class="pill" id="pillA">online</span></div><div class="file"><b>findings/eu-checkout.md</b><div id="hashA">sha256: 1f3a...9c21 / v18</div><div class="meta" id="metaA">last write: Dana / agent-session D7</div></div></div>
-            <div class="link"><span>в‡„</span></div>
+            <div class="link"><span>&harr;</span></div>
             <div class="device" id="devB"><div class="dev-top"><span class="dev-name">Mika / Claude / Linux</span><span class="pill" id="pillB">online</span></div><div class="file"><b>findings/eu-checkout.md</b><div id="hashB">sha256: 1f3a...9c21 / v18</div><div class="meta" id="metaB">last pull: journal offset 442</div></div></div>
           </div>
         </div>
         <div class="controls">
-          <button class="warn" id="conflictBtn">1 В· Create offline conflict</button>
-          <button class="secondary" id="replayBtn" disabled>2 В· Replay duplicate event</button>
-          <button id="reconnectBtn" disabled>3 В· Reconnect and converge</button>
+          <button class="warn" id="conflictBtn">1 / Create offline conflict</button>
+          <button class="secondary" id="replayBtn" disabled>2 / Replay duplicate event</button>
+          <button id="reconnectBtn" disabled>3 / Reconnect and converge</button>
           <button class="secondary" id="resetBtn">Reset fixture</button>
         </div>
         <pre class="receipt" id="receipt">READY fixture=HANDOFF-02 remote_offset=442 content=1f3a9c21
@@ -52,7 +52,7 @@ ASSERT baseline_equal=true attribution_complete=true secrets_present=false</pre>
       </aside>
     </section>
 
-    <section class="panel" style="margin-top:18px"><div class="panel-h"><h2>Append-only audit trail</h2><span class="status">human В· agent В· device В· action</span></div><div class="timeline" id="timeline"></div></section>
+    <section class="panel" style="margin-top:18px"><div class="panel-h"><h2>Append-only audit trail</h2><span class="status">human / agent / device / action</span></div><div class="timeline" id="timeline"></div></section>
 
     <section class="contract">
       <div class="term"><b>$900 USDT / USDC</b><span>fixed first milestone</span></div>
@@ -60,7 +60,7 @@ ASSERT baseline_equal=true attribution_complete=true secrets_present=false</pre>
       <div class="term"><b>Escrow or 50% prepaid</b><span>asset and network confirmed in writing</span></div>
       <div class="term"><b>Working code + tests</b><span>no production credentials required</span></div>
     </section>
-    <footer class="foot"><span><strong>Scope boundary:</strong> synthetic fixtures; no installation, OAuth, production hub, or customer files.</span><span>Prepared for Runbear / BearDrive В· 2026-08-13</span></footer>
+    <footer class="foot"><span><strong>Scope boundary:</strong> synthetic fixtures; no installation, OAuth, production hub, or customer files.</span><span>Prepared for Runbear / BearDrive / 2026-08-13</span></footer>
   </main>
   <script>
     const $=s=>document.querySelector(s);
@@ -68,13 +68,13 @@ ASSERT baseline_equal=true attribution_complete=true secrets_present=false</pre>
       ['Content hash is stable','same bytes produce same identity'],['Author attribution is complete','human + agent + device'],['Journal offset is monotonic','no event rewinds'],['Offline write is durable','queued before network'],['Conflict never overwrites silently','losing bytes preserved'],['Conflict name is deterministic','device + timestamp suffix'],['Duplicate delivery is idempotent','same event has one effect'],['Reconnect reaches convergence','canonical hash matches'],['Prior version remains restorable','history retains both writes'],['Path stays inside project','traversal rejected'],['Hook payload contains no secret','redacted fixture'],['Audit receipt is exportable','machine-readable evidence']
     ];
     let phase=0;
-    const baseEvents=[['Dana / Codex / macOS','PUSH v18 В· sha256 1f3aвЂ¦9c21'],['Hub','ACK journal offset 442'],['Mika / Claude / Linux','PULL v18 В· verified content hash']];
-    function renderChecks(){ $('#checks').innerHTML=checkDefs.map((x,i)=>{let pass=phase===0?i<12:phase===1?i<4:phase===2?i<7:i<12;return `<div class="check ${pass?'':'pending'}"><span class="icon">${pass?'вњ“':'В·'}</span><span>${x[0]}<br><small>${x[1]}</small></span><small>${pass?'PASS':'WAIT'}</small></div>`}).join(''); }
+    const baseEvents=[['Dana / Codex / macOS','PUSH v18 / sha256 1f3a...9c21'],['Hub','ACK journal offset 442'],['Mika / Claude / Linux','PULL v18 / verified content hash']];
+    function renderChecks(){ $('#checks').innerHTML=checkDefs.map((x,i)=>{let pass=phase===0?i<12:phase===1?i<4:phase===2?i<7:i<12;return `<div class="check ${pass?'':'pending'}"><span class="icon">${pass?'Y':'-'}</span><span>${x[0]}<br><small>${x[1]}</small></span><small>${pass?'PASS':'WAIT'}</small></div>`}).join(''); }
     function renderTimeline(extra=[]){$('#timeline').innerHTML=[...baseEvents,...extra].map(x=>`<div class="event"><b>${x[0]}</b><p>${x[1]}</p></div>`).join('')}
     function setPhase(n){phase=n;renderChecks();$('#checkSummary').textContent=n===0?'baseline':n===1?'conflict captured':n===2?'replay verified':'12 / 12 passed';$('#suiteBadge').textContent=n===3?'12 / 12 scenario checks':'12 / 12 baseline checks'}
-    $('#conflictBtn').onclick=()=>{setPhase(1);$('#devB').classList.add('offline');$('#pillB').textContent='offline';$('#hashA').textContent='sha256: 44b8вЂ¦d102 В· local v19';$('#hashB').textContent='sha256: 7ec2вЂ¦ac88 В· local v19';$('#metaA').textContent='queued: Dana / agent-session D8';$('#metaB').textContent='queued: Mika / agent-session M3';$('#statusText').textContent='Concurrent writes safely queued';$('#statusDot').style.background='var(--amber)';$('#events').textContent='20';$('#copies').textContent='2';$('#receipt').textContent='QUEUE event=evt_d8 path=findings/eu-checkout.md hash=44b8d102\nQUEUE event=evt_m3 path=findings/eu-checkout.md hash=7ec2ac88\nASSERT silent_overwrite=false queued_durable=true';renderTimeline([['Dana / Codex / macOS','OFFLINE WRITE evt_d8 В· 44b8вЂ¦d102'],['Mika / Claude / Linux','OFFLINE WRITE evt_m3 В· 7ec2вЂ¦ac88']]);$('#replayBtn').disabled=false;$('#conflictBtn').disabled=true}
-    $('#replayBtn').onclick=()=>{setPhase(2);$('#dupes').textContent='0';$('#events').textContent='20';$('#receipt').textContent+='\nREPLAY event=evt_d8 result=NO_OP reason=ALREADY_APPLIED\nASSERT duplicate_effects=0 journal_events=20';renderTimeline([['Dana / Codex / macOS','OFFLINE WRITE evt_d8 В· 44b8вЂ¦d102'],['Mika / Claude / Linux','OFFLINE WRITE evt_m3 В· 7ec2вЂ¦ac88'],['Hub','DUPLICATE evt_d8 rejected В· no side effect']]);$('#reconnectBtn').disabled=false;$('#replayBtn').disabled=true}
-    $('#reconnectBtn').onclick=()=>{setPhase(3);$('#devB').classList.remove('offline');$('#pillB').textContent='online';$('#hashA').textContent='sha256: 7ec2вЂ¦ac88 В· canonical v20';$('#hashB').textContent='sha256: 7ec2вЂ¦ac88 В· canonical v20';$('#metaA').textContent='conflict copy: eu-checkout.bdrive-conflict-dana-T1902.md';$('#metaB').textContent='last pull: journal offset 444';$('#statusText').textContent='Converged В· both versions retained';$('#statusDot').style.background='var(--green)';$('#events').textContent='22';$('#copies').textContent='2';$('#receipt').textContent+='\nCONVERGE canonical=7ec2ac88 conflict_copy=44b8d102 offset=444\nASSERT hashes_equal=true versions_lost=0 checks=12/12';renderTimeline([['Dana / Codex / macOS','OFFLINE WRITE evt_d8 В· 44b8вЂ¦d102'],['Mika / Claude / Linux','OFFLINE WRITE evt_m3 В· 7ec2вЂ¦ac88'],['Hub','DUPLICATE evt_d8 rejected В· no side effect'],['Hub','CONFLICT В· preserved Dana bytes as conflict copy'],['Both devices','PULL offset 444 В· canonical 7ec2вЂ¦ac88 В· converged']]);$('#reconnectBtn').disabled=true}
+    $('#conflictBtn').onclick=()=>{setPhase(1);$('#devB').classList.add('offline');$('#pillB').textContent='offline';$('#hashA').textContent='sha256: 44b8...d102 / local v19';$('#hashB').textContent='sha256: 7ec2...ac88 / local v19';$('#metaA').textContent='queued: Dana / agent-session D8';$('#metaB').textContent='queued: Mika / agent-session M3';$('#statusText').textContent='Concurrent writes safely queued';$('#statusDot').style.background='var(--amber)';$('#events').textContent='20';$('#copies').textContent='2';$('#receipt').textContent='QUEUE event=evt_d8 path=findings/eu-checkout.md hash=44b8d102\nQUEUE event=evt_m3 path=findings/eu-checkout.md hash=7ec2ac88\nASSERT silent_overwrite=false queued_durable=true';renderTimeline([['Dana / Codex / macOS','OFFLINE WRITE evt_d8 / 44b8...d102'],['Mika / Claude / Linux','OFFLINE WRITE evt_m3 / 7ec2...ac88']]);$('#replayBtn').disabled=false;$('#conflictBtn').disabled=true}
+    $('#replayBtn').onclick=()=>{setPhase(2);$('#dupes').textContent='0';$('#events').textContent='20';$('#receipt').textContent+='\nREPLAY event=evt_d8 result=NO_OP reason=ALREADY_APPLIED\nASSERT duplicate_effects=0 journal_events=20';renderTimeline([['Dana / Codex / macOS','OFFLINE WRITE evt_d8 / 44b8...d102'],['Mika / Claude / Linux','OFFLINE WRITE evt_m3 / 7ec2...ac88'],['Hub','DUPLICATE evt_d8 rejected / no side effect']]);$('#reconnectBtn').disabled=false;$('#replayBtn').disabled=true}
+    $('#reconnectBtn').onclick=()=>{setPhase(3);$('#devB').classList.remove('offline');$('#pillB').textContent='online';$('#hashA').textContent='sha256: 7ec2...ac88 / canonical v20';$('#hashB').textContent='sha256: 7ec2...ac88 / canonical v20';$('#metaA').textContent='conflict copy: eu-checkout.bdrive-conflict-dana-T1902.md';$('#metaB').textContent='last pull: journal offset 444';$('#statusText').textContent='Converged / both versions retained';$('#statusDot').style.background='var(--green)';$('#events').textContent='22';$('#copies').textContent='2';$('#receipt').textContent+='\nCONVERGE canonical=7ec2ac88 conflict_copy=44b8d102 offset=444\nASSERT hashes_equal=true versions_lost=0 checks=12/12';renderTimeline([['Dana / Codex / macOS','OFFLINE WRITE evt_d8 / 44b8...d102'],['Mika / Claude / Linux','OFFLINE WRITE evt_m3 / 7ec2...ac88'],['Hub','DUPLICATE evt_d8 rejected / no side effect'],['Hub','CONFLICT / preserved Dana bytes as conflict copy'],['Both devices','PULL offset 444 / canonical 7ec2...ac88 / converged']]);$('#reconnectBtn').disabled=true}
     $('#resetBtn').onclick=()=>location.reload();
     setPhase(0);renderTimeline();
   </script>
