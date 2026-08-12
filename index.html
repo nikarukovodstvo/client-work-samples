@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Swiss HVAC Quote Control Proof</title>
+  <style>
+    :root{color-scheme:dark;--bg:#07111f;--panel:#0d1a2d;--line:#24354d;--text:#eff6ff;--muted:#9fb0c7;--cyan:#4de1c1;--amber:#ffca67}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 20% 0,#17344d 0,transparent 36%),var(--bg);color:var(--text);font:15px/1.5 Inter,Segoe UI,sans-serif}.wrap{max-width:1120px;margin:auto;padding:36px 22px 60px}header{display:flex;justify-content:space-between;gap:24px;align-items:flex-start;margin-bottom:24px}.tag{font:700 12px/1 monospace;letter-spacing:.12em;color:var(--cyan)}h1{font-size:clamp(30px,5vw,54px);line-height:1.02;margin:10px 0 12px;max-width:750px}p{color:var(--muted);margin:0}.pill{border:1px solid var(--line);padding:9px 12px;border-radius:99px;white-space:nowrap}.grid{display:grid;grid-template-columns:1.15fr .85fr;gap:16px}.card{background:linear-gradient(145deg,rgba(19,38,62,.96),rgba(9,22,39,.96));border:1px solid var(--line);border-radius:18px;padding:20px;box-shadow:0 18px 50px #0004}.card h2{font-size:18px;margin:0 0 14px}.input{border:1px solid var(--line);background:#06101d;border-radius:12px;padding:14px;margin-bottom:14px;color:#dbeafe}.flow{display:flex;flex-wrap:wrap;gap:8px}.step{border:1px solid var(--line);padding:8px 10px;border-radius:10px;color:var(--muted)}.step strong{color:var(--text)}table{width:100%;border-collapse:collapse;margin-top:6px}th,td{text-align:left;padding:11px 9px;border-bottom:1px solid var(--line);vertical-align:top}th{color:var(--muted);font-size:12px;text-transform:uppercase}.ok{color:var(--cyan);font-weight:700}.hold{color:var(--amber);font-weight:700}.money{text-align:right;font-variant-numeric:tabular-nums}.summary{display:grid;grid-template-columns:1fr auto;gap:8px;margin-top:16px;padding-top:14px;border-top:1px solid var(--line)}.total{font-size:22px;color:var(--cyan)}.rules{display:grid;gap:10px}.rule{display:flex;gap:10px;align-items:flex-start}.dot{width:9px;height:9px;margin-top:7px;border-radius:50%;background:var(--cyan);flex:none}.warn .dot{background:var(--amber)}.footer{margin-top:16px;font-size:12px;color:#71839d}@media(max-width:800px){header{display:block}.pill{display:inline-block;margin-top:18px}.grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body><main class="wrap">
+  <header><div><div class="tag">PERSONALIZED TECHNICAL PROOF · SYNTHETIC DATA</div><h1>Exact-match quoting that refuses to invent a catalog item.</h1><p>A visible control design for a French-language plumbing/HVAC request, deterministic catalog lookup, exception handling, and Swiss quote arithmetic.</p></div><div class="pill">Mikhail Nikitenkov · 2026-08-12</div></header>
+  <section class="grid">
+    <article class="card"><h2>1 · Intake and controlled result</h2><div class="input">Remplacer un mitigeur lavabo chromé et prévoir 2 heures de main-d'œuvre.</div><div class="flow"><span class="step"><strong>Parse</strong> request</span><span class="step"><strong>Normalize</strong> terms</span><span class="step"><strong>Lookup</strong> catalog</span><span class="step"><strong>Validate</strong> exact SKU</span><span class="step"><strong>Quote</strong> or hold</span></div>
+      <table><thead><tr><th>Requested item</th><th>Catalog result</th><th>Status</th><th class="money">Net CHF</th></tr></thead><tbody>
+        <tr><td>Mitigeur lavabo chromé</td><td>DEMO-GL-1042 · exact alias + SKU</td><td class="ok">MATCHED</td><td class="money">184.00</td></tr>
+        <tr><td>Flexible spécial 3/8</td><td>No exact reference in approved extract</td><td class="hold">HUMAN REVIEW</td><td class="money">—</td></tr>
+      </tbody></table>
+      <div class="summary"><span>Matched materials + 15% margin</span><strong>211.60 CHF</strong><span>Labor · 2 h × 95 CHF</span><strong>190.00 CHF</strong><span>Travel</span><strong>45.00 CHF</strong><span>VAT · 8.1%</span><strong>36.17 CHF</strong><span class="total">Verified total</span><strong class="total">482.77 CHF</strong></div>
+    </article>
+    <aside class="card"><h2>2 · Acceptance controls</h2><div class="rules">
+      <div class="rule"><i class="dot"></i><p><strong>Catalog is the authority.</strong><br>The model may parse language, but cannot create a SKU or price.</p></div>
+      <div class="rule"><i class="dot"></i><p><strong>Fail closed.</strong><br>No exact reference means no price and a visible exception queue.</p></div>
+      <div class="rule"><i class="dot"></i><p><strong>Arithmetic is deterministic.</strong><br>Margin, labor, travel, and 8.1% VAT are calculated outside the model.</p></div>
+      <div class="rule"><i class="dot"></i><p><strong>Every line is traceable.</strong><br>Store source catalog, row/reference, match rule, and validation state.</p></div>
+      <div class="rule warn"><i class="dot"></i><p><strong>Production boundary.</strong><br>This proof uses fictional references and prices. A paid pilot starts only with an approved sanitized catalog extract and test requests.</p></div>
+    </div><div class="footer">Proposed paid pilot: 20 catalog rows + 10 anonymized requests → tested n8n workflow, PDF output, exception log, JSON export, and README.</div></aside>
+  </section>
+</main></body></html>
