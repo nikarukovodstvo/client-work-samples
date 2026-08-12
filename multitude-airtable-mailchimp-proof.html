@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Multitude Films | Airtable-Mailchimp Dry Run</title>
+  <style>
+    :root{color-scheme:dark;--bg:#081018;--panel:#101d28;--line:#2a3c4b;--text:#f3f8fb;--muted:#a5b5c2;--green:#62dda8;--amber:#ffd071;--blue:#7bb7ff}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 12% 0,#17394b 0,transparent 34%),var(--bg);color:var(--text);font:15px/1.45 Inter,Segoe UI,sans-serif}.wrap{max-width:1160px;margin:auto;padding:34px 22px 54px}header{display:flex;justify-content:space-between;gap:24px;align-items:flex-start;margin-bottom:22px}.eyebrow{font:700 12px/1 monospace;letter-spacing:.12em;color:var(--blue)}h1{font-size:clamp(32px,5vw,54px);line-height:1.04;margin:10px 0 12px;max-width:800px}p{margin:0;color:var(--muted)}.pill{border:1px solid var(--line);padding:9px 12px;border-radius:99px;white-space:nowrap}.grid{display:grid;grid-template-columns:1.25fr .75fr;gap:16px}.card{background:linear-gradient(145deg,#142433f8,#0c1722f8);border:1px solid var(--line);border-radius:18px;padding:20px;box-shadow:0 18px 50px #0004}.card h2{font-size:18px;margin:0 0 13px}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px}.stat{border:1px solid var(--line);border-radius:11px;padding:11px}.stat b{font-size:22px;display:block}.stat span{color:var(--muted);font-size:11px}table{width:100%;border-collapse:collapse}th,td{text-align:left;padding:10px 8px;border-bottom:1px solid var(--line);vertical-align:top}th{font-size:11px;text-transform:uppercase;color:var(--muted)}.apply{color:var(--green);font-weight:700}.review{color:var(--amber);font-weight:700}.rules{display:grid;gap:11px}.rule{border-left:3px solid var(--green);padding-left:12px}.rule.warn{border-color:var(--amber)}.rule b{display:block;margin-bottom:2px}.flow{margin-top:15px;padding-top:14px;border-top:1px solid var(--line);display:grid;gap:7px}.step{display:flex;justify-content:space-between;gap:12px}.step span{color:var(--muted)}.scope{margin-top:16px;padding:14px;border:1px solid #315270;border-radius:12px;background:#0b1723}.scope strong{color:var(--blue)}.foot{font-size:12px;color:#748696;margin-top:13px}@media(max-width:850px){header{display:block}.pill{display:inline-block;margin-top:18px}.grid{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}}
+  </style>
+</head>
+<body><main class="wrap">
+  <header><div><div class="eyebrow">PERSONALIZED DATA PROOF / SYNTHETIC RECORDS</div><h1>See every Airtable-Mailchimp change before a single live contact is touched.</h1><p>A dry-run reconciliation design for Multitude Films: authoritative subscription state, changed-email handling, deduplication, and an exception queue.</p></div><div class="pill">Mikhail Nikitenkov / 2026-08-12</div></header>
+  <section class="grid">
+    <article class="card"><h2>1 / Dry-run decision view</h2><div class="stats"><div class="stat"><b>4</b><span>sample records</span></div><div class="stat"><b>1</b><span>safe update</span></div><div class="stat"><b>2</b><span>manual reviews</span></div><div class="stat"><b>0</b><span>live writes</span></div></div>
+      <table><thead><tr><th>Contact</th><th>Airtable</th><th>Mailchimp</th><th>Decision</th></tr></thead><tbody>
+        <tr><td>A. Rivera<br><small>stable ID 101</small></td><td>Subscribed<br>NY / Donor</td><td>Subscribed<br>tag missing</td><td class="apply">APPLY TAG</td></tr>
+        <tr><td>J. Chen<br><small>stable ID 102</small></td><td>Unsubscribed</td><td>Subscribed</td><td class="review">PRESERVE OPT-OUT</td></tr>
+        <tr><td>S. Brooks<br><small>stable ID 103</small></td><td>new@email.test</td><td>old@email.test</td><td class="review">EMAIL CHANGE REVIEW</td></tr>
+        <tr><td>M. Patel<br><small>stable ID 104</small></td><td>Subscribed</td><td>Subscribed</td><td class="apply">NO CHANGE</td></tr>
+      </tbody></table>
+    </article>
+    <aside class="card"><h2>2 / Reconciliation rules</h2><div class="rules">
+      <div class="rule"><b>Opt-out wins.</b><p>An unsubscribe is never reversed by an older Airtable value.</p></div>
+      <div class="rule"><b>Stable IDs, not email alone.</b><p>Changed addresses are linked through a persistent contact key before any update.</p></div>
+      <div class="rule"><b>Idempotent upsert.</b><p>Replaying the same event produces one logical member and one audit entry.</p></div>
+      <div class="rule warn"><b>Conflicts stop.</b><p>Ambiguous consent, duplicate identity, or invalid email enters a review queue.</p></div>
+    </div><div class="flow"><div class="step"><span>Extract</span><b>read-only snapshots</b></div><div class="step"><span>Normalize</span><b>fields + stable keys</b></div><div class="step"><span>Compare</span><b>deterministic diff</b></div><div class="step"><span>Approve</span><b>human review gate</b></div><div class="step"><span>Apply</span><b>bounded writes + audit</b></div></div>
+      <div class="scope"><p><strong>Paid first stage / 650 USDC or USDT / 2 business days</strong><br>Field mapping, read-only reconciliation, dry-run diff, conflict rules, exception queue, tests, and operator runbook. No live writes until the report is approved.</p></div><div class="foot">Acceptance: zero duplicate members; authoritative subscription direction documented; changed-email cases traceable; dry-run diff approved before production access.</div>
+    </aside>
+  </section>
+</main></body>
+</html>
+
