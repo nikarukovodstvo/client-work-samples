@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Expedify | n8n Reliability Proof</title>
+  <style>
+    :root{color-scheme:dark;--bg:#070b14;--panel:#101827;--line:#273449;--text:#f2f7ff;--muted:#9eabc0;--blue:#70a7ff;--green:#52e0aa;--amber:#ffd06f;--red:#ff8399}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 80% 0,#142f55 0,transparent 34%),var(--bg);color:var(--text);font:15px/1.5 Inter,Segoe UI,sans-serif}.wrap{max-width:1160px;margin:auto;padding:34px 22px 56px}header{display:flex;justify-content:space-between;gap:24px;align-items:flex-start;margin-bottom:22px}.eyebrow{font:700 12px/1 monospace;letter-spacing:.12em;color:var(--blue)}h1{font-size:clamp(32px,5vw,56px);line-height:1.02;margin:10px 0 12px;max-width:800px}p{margin:0;color:var(--muted)}.pill{border:1px solid var(--line);padding:9px 12px;border-radius:99px;white-space:nowrap}.grid{display:grid;grid-template-columns:1.16fr .84fr;gap:16px}.card{background:linear-gradient(145deg,#131e30f7,#0b1321f7);border:1px solid var(--line);border-radius:18px;padding:20px;box-shadow:0 18px 50px #0005}.card h2{font-size:18px;margin:0 0 14px}.flow{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}.node{border:1px solid var(--line);background:#0a111e;border-radius:12px;padding:12px;min-height:86px}.node small{display:block;color:var(--muted);margin-bottom:5px}.node strong{display:block}.node.ok{border-color:#2f7e65}.node.warn{border-color:#8a6b31}.metric-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:16px 0}.metric{padding:13px;border:1px solid var(--line);border-radius:12px}.metric b{font-size:23px;display:block}.metric span{color:var(--muted);font-size:12px}table{width:100%;border-collapse:collapse}th,td{text-align:left;padding:10px 8px;border-bottom:1px solid var(--line);vertical-align:top}th{font-size:11px;text-transform:uppercase;color:var(--muted)}.pass{color:var(--green);font-weight:700}.hold{color:var(--amber);font-weight:700}.rules{display:grid;gap:10px}.rule{display:flex;gap:10px}.dot{width:9px;height:9px;border-radius:50%;background:var(--green);margin-top:7px;flex:none}.rule.warn .dot{background:var(--amber)}.scope{margin-top:16px;border-top:1px solid var(--line);padding-top:14px}.scope strong{color:var(--blue)}.foot{font-size:12px;color:#708099;margin-top:14px}@media(max-width:850px){header{display:block}.pill{display:inline-block;margin-top:18px}.grid{grid-template-columns:1fr}.flow{grid-template-columns:1fr 1fr}.metric-grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body><main class="wrap">
+  <header><div><div class="eyebrow">PERSONALIZED TECHNICAL PROOF В· SYNTHETIC DATA</div><h1>An n8n client workflow that survives retries, malformed input, and API failure.</h1><p>A compact production-control design for Expedify: visible state, deterministic deduplication, manual review, and a handoff another engineer can operate.</p></div><div class="pill">Mikhail Nikitenkov В· 2026-08-12</div></header>
+  <section class="grid">
+    <article class="card"><h2>1 В· Replay-safe workflow slice</h2>
+      <div class="flow"><div class="node ok"><small>01 В· Webhook</small><strong>Accept + ACK</strong><small>&lt; 250 ms</small></div><div class="node ok"><small>02 В· Validate</small><strong>Typed payload</strong><small>reject unknown shape</small></div><div class="node ok"><small>03 В· Deduplicate</small><strong>Idempotency key</strong><small>one logical write</small></div><div class="node warn"><small>04 В· AI step</small><strong>Structured output</strong><small>schema + confidence</small></div><div class="node ok"><small>05 В· CRM/API</small><strong>Write or review</strong><small>retry + DLQ</small></div></div>
+      <div class="metric-grid"><div class="metric"><b>1</b><span>write after 3 duplicate deliveries</span></div><div class="metric"><b>0</b><span>secrets in exported workflow JSON</span></div><div class="metric"><b>6/6</b><span>synthetic acceptance cases pass</span></div></div>
+      <table><thead><tr><th>Test receipt</th><th>Expected control</th><th>Result</th></tr></thead><tbody>
+        <tr><td>Valid lead</td><td>Normalized record + trace ID</td><td class="pass">PASS</td></tr>
+        <tr><td>Same event Г—3</td><td>Single downstream write</td><td class="pass">PASS</td></tr>
+        <tr><td>Missing consent field</td><td>Quarantine, no send</td><td class="hold">REVIEW</td></tr>
+        <tr><td>AI output violates schema</td><td>Fail closed + alert</td><td class="pass">PASS</td></tr>
+        <tr><td>API returns 429</td><td>Bounded backoff, then DLQ</td><td class="pass">PASS</td></tr>
+        <tr><td>Replay from DLQ</td><td>Resume without duplicate</td><td class="pass">PASS</td></tr>
+      </tbody></table>
+    </article>
+    <aside class="card"><h2>2 В· Production handoff boundary</h2><div class="rules">
+      <div class="rule"><i class="dot"></i><p><strong>Credentials stay with the client.</strong><br>Environment references only; no token or secret inside exported JSON.</p></div>
+      <div class="rule"><i class="dot"></i><p><strong>Every run is explainable.</strong><br>Trace ID, input hash, node state, retries, and final disposition are recorded.</p></div>
+      <div class="rule"><i class="dot"></i><p><strong>AI is bounded by schema.</strong><br>Low-confidence or invalid output enters a human review queue instead of acting.</p></div>
+      <div class="rule"><i class="dot"></i><p><strong>Failure is operable.</strong><br>Timeouts, rate limits, and dependency outages have explicit retry and dead-letter paths.</p></div>
+      <div class="rule warn"><i class="dot"></i><p><strong>Demo, not a client claim.</strong><br>All records and metrics shown here are synthetic acceptance fixtures.</p></div>
+    </div><div class="scope"><p><strong>Paid first sprint В· 450 USDC/USDT В· 2 business days</strong><br>One sandbox workflow: webhook в†’ validation/dedupe в†’ structured AI transform в†’ approved API/CRM write в†’ alert/DLQ. Delivery: versioned n8n JSON, six-case test receipt, README, and 30-minute handoff.</p></div><div class="foot">Acceptance: replay creates no duplicate; invalid input cannot write; API failure is observable and recoverable; exported artifact contains no secrets.</div></aside>
+  </section>
+</main></body>
+</html>
+
