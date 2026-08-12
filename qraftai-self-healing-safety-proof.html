@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>QraftAI Self-Healing Safety Lab</title>
+  <style>
+    :root{--bg:#07100f;--panel:#0e1d1b;--panel2:#142824;--ink:#effff9;--muted:#9ab9af;--mint:#59efb5;--cyan:#66d9ef;--amber:#ffc66d;--red:#ff7688;--line:#294841}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 80% 5%,#154a3d 0,transparent 32%),var(--bg);color:var(--ink);font:15px/1.5 Inter,Segoe UI,Arial,sans-serif}main{max-width:1180px;margin:auto;padding:38px 22px 58px}header{display:grid;grid-template-columns:1fr 320px;gap:24px;align-items:start;margin-bottom:22px}.tag{display:inline-flex;align-items:center;gap:8px;color:var(--mint);font:800 12px/1 ui-monospace,monospace;letter-spacing:.1em;text-transform:uppercase}.tag:before{content:"";width:8px;height:8px;border-radius:50%;background:var(--mint);box-shadow:0 0 18px var(--mint)}h1{font-size:clamp(34px,6vw,66px);line-height:.98;letter-spacing:-.045em;margin:12px 0 14px}header p{color:var(--muted);font-size:17px;max-width:770px}.scope,.card{border:1px solid var(--line);background:linear-gradient(145deg,var(--panel),#091513);border-radius:18px;padding:20px;box-shadow:0 16px 38px #0005}.scope{color:var(--muted);font-size:13px}.scope strong{color:var(--ink)}.grid{display:grid;grid-template-columns:1.25fr .75fr;gap:18px}.card h2{font-size:20px;margin:0 0 6px}.sub{color:var(--muted);margin:0 0 16px}.controls{display:flex;flex-wrap:wrap;gap:9px;margin:14px 0}button{border:1px solid #37695d;border-radius:10px;background:#17372f;color:var(--ink);padding:10px 13px;font-weight:800;cursor:pointer}button:hover,button:focus{border-color:var(--mint);outline:none}button.primary{background:var(--mint);border-color:var(--mint);color:#03120d}button.warn{background:#422d1b;border-color:#80582f}.state{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:15px 0}.metric{padding:13px;border:1px solid var(--line);border-radius:12px;background:var(--panel2)}.metric span{display:block;color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.08em}.metric b{display:block;font:800 21px/1.25 ui-monospace,monospace;margin-top:5px}.good{color:var(--mint)}.bad{color:var(--red)}.hold{color:var(--amber)}table{width:100%;border-collapse:collapse;font-size:13px}th,td{text-align:left;padding:10px 8px;border-bottom:1px solid var(--line)}th{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.08em}.pill{display:inline-block;padding:3px 8px;border-radius:99px;font-size:11px;font-weight:800}.allow{background:#153b2d;color:#7df1bd}.block{background:#40222a;color:#ff9ba7}.review{background:#46351d;color:#ffd38d}.checks{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px}.check{padding:8px 10px;border:1px solid var(--line);border-radius:9px;background:#0a1714;color:var(--muted);font-size:12px}.check:before{content:"[ ]";margin-right:7px}.check.pass{color:var(--mint);border-color:#28745a}.check.pass:before{content:"[x]"}.trace{min-height:170px;padding:14px;border-radius:12px;background:#071310;color:#bde1d5;font:13px/1.65 ui-monospace,Consolas,monospace;white-space:pre-wrap}.offer{margin-top:18px;border-color:#2f7563}.offer-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.offer-grid div{border-left:2px solid var(--mint);padding-left:10px}.offer-grid b{display:block}.offer-grid span{color:var(--muted);font-size:12px}.foot{color:#78998f;font-size:12px;margin:15px 0 0}@media(max-width:850px){header,.grid{grid-template-columns:1fr}.offer-grid{grid-template-columns:1fr 1fr}}@media(max-width:520px){.state,.checks,.offer-grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body><main>
+  <header>
+    <div><div class="tag">Synthetic QraftAI engineering proof</div><h1>Self-heal the locator. Never self-heal the intent.</h1><p>An interactive acceptance model for the hardest QA-agent boundary: recover safely from harmless UI drift, stop on semantic ambiguity, and turn an authorization-changing PR into targeted regression coverage.</p></div>
+    <aside class="scope"><strong>Evidence boundary</strong><br>Built from QraftAI's public launch description and public product surface. Synthetic application states only. No QraftAI account, proprietary code, credentials, customer data, or live device access.</aside>
+  </header>
+
+  <section class="grid">
+    <article class="card">
+      <h2>Healing decision simulator</h2>
+      <p class="sub">One test intent: submit a draft invoice. The UI changes between releases. A safe agent must distinguish presentation drift from a changed business action.</p>
+      <div class="controls"><button class="primary" id="safe">Harmless drift</button><button class="warn" id="ambiguous">Ambiguous action</button><button id="auth">Auth-changing PR</button><button id="reset">Reset</button></div>
+      <div class="state"><div class="metric"><span>Decision</span><b id="decision">WAITING</b></div><div class="metric"><span>Side effects</span><b id="effects">0</b></div><div class="metric"><span>Added tests</span><b id="added">0</b></div></div>
+      <table><thead><tr><th>Signal</th><th>Evidence</th><th>Policy</th></tr></thead><tbody id="signals"></tbody></table>
+    </article>
+
+    <aside class="card">
+      <h2>Evidence receipt</h2>
+      <p class="sub">A repair is accepted only when identity, semantics, safety, and replay behavior agree.</p>
+      <div class="trace" id="trace">Select a release scenario.</div>
+      <div class="checks" id="checks"></div>
+    </aside>
+  </section>
+
+  <section class="card offer">
+    <h2>Bounded paid reliability milestone</h2>
+    <p class="sub">One selected QraftAI self-healing or PR-diff testing slice, implemented against sanitized fixtures and agreed interfaces.</p>
+    <div class="offer-grid"><div><b>1,100 USDT / USDC</b><span>Exact asset and network agreed in writing</span></div><div><b>2 business days</b><span>After scope and acceptance are locked</span></div><div><b>20+ regression cases</b><span>Drift, ambiguity, auth changes, replay, failure evidence</span></div><div><b>Safe payment gate</b><span>Escrow or 50% prepayment before production work</span></div></div>
+    <p class="foot">Acceptance: deterministic fixture runner; harmless locator drift can recover with evidence; destructive or semantically ambiguous drift fails closed; auth-changing diffs add tenant and unauthorized-path tests; duplicate retries create no extra effects; test report and runbook included.</p>
+  </section>
+</main>
+<script>
+const signalBody=document.getElementById('signals'),decision=document.getElementById('decision'),effects=document.getElementById('effects'),added=document.getElementById('added'),trace=document.getElementById('trace');
+const checkNames=['Intent fingerprint preserved','Accessible name compared','Destination resource compared','Action class compared','Destructive-action guard','Confidence threshold enforced','Ambiguity fails closed','No guessed selector click','PR diff inspected','Auth boundary recognized','Unauthorized case generated','Tenant isolation case generated','Replay is idempotent','Side effect count bounded','Evidence receipt exported','Failure reason visible','Synthetic fixtures only','No external requests','No credentials or secrets','Payment gate explicit'];
+const checks=document.getElementById('checks');checks.innerHTML=checkNames.map(x=>`<div class="check">${x}</div>`).join('');
+function row(signal,evidence,policy,kind){return `<tr><td>${signal}</td><td><code>${evidence}</code></td><td><span class="pill ${kind}">${policy}</span></td></tr>`}
+function paint(label,kind,effectCount,testCount,rows,lines,passCount){decision.textContent=label;decision.className=kind;effects.textContent=effectCount;effects.className=effectCount==='0'?'good':'hold';added.textContent=testCount;added.className=testCount==='0'?'hold':'good';signalBody.innerHTML=rows.join('');trace.textContent=lines.join('\n');document.querySelectorAll('.check').forEach((x,i)=>x.classList.toggle('pass',i<passCount))}
+function reset(){paint('WAITING','hold','0','0',[],['Select a release scenario.'],0)}
+document.getElementById('safe').onclick=()=>paint('HEAL + VERIFY','good','1','0',[row('Label drift','Send invoice -> Submit draft','same intent','allow'),row('DOM path','div[4]/button -> role=button','presentation only','allow'),row('Destination','draft invoice #S-104','stable resource','allow')],['intent_hash: 2d7f...stable','candidate_score: 0.97','action_class: reversible draft submit','precondition: draft state confirmed','postcondition: draft status = submitted','receipt: healed locator + evidence saved'],14);
+document.getElementById('ambiguous').onclick=()=>paint('STOP + REVIEW','bad','0','0',[row('Label drift','Submit draft -> Send & charge','semantic change','block'),row('Action class','reversible -> financial','risk increased','block'),row('Candidate set','2 similar buttons','ambiguous target','review')],['intent_hash: mismatch','candidate_score: 0.61','action_class: financial side effect','policy: no automatic self-heal','result: zero clicks, human review required'],16);
+document.getElementById('auth').onclick=()=>paint('EXPAND COVERAGE','good','0','4',[row('PR diff','middleware/tenant.ts changed','auth boundary','review'),row('Route scope','invoice/:id','cross-tenant risk','review'),row('Generated set','owner/member/outsider/expired','targeted tests','allow')],['diff_signal: authorization predicate modified','generated: owner allowed','generated: member policy checked','generated: outsider denied','generated: cross-tenant id denied','execution: dry-run fixture only'],20);
+document.getElementById('reset').onclick=reset;reset();
+</script></body></html>
+
