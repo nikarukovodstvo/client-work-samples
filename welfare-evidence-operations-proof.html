@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Welfare Evidence Operations Kernel | Synthetic Capability Proof</title>
+  <style>
+    :root{--navy:#10243d;--ink:#19344f;--muted:#60748a;--paper:#fff;--wash:#eef5f3;--line:#d4e3df;--green:#08796d;--green2:#16a085;--amber:#a86707;--red:#a33950;--blue:#315f9c;--shadow:0 18px 52px #10243d18}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:linear-gradient(180deg,#eaf4f1 0,#f7faf9 36%,#edf4f5 100%);color:var(--ink);font:15px/1.55 Inter,Segoe UI,Arial,sans-serif}
+    main{max-width:1260px;margin:auto;padding:30px 20px 60px}.hero{display:grid;grid-template-columns:1.5fr .8fr;gap:24px;padding:38px;border-radius:24px;background:linear-gradient(135deg,var(--navy),#0b665f);color:white;box-shadow:var(--shadow)}
+    .eyebrow{color:#9ce8da;font-size:11px;font-weight:850;letter-spacing:.14em;text-transform:uppercase}h1{margin:8px 0 12px;font-size:clamp(34px,5vw,56px);line-height:1.03;max-width:850px}.hero p{margin:0;max-width:780px;color:#dcefed;font-size:17px}.hero-card{align-self:stretch;padding:22px;border:1px solid #ffffff35;border-radius:18px;background:#ffffff12;backdrop-filter:blur(8px)}.hero-card strong{display:block;font-size:30px}.hero-card span{display:block;margin-top:5px;color:#cae8e3}.hero-card hr{border:0;border-top:1px solid #ffffff26;margin:18px 0}
+    .notice{margin:20px 0;padding:16px 18px;border:1px solid #91d6c9;border-radius:14px;background:#e6fbf6;color:#25574f}.notice strong{color:#08695e}.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:14px}.card{background:var(--paper);border:1px solid var(--line);border-radius:17px;box-shadow:0 7px 24px #10243d0a}.metric{grid-column:span 3;padding:18px}.metric b{display:block;font-size:29px;color:var(--green)}.metric span{color:var(--muted);font-size:13px}.section{margin-top:18px;padding:23px}.section h2{margin:0 0 5px;font-size:21px}.section .sub{margin:0 0 18px;color:var(--muted)}.flow{grid-column:span 8}.controls{grid-column:span 4}.ledger{grid-column:span 12}.queue{grid-column:span 7}.qa{grid-column:span 5}.delivery{grid-column:span 12}
+    .stages{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}.stage{position:relative;padding:14px 11px;border:1px solid var(--line);border-radius:12px;background:#f8fbfa;min-height:114px}.stage b{display:block;color:var(--green);font-size:12px;text-transform:uppercase;letter-spacing:.06em}.stage span{display:block;margin-top:6px;color:var(--muted);font-size:12px}.stage.active{border-color:#33a993;background:#e7f8f4}.stage.active:after{content:"ACTIVE";position:absolute;right:8px;top:8px;padding:2px 6px;border-radius:999px;color:white;background:var(--green);font-size:8px;font-weight:850}
+    button{cursor:pointer;border:0;border-radius:10px;padding:10px 13px;background:var(--green);color:white;font-weight:800}button:hover{background:#06685f}button.secondary{background:#e8f1f0;color:#26564f}button.secondary:hover{background:#d9e9e6}.btns{display:flex;flex-wrap:wrap;gap:8px}.status{margin-top:13px;padding:12px;border-radius:11px;background:#f3f7f7;color:#496277;font-size:13px}.status.ok{background:#e6f7f1;color:#0a6255}.status.warn{background:#fff4de;color:#7a4a00}
+    table{width:100%;border-collapse:collapse}th{padding:10px 11px;text-align:left;background:#f3f8f7;color:#526b7e;font-size:10px;letter-spacing:.08em;text-transform:uppercase}td{padding:11px;border-top:1px solid #e5eeeb;vertical-align:top}tbody tr:hover{background:#fbfefd}.pill{display:inline-block;padding:3px 8px;border-radius:999px;font-size:10px;font-weight:850;white-space:nowrap}.verified{color:#08675b;background:#ddf4ee}.review{color:#865300;background:#fff0d4}.blocked{color:#8b3144;background:#ffe4e9}.synthetic{color:#315f9c;background:#e5edfa}.confidence{font-weight:850}.high{color:var(--green)}.medium{color:var(--amber)}.low{color:var(--red)}
+    .queue-list,.checklist{display:grid;gap:9px}.task,.check{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:start;padding:12px;border:1px solid #e0e9e7;border-radius:12px;background:#fbfdfc}.dot{width:10px;height:10px;margin-top:6px;border-radius:50%;background:var(--green2)}.task b,.check b{display:block}.task small,.check small{display:block;color:var(--muted)}.owner{font-size:11px;color:#526d7b}.check.pass .dot{background:var(--green)}.check.hold .dot{background:var(--amber)}
+    .acceptance{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.accept{padding:14px;border-radius:12px;background:#f4f8f7;border:1px solid var(--line)}.accept b{color:var(--green)}.accept span{display:block;margin-top:4px;color:var(--muted);font-size:12px}.boundary{margin-top:16px;padding:15px;border-left:5px solid var(--amber);background:#fff8e9;border-radius:0 12px 12px 0;color:#655022}.footer{margin-top:19px;color:#697c8c;font-size:12px;text-align:center}
+    @media(max-width:900px){.hero{grid-template-columns:1fr}.metric{grid-column:span 6}.flow,.controls,.queue,.qa{grid-column:span 12}.stages{grid-template-columns:1fr 1fr}.acceptance{grid-template-columns:1fr 1fr}}
+    @media(max-width:560px){main{padding:14px 10px 35px}.hero{padding:26px 20px}.metric{grid-column:span 12}.stages,.acceptance{grid-template-columns:1fr}.section{padding:17px}.table-wrap{overflow:auto}table{min-width:760px}}
+  </style>
+</head>
+<body>
+<main>
+  <section class="hero">
+    <div><div class="eyebrow">Role-specific capability proof В· synthetic data only</div><h1>Welfare Evidence Operations Kernel</h1><p>A lightweight control plane for turning scientific frameworks into traceable specifications, contractor-ready tasks, review queues, and decision-ready outputsвЂ”without allowing AI-generated claims to bypass human scientific review.</p></div>
+    <aside class="hero-card"><span>Proposed paid first milestone</span><strong>800 USDT / USDC</strong><span>2 business days В· written scope + safe payment gate</span><hr><span>Deliverable</span><b>Evidence workflow + schema + QA receipt</b></aside>
+  </section>
+
+  <div class="notice"><strong>Disclosure:</strong> this is a new, independent capability demonstration prepared for the Welfare Footprint Institute role. All studies, claims, identifiers, metrics, and people below are fictional. No client, animal, unpublished, or personal data is used.</div>
+
+  <section class="grid" aria-label="Operating metrics">
+    <div class="card metric"><b id="metricClaims">12</b><span>synthetic evidence claims</span></div>
+    <div class="card metric"><b>30</b><span>traceable graph relationships</span></div>
+    <div class="card metric"><b id="metricBlocked">3</b><span>claims held for human review</span></div>
+    <div class="card metric"><b>0</b><span>uncited claims released</span></div>
+
+    <section class="card section flow"><h2>Framework-to-delivery workflow</h2><p class="sub">Explicit ownership and review gates keep conceptual meaning aligned with technical implementation.</p>
+      <div class="stages" id="stages">
+        <div class="stage active"><b>1 В· Scope</b><span>Research question, population, time boundary, exclusions, decision owner.</span></div>
+        <div class="stage"><b>2 В· Model</b><span>Circumstance в†’ biological consequence в†’ affective experience schema.</span></div>
+        <div class="stage"><b>3 В· Evidence</b><span>Claim ledger, source relevance, limitations, uncertainty and conflicts.</span></div>
+        <div class="stage"><b>4 В· Review</b><span>Scientific approval, technical validation and exception resolution.</span></div>
+        <div class="stage"><b>5 В· Release</b><span>Versioned output, assumptions, audit receipt and revision path.</span></div>
+      </div>
+    </section>
+
+    <section class="card section controls"><h2>Operator controls</h2><p class="sub">The demo changes local UI state only.</p><div class="btns"><button id="advance">Advance review</button><button id="runqa" class="secondary">Run QA gates</button><button id="reset" class="secondary">Reset</button></div><div class="status" id="status">Stage 1 active. Scope boundary is waiting for owner approval.</div><div class="boundary"><strong>Fail-closed rule:</strong> missing source, unresolved contradiction, or unclear scope routes the record to review. The system does not invent a value.</div></section>
+
+    <section class="card section ledger"><h2>Claim-to-evidence ledger</h2><p class="sub">A small sample of how analytical meaning, source support, uncertainty, and approval remain inspectable.</p><div class="table-wrap"><table>
+      <thead><tr><th>ID</th><th>Analytical element</th><th>Evidence link</th><th>Confidence</th><th>Limitation</th><th>Gate</th></tr></thead>
+      <tbody>
+        <tr><td>CLM-001</td><td>Housing circumstance is explicitly defined for the target population.</td><td>SRC-01 В· fictional protocol В§2.1</td><td class="confidence high">High</td><td>One production system only</td><td><span class="pill verified">Verified</span></td></tr>
+        <tr><td>CLM-002</td><td>Observed event is mapped to one candidate biological consequence.</td><td>SRC-03 В· fictional cohort table 4</td><td class="confidence medium">Medium</td><td>Possible management confounder</td><td><span class="pill review">Review</span></td></tr>
+        <tr><td>CLM-003</td><td>Duration estimate can be represented as a bounded interval.</td><td>SRC-05 + SRC-07 В· fictional review</td><td class="confidence medium">Medium</td><td>Species-specific transfer uncertain</td><td><span class="pill review">Review</span></td></tr>
+        <tr><td>CLM-004</td><td>Population prevalence is supported for the stated geography and year.</td><td>None</td><td class="confidence low">Low</td><td>Required source absent</td><td><span class="pill blocked">Blocked</span></td></tr>
+        <tr><td>CLM-005</td><td>Output notation follows the approved synthetic schema version.</td><td>SPEC-02 В· schema v0.3</td><td class="confidence high">High</td><td>Not a scientific conclusion</td><td><span class="pill synthetic">Technical</span></td></tr>
+      </tbody>
+    </table></div></section>
+
+    <section class="card section queue"><h2>Contractor work queue</h2><p class="sub">Tasks are small enough to assign, inspect, accept, or return with specific evidence.</p><div class="queue-list">
+      <div class="task"><i class="dot"></i><div><b>Normalize evidence record schema</b><small>Acceptance: 12 fixtures validate; missing citation fails; version and provenance required.</small></div><span class="owner">DATA В· READY</span></div>
+      <div class="task"><i class="dot"></i><div><b>Map framework terminology</b><small>Acceptance: every technical field links to one approved definition; ambiguous terms flagged.</small></div><span class="owner">SPEC В· REVIEW</span></div>
+      <div class="task"><i class="dot"></i><div><b>Build uncertainty display</b><small>Acceptance: interval, confidence reason, limitation and reviewer status remain visible.</small></div><span class="owner">UI В· READY</span></div>
+      <div class="task"><i class="dot"></i><div><b>Resolve CLM-004 source gap</b><small>Acceptance: source added and relevance checked, or claim remains excluded from release.</small></div><span class="owner">RESEARCH В· HOLD</span></div>
+    </div></section>
+
+    <section class="card section qa"><h2>Release QA</h2><p class="sub">Visible stop conditions for scientific and technical drift.</p><div class="checklist" id="checklist">
+      <div class="check pass"><i class="dot"></i><div><b>Schema validation</b><small>12/12 synthetic records valid</small></div><span class="owner">PASS</span></div>
+      <div class="check pass"><i class="dot"></i><div><b>Provenance completeness</b><small>11 cited; 1 correctly blocked</small></div><span class="owner">PASS</span></div>
+      <div class="check pass"><i class="dot"></i><div><b>Duplicate relationships</b><small>0 duplicate graph edges</small></div><span class="owner">PASS</span></div>
+      <div class="check hold"><i class="dot"></i><div><b>Scientific approval</b><small>3 records require domain review</small></div><span class="owner">HOLD</span></div>
+      <div class="check pass"><i class="dot"></i><div><b>Release boundary</b><small>0 uncited claims released</small></div><span class="owner">PASS</span></div>
+    </div></section>
+
+    <section class="card section delivery"><h2>Proposed first milestone acceptance</h2><p class="sub">A bounded delivery that can be evaluated before any longer engagement.</p><div class="acceptance">
+      <div class="accept"><b>1 В· Intake map</b><span>One agreed research workflow decomposed into actors, states, inputs, outputs and stop conditions.</span></div>
+      <div class="accept"><b>2 В· Evidence schema</b><span>JSON/data dictionary for claims, sources, confidence, assumptions, limitations and review state.</span></div>
+      <div class="accept"><b>3 В· QA harness</b><span>12 synthetic cases with validation, duplicate checks, missing-source quarantine and test receipt.</span></div>
+      <div class="accept"><b>4 В· Handover</b><span>Versioned artifact, operating notes, decision log and prioritized implementation backlog.</span></div>
+    </div><div class="boundary"><strong>Production boundary:</strong> no unpublished research, scientific conclusion, credential, external message, grant submission, or final domain decision is produced autonomously. Human scientific owners approve meaning; the system supplies traceability and execution discipline.</div></section>
+  </section>
+  <p class="footer">Prepared by Mikhail Nikitenkov В· AI-assisted technical operations proof В· 13 Aug 2026</p>
+</main>
+<script>
+  const stages=[...document.querySelectorAll('.stage')],status=document.getElementById('status');let current=0;
+  const labels=['Scope boundary approved. Schema mapping is now active.','Terminology map complete. Evidence intake is now active.','Evidence intake complete. Three claims routed to human review.','Technical QA complete. Scientific approval still required.','Release package ready, with blocked claims excluded.'];
+  document.getElementById('advance').addEventListener('click',()=>{current=Math.min(current+1,4);stages.forEach((s,i)=>s.classList.toggle('active',i===current));status.className=current===4?'status ok':'status';status.textContent=labels[current];});
+  document.getElementById('runqa').addEventListener('click',()=>{status.className='status warn';status.textContent='QA receipt: 4 PASS, 1 HOLD. Release remains blocked until scientific approval resolves three review records.';});
+  document.getElementById('reset').addEventListener('click',()=>{current=0;stages.forEach((s,i)=>s.classList.toggle('active',i===0));status.className='status';status.textContent='Stage 1 active. Scope boundary is waiting for owner approval.';});
+</script>
+</body>
+</html>
+
