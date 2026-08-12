@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>DSS | Attribution Control Proof</title>
+  <style>
+    :root{--ink:#10243f;--muted:#66768a;--paper:#fff;--wash:#f2f6f8;--line:#d8e3e9;--blue:#1769e0;--teal:#078b7f;--amber:#e98b20;--red:#c43d4b}*{box-sizing:border-box}body{margin:0;background:var(--wash);color:var(--ink);font:15px/1.45 Inter,Segoe UI,Arial,sans-serif}main{max-width:1180px;margin:auto;padding:26px 22px 46px}.hero{display:grid;grid-template-columns:1.35fr .65fr;gap:20px;padding:30px;border-radius:22px;background:linear-gradient(125deg,#10243f,#134f83);color:white;box-shadow:0 18px 40px #17334c1c}.eyebrow{color:#7fe3d6;font-size:11px;font-weight:900;letter-spacing:.15em;text-transform:uppercase}.hero h1{font-size:clamp(31px,5vw,55px);line-height:1.02;margin:8px 0 12px;max-width:760px}.hero p{max-width:730px;color:#dbe8f2;margin:0}.offer{align-self:end;padding:18px;border:1px solid #ffffff36;border-radius:16px;background:#ffffff12}.offer strong{display:block;font-size:30px}.offer small{color:#c9deeb}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:18px 0}.card,.panel{background:var(--paper);border:1px solid var(--line);border-radius:17px;box-shadow:0 7px 22px #1938520b}.card{padding:18px}.label{font-size:11px;font-weight:850;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}.metric{font-size:28px;font-weight:900;margin:4px 0}.ok{color:var(--teal)}.warn{color:var(--amber)}.panel{padding:22px;margin-top:14px}h2{font-size:20px;margin:0 0 14px}.pipeline{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}.step{position:relative;padding:14px 13px;border-radius:13px;background:#edf4ff;border:1px solid #d2e3fa;min-height:108px}.step strong{display:block;margin:5px 0}.step small{color:var(--muted)}.step:not(:last-child):after{content:'→';position:absolute;right:-10px;top:42px;z-index:2;color:var(--blue);font-weight:900}.models{display:grid;grid-template-columns:1.2fr .8fr;gap:14px}.bars{display:grid;gap:10px}.row{display:grid;grid-template-columns:110px 1fr 56px;align-items:center;gap:10px}.track{height:11px;background:#e8eef2;border-radius:10px;overflow:hidden}.bar{height:100%;border-radius:10px;background:linear-gradient(90deg,var(--blue),#55a3ff)}.receipt{display:grid;gap:9px}.check{display:grid;grid-template-columns:22px 1fr auto;gap:9px;align-items:center;padding:10px;border-radius:10px;background:#f7fafb}.dot{width:11px;height:11px;border-radius:50%;background:var(--teal)}.status{font-size:11px;font-weight:900;color:var(--teal)}table{width:100%;border-collapse:collapse;font-size:13px}th,td{padding:11px 10px;text-align:left;border-bottom:1px solid var(--line)}th{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.06em}.pill{display:inline-block;padding:3px 8px;border-radius:999px;background:#ddf6f1;color:#06766d;font-size:11px;font-weight:850}.footer{display:flex;justify-content:space-between;gap:18px;margin-top:14px;padding:17px 20px;border-radius:15px;background:#fff8e9;border:1px solid #f3ddb1}.footer strong{display:block}.footer span{color:#745d37}@media(max-width:850px){.hero,.models{grid-template-columns:1fr}.grid{grid-template-columns:repeat(2,1fr)}.pipeline{grid-template-columns:1fr}.step:not(:last-child):after{content:'↓';right:50%;top:auto;bottom:-14px}.offer{align-self:auto}}@media(max-width:520px){.grid{grid-template-columns:1fr}.row{grid-template-columns:90px 1fr 48px}.hero{padding:23px}.footer{display:block}}
+  </style>
+</head>
+<body><main>
+  <section class="hero">
+    <div><div class="eyebrow">DSS · Synthetic technical proof</div><h1>Every order gets one traceable attribution story.</h1><p>A production-shaped UTM → session → order → multi-model pipeline with deterministic replay, explicit consent boundaries, reconciliation, and a visible exception queue. This demo uses synthetic records only.</p></div>
+    <div class="offer"><span class="label" style="color:#9ddfd8">Fixed paid pilot</span><strong>$850</strong><small>USDC or USDT · 2 business days · synthetic or sanitized inputs</small></div>
+  </section>
+
+  <section class="grid" aria-label="Run metrics">
+    <div class="card"><div class="label">Touchpoints received</div><div class="metric">24,812</div><div class="ok">100% schema checked</div></div>
+    <div class="card"><div class="label">Orders reconciled</div><div class="metric">1,204</div><div class="ok">$184,920 exact</div></div>
+    <div class="card"><div class="label">Replay duplicates</div><div class="metric">0</div><div class="ok">Stable event keys</div></div>
+    <div class="card"><div class="label">Review queue</div><div class="metric">17</div><div class="warn">Reason-coded, not guessed</div></div>
+  </section>
+
+  <section class="panel"><h2>Versioned event path</h2><div class="pipeline">
+    <div class="step"><span class="label">01 Capture</span><strong>UTM + referrer</strong><small>Consent state, session key, timestamp and source lineage.</small></div>
+    <div class="step"><span class="label">02 Sequence</span><strong>Journey ledger</strong><small>Ordered touchpoints with replay-safe identity.</small></div>
+    <div class="step"><span class="label">03 Join</span><strong>Checkout → order</strong><small>Server receipt anchors the journey to revenue.</small></div>
+    <div class="step"><span class="label">04 Attribute</span><strong>7 model engine</strong><small>First, last, linear, decay, position and custom views.</small></div>
+    <div class="step"><span class="label">05 Reconcile</span><strong>Control receipt</strong><small>Input totals, model totals, exclusions and exceptions.</small></div>
+  </div></section>
+
+  <section class="models">
+    <div class="panel"><h2>Same revenue, different decision lens</h2><div class="bars">
+      <div class="row"><span>Paid social</span><div class="track"><div class="bar" style="width:72%"></div></div><strong>$53.2k</strong></div>
+      <div class="row"><span>Paid search</span><div class="track"><div class="bar" style="width:61%"></div></div><strong>$45.1k</strong></div>
+      <div class="row"><span>Email</span><div class="track"><div class="bar" style="width:49%"></div></div><strong>$36.4k</strong></div>
+      <div class="row"><span>Organic</span><div class="track"><div class="bar" style="width:42%"></div></div><strong>$31.2k</strong></div>
+      <div class="row"><span>Direct</span><div class="track"><div class="bar" style="width:26%"></div></div><strong>$19.0k</strong></div>
+    </div><p style="color:var(--muted);margin-bottom:0">Illustrative linear-model allocation. Every model must reconcile to the same accepted order total; model choice changes allocation, never source revenue.</p></div>
+    <div class="panel"><h2>Release receipt</h2><div class="receipt">
+      <div class="check"><i class="dot"></i><span>Event contract tests</span><b class="status">18/18 PASS</b></div>
+      <div class="check"><i class="dot"></i><span>Idempotent replay</span><b class="status">PASS</b></div>
+      <div class="check"><i class="dot"></i><span>Revenue conservation</span><b class="status">PASS</b></div>
+      <div class="check"><i class="dot"></i><span>Unknown-channel handling</span><b class="status">PASS</b></div>
+      <div class="check"><i class="dot"></i><span>Consent fail-closed</span><b class="status">PASS</b></div>
+    </div></div>
+  </section>
+
+  <section class="panel"><h2>Review queue: uncertainty stays visible</h2><table><thead><tr><th>Order</th><th>Reason</th><th>Evidence retained</th><th>Action</th></tr></thead><tbody>
+    <tr><td>ORD-8104</td><td>Session predates retention window</td><td>Order receipt + source hash</td><td><span class="pill">Unattributed</span></td></tr>
+    <tr><td>ORD-8129</td><td>Conflicting checkout identifiers</td><td>Both candidate session IDs</td><td><span class="pill">Manual review</span></td></tr>
+    <tr><td>ORD-8177</td><td>Consent unavailable at capture</td><td>Minimal audit event only</td><td><span class="pill">Excluded</span></td></tr>
+  </tbody></table></section>
+
+  <section class="footer"><div><strong>Pilot acceptance</strong><span>UTM capture, order join, seven deterministic models, dashboard slice, survey mapping, tests, Docker and runbook.</span></div><div><strong>Safety boundary</strong><span>No live payment credentials, no real customer identifiers, no production write access before written scope and payment gate.</span></div></section>
+</main></body></html>
+
