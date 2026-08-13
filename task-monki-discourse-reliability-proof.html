@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Task Monki Discourse Reliability Lab</title>
+  <style>
+    :root{--bg:#15130f;--panel:#211e18;--panel2:#2b271f;--ink:#fff9ec;--muted:#bdb39f;--cream:#f2dfba;--green:#8ee6ad;--amber:#ffd071;--red:#ff8692;--blue:#8fcaff;--line:#4c4436}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 84% 5%,#4a3824 0,transparent 30%),var(--bg);color:var(--ink);font:15px/1.5 Inter,Segoe UI,Arial,sans-serif}main{max-width:1180px;margin:auto;padding:38px 22px 60px}header{display:grid;grid-template-columns:1fr 320px;gap:24px;align-items:start;margin-bottom:22px}.tag{display:inline-flex;gap:8px;align-items:center;color:var(--cream);font:800 12px/1 ui-monospace,monospace;text-transform:uppercase;letter-spacing:.1em}.tag:before{content:"";width:9px;height:9px;border-radius:50%;background:var(--green);box-shadow:0 0 17px var(--green)}h1{font-size:clamp(36px,6vw,66px);line-height:.98;letter-spacing:-.045em;margin:12px 0 14px}header p{max-width:770px;color:var(--muted);font-size:17px}.scope,.card{border:1px solid var(--line);background:linear-gradient(145deg,var(--panel),#181611);border-radius:18px;padding:20px;box-shadow:0 16px 38px #0005}.scope{color:var(--muted);font-size:13px}.scope strong{color:var(--ink)}.grid{display:grid;grid-template-columns:1.18fr .82fr;gap:18px}.card h2{margin:0 0 6px;font-size:20px}.sub{color:var(--muted);margin:0 0 16px}.controls{display:flex;flex-wrap:wrap;gap:9px;margin:14px 0}button{border:1px solid #6a5d47;border-radius:10px;background:#332c21;color:var(--ink);padding:10px 13px;font-weight:800;cursor:pointer}button:hover,button:focus{border-color:var(--cream);outline:none}button.primary{background:var(--cream);border-color:var(--cream);color:#19140c}button.warn{background:#50371e;border-color:#8c6535}.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin:15px 0}.metric{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:12px}.metric span{display:block;color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.08em}.metric b{display:block;font:800 19px/1.3 ui-monospace,monospace;margin-top:4px}.good{color:var(--green)}.hold{color:var(--amber)}.bad{color:var(--red)}table{width:100%;border-collapse:collapse;font-size:13px}th,td{text-align:left;padding:9px 7px;border-bottom:1px solid var(--line)}th{color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.08em}.pill{display:inline-block;padding:3px 8px;border-radius:99px;font-size:10px;font-weight:850}.material{background:#493521;color:#ffd894}.blocking{background:#48242a;color:#ff9ea8}.advisory{background:#1f3c31;color:#9af0bc}.redundant{background:#283b4b;color:#a8d9ff}.receipt{min-height:184px;padding:14px;border-radius:12px;background:#12110d;color:#dfd3bd;font:13px/1.62 ui-monospace,Consolas,monospace;white-space:pre-wrap}.checks{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px}.check{padding:8px 10px;border:1px solid var(--line);border-radius:9px;background:#17140f;color:var(--muted);font-size:12px}.check:before{content:"[ ]";margin-right:7px}.check.pass{color:var(--green);border-color:#3a7450}.check.pass:before{content:"[x]"}.offer{margin-top:18px;border-color:#756445}.offer-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.offer-grid div{border-left:2px solid var(--cream);padding-left:10px}.offer-grid b{display:block}.offer-grid span{font-size:12px;color:var(--muted)}.foot{margin:15px 0 0;color:#918775;font-size:12px}@media(max-width:860px){header,.grid{grid-template-columns:1fr}.metrics,.offer-grid{grid-template-columns:1fr 1fr}}@media(max-width:520px){.metrics,.checks,.offer-grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body><main>
+  <header>
+    <div><div class="tag">Synthetic Task Monki engineering proof</div><h1>Keep the disagreement. Bound the correction.</h1><p>An interactive model for Team Discourse: Lead proposes, Skeptic and Verifier challenge independently, material concerns trigger at most one correction, and the final receipt preserves unresolved disagreement instead of silently selecting a winner.</p></div>
+    <aside class="scope"><strong>Evidence boundary</strong><br>Based only on Task Monki's public repository, Discourse lifecycle documentation, and current Product Hunt discussion. Synthetic messages only. No Task Monki installation, agent sessions, repositories, credentials, or private task data.</aside>
+  </header>
+
+  <section class="grid">
+    <article class="card">
+      <h2>Bounded Team wave</h2>
+      <p class="sub">Question: should a migration run automatically when confidence is high? Try three review outcomes.</p>
+      <div class="controls"><button class="primary" id="agree">No material concern</button><button class="warn" id="material">Material disagreement</button><button id="conflict">Blocking conflict</button><button id="reset">Reset</button></div>
+      <div class="metrics"><div class="metric"><span>Wave state</span><b id="state">PLANNED</b></div><div class="metric"><span>Agent turns</span><b id="turns">0 / 4</b></div><div class="metric"><span>Corrections</span><b id="corrections">0 / 1</b></div><div class="metric"><span>Unresolved</span><b id="unresolved">0</b></div></div>
+      <table><thead><tr><th>Reviewer</th><th>Claim</th><th>Evidence</th><th>Disposition</th></tr></thead><tbody id="concerns"></tbody></table>
+    </article>
+
+    <aside class="card">
+      <h2>Durable review receipt</h2>
+      <p class="sub">Silence is never treated as agreement. Each outcome records access, evidence, correction eligibility, and the final human decision boundary.</p>
+      <div class="receipt" id="receipt">Select a review outcome.</div>
+      <div class="checks" id="checks"></div>
+    </aside>
+  </section>
+
+  <section class="card offer">
+    <h2>Bounded paid implementation milestone</h2>
+    <p class="sub">One selected Discourse reliability slice, implemented against the repository's accepted architecture and deterministic fixtures.</p>
+    <div class="offer-grid"><div><b>750 USDT / USDC</b><span>Exact asset and network agreed in writing</span></div><div><b>2 business days</b><span>After scope and acceptance are locked</span></div><div><b>24+ regression cases</b><span>Materiality, dedupe, correction cap, recovery, receipt</span></div><div><b>Safe payment gate</b><span>Escrow or 50% prepayment before production work</span></div></div>
+    <p class="foot">Acceptance: deterministic concern classifier and correction gate; duplicate concerns remain auditable but cannot retrigger work; Team uses no more than four turns and one correction; blocking disagreement remains explicit; receipt survives replay; tests, build, and handoff notes included.</p>
+  </section>
+</main>
+<script>
+const body=document.getElementById('concerns'),state=document.getElementById('state'),turns=document.getElementById('turns'),corrections=document.getElementById('corrections'),unresolved=document.getElementById('unresolved'),receipt=document.getElementById('receipt');
+const checkNames=['Lead answer attributable','Reviewers independent','Same frozen context used','Reviewer access recorded','Evidence status explicit','Severity validated','Confidence bounded','Duplicate signal retained','Duplicate cannot retrigger','Material concern eligible','Advisory concern visible','Blocking concern preserved','At most one correction','At most four turns','Original answer retained','Replacement linked','Unresolved status visible','Human decision boundary','Replay idempotent','Queue identity stable','Synthetic data only','No external requests','No credentials or secrets','Payment gate explicit'];
+const checks=document.getElementById('checks');checks.innerHTML=checkNames.map(x=>`<div class="check">${x}</div>`).join('');
+function row(agent,claim,evidence,label,kind){return `<tr><td>${agent}</td><td>${claim}</td><td><code>${evidence}</code></td><td><span class="pill ${kind}">${label}</span></td></tr>`}
+function paint(s,t,c,u,rows,lines,pass){state.textContent=s;state.className=s==='COMPLETE'?'good':s==='HUMAN DECISION'?'bad':'hold';turns.textContent=t;corrections.textContent=c;unresolved.textContent=u;unresolved.className=u==='0'?'good':'bad';body.innerHTML=rows.join('');receipt.textContent=lines.join('\n');document.querySelectorAll('.check').forEach((x,i)=>x.classList.toggle('pass',i<pass))}
+function reset(){paint('PLANNED','0 / 4','0 / 1','0',[],['Select a review outcome.'],0)}
+document.getElementById('agree').onclick=()=>paint('COMPLETE','3 / 4','0 / 1','0',[row('Skeptic','rollback is specified','complete access','no material concern','advisory'),row('Verifier','fixture proves idempotency','test receipt','no material concern','advisory')],['wave: team-001','lead: answer retained','skeptic: complete access, no material concern','verifier: complete access, no material concern','correction: not eligible','receipt: silent-review success recorded'],18);
+document.getElementById('material').onclick=()=>paint('COMPLETE','4 / 4','1 / 1','0',[row('Skeptic','confidence is not authorization','policy evidence','material','material'),row('Verifier','dry-run fixture missing','test gap','duplicate','redundant'),row('Lead','add approval gate + dry run','concern C-17','revised','advisory')],['wave: team-002','eligible concern: C-17','duplicate signal: C-18 retained, non-triggering','lead correction: revised','supersedes: answer-001 -> answer-002','turn cap: 4 of 4','receipt: all concern IDs resolved'],24);
+document.getElementById('conflict').onclick=()=>paint('HUMAN DECISION','4 / 4','1 / 1','1',[row('Skeptic','migration can destroy data','missing rollback proof','blocking','blocking'),row('Verifier','schema diff is incomplete','insufficient evidence','material','material'),row('Lead','cannot prove safe execution','concerns C-31/C-32','unresolved','blocking')],['wave: team-003','correction outcome: acknowledged unresolved','automatic execution: blocked','original and correction preserved','unresolved: C-31','human choice required: revise scope or cancel','receipt: no silent winner'],24);
+document.getElementById('reset').onclick=reset;reset();
+</script></body></html>
+
