@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>CreateOS Sandbox shape-to-price reconciliation</title>
+  <style>
+    :root{--ink:#17211d;--muted:#5e6d66;--line:#d8e4de;--paper:#f3f8f5;--card:#fff;--green:#0b7a55;--mint:#dcf7eb;--amber:#fff3d3;--red:#fff0f1;--navy:#163b35}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.5 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}main{max-width:1120px;margin:auto;padding:34px 20px 56px}header{background:linear-gradient(125deg,#073f37,#12a672);color:#fff;border-radius:26px;padding:38px 42px;box-shadow:0 18px 45px #123c3020}.eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:800}h1{font-size:clamp(36px,6vw,66px);line-height:1.02;margin:16px 0 14px;max-width:900px}header p{max-width:820px;font-size:18px;margin:0}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:18px 0}.stat,.card{background:var(--card);border:1px solid var(--line);border-radius:18px}.stat{padding:20px}.stat b{display:block;color:var(--green);font-size:27px}.stat span{color:var(--muted);font-size:13px}.card{padding:24px;margin-top:16px}h2{margin:0 0 14px;font-size:21px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.table-wrap{overflow:auto}table{border-collapse:collapse;width:100%;min-width:760px}th,td{text-align:left;padding:13px 11px;border-top:1px solid var(--line);vertical-align:top}th{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}.ok{background:var(--mint)}.warn{background:var(--amber)}.bad{background:var(--red);color:#a31f35}.note{border-left:4px solid #d2384e;background:var(--red);padding:14px 16px;border-radius:0 12px 12px 0}.check{display:flex;gap:10px;padding:11px 0;border-top:1px solid var(--line)}.pill{flex:none;height:20px;padding:1px 8px;border-radius:99px;background:var(--mint);color:#006846;font-size:10px;font-weight:800}.controls{display:flex;gap:9px;flex-wrap:wrap;margin:14px 0}button{border:0;border-radius:10px;background:var(--green);color:#fff;padding:11px 14px;font:inherit;font-weight:750;cursor:pointer}button.secondary{background:#65766f}.output{min-height:108px;border:1px dashed #9eb7ad;border-radius:13px;padding:14px;background:#fbfdfc}.receipt{white-space:pre-wrap;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:13px}.offer{margin-top:16px;border:1px solid #9adbc4;background:#e9faf4;border-radius:16px;padding:19px}.source{color:var(--muted);font-size:12px;margin-top:13px}@media(max-width:760px){main{padding:18px 12px 34px}header{padding:28px 23px}.stats,.grid{grid-template-columns:1fr 1fr}}@media(max-width:480px){.stats,.grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="eyebrow">Public developer-journey audit / verified 13 Aug 2026</div>
+    <h1>Make every priced sandbox shape executable</h1>
+    <p>The public Sandbox calculator prices four CPU/RAM combinations, while the product page and official SDK examples expose a different catalog. A buyer can estimate a machine that cannot be mapped to a documented API shape.</p>
+  </header>
+
+  <section class="stats" aria-label="Audit summary">
+    <div class="stat"><b>3</b><span>official surfaces compared</span></div>
+    <div class="stat"><b>4</b><span>calculator combinations</span></div>
+    <div class="stat"><b>1</b><span>exact shape overlap</span></div>
+    <div class="stat"><b>0</b><span>accounts, keys or sandboxes used</span></div>
+  </section>
+
+  <section class="card">
+    <h2>Reproducible catalog mismatch</h2>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Buyer-facing calculator</th><th>Product / SDK shape</th><th>Result</th><th>Why it matters</th></tr></thead>
+      <tbody>
+        <tr><td>1 vCPU / 2 GiB</td><td>s-1vcpu-256mb or s-1vcpu-1gb</td><td class="warn">No exact match</td><td>Buyer cannot select the priced memory allocation by documented shape id.</td></tr>
+        <tr><td>2 vCPU / 4 GiB</td><td>s-2vcpu-2gb</td><td class="warn">No exact match</td><td>Calculator estimate cannot be reproduced from the public SDK example catalog.</td></tr>
+        <tr><td>4 vCPU / 8 GiB</td><td>s-4vcpu-4gb</td><td class="warn">No exact match</td><td>The landing-page code sample uses half the calculator memory.</td></tr>
+        <tr><td>8 vCPU / 16 GiB</td><td>No matching public example</td><td class="bad">Unmapped</td><td>A buyer can price a configuration with no visible API identifier.</td></tr>
+      </tbody>
+    </table></div>
+    <p class="note"><strong>Important boundary:</strong> the live unauthenticated <code>listShapes()</code> response may contain additional shapes. The public journey still needs one authoritative mapping so the estimate and the request body remain reproducible without guesswork.</p>
+  </section>
+
+  <section class="grid">
+    <article class="card">
+      <h2>Bounded repair</h2>
+      <div class="check"><span class="pill">CHECK</span><span>Choose one authoritative live shape catalog.</span></div>
+      <div class="check"><span class="pill">CHECK</span><span>Populate the calculator from the same catalog or publish exact ids beside each row.</span></div>
+      <div class="check"><span class="pill">CHECK</span><span>Return price, CPU, RAM and shape id in one quote object.</span></div>
+      <div class="check"><span class="pill">CHECK</span><span>Add stale-shape handling and a last-verified timestamp.</span></div>
+      <div class="check"><span class="pill">CHECK</span><span>Fail CI when product samples reference a shape absent from the catalog.</span></div>
+    </article>
+    <article class="card">
+      <h2>Acceptance checks</h2>
+      <div class="check"><span class="pill">PASS</span><span>Every calculator option resolves to one current API shape id.</span></div>
+      <div class="check"><span class="pill">PASS</span><span>Estimated monthly cost is derived from the displayed CPU/RAM values.</span></div>
+      <div class="check"><span class="pill">PASS</span><span>Copyable request JSON uses the same resolved shape.</span></div>
+      <div class="check"><span class="pill">PASS</span><span>Removed shapes show a controlled catalog-refresh message.</span></div>
+      <div class="check"><span class="pill">PASS</span><span>Landing page, pricing page and SDK docs pass one contract test.</span></div>
+    </article>
+  </section>
+
+  <section class="card">
+    <h2>Interactive quote-to-request preview</h2>
+    <p>Select the current public journey or the reconciled proposal. This local artifact performs no network requests.</p>
+    <div class="controls">
+      <button id="current">Replay current mapping</button>
+      <button id="fixed" class="secondary">Preview reconciled mapping</button>
+    </div>
+    <div id="output" class="output receipt" aria-live="polite">Choose a scenario.</div>
+  </section>
+
+  <section class="offer"><strong>Fixed pilot: 900 USDT or USDC / 2 business days.</strong> Deliverables: authoritative shape schema, calculator-to-API mapping, copyable request JSON, stale-catalog state, documentation alignment and automated cross-surface contract test. Acceptance: every public calculator row resolves to a live shape; displayed resources, price and request body agree; a removed shape fails safely. Written asset/network terms plus escrow or 50% prepayment before implementation.</section>
+  <p class="source">Evidence used: public CreateOS Sandbox product page, public Sandbox pricing calculator, and the official NodeOps-app/createos-sandbox-sdk repository. No account, API key, private environment, sandbox workload or customer data was accessed.</p>
+</main>
+<script>
+  const output=document.getElementById('output');
+  document.getElementById('current').addEventListener('click',()=>{output.textContent='CALCULATOR  4 vCPU / 8 GiB\nESTIMATE    4 x $0.0504 + 8 x $0.0162 per hour\nREQUEST     shape: ?\nPUBLIC SDK  shape: "s-4vcpu-4gb" (4 vCPU / 4 GiB by id)\nRESULT      resource estimate and request shape do not reconcile';});
+  document.getElementById('fixed').addEventListener('click',()=>{output.textContent='CATALOG     shape: "s-4vcpu-4gb"\nRESOURCES   4 vCPU / 4 GiB\nESTIMATE    derived from catalog resources\nREQUEST     { "shape": "s-4vcpu-4gb", "rootfs": "devbox:1" }\nCHECK       pricing.resources == request.catalog.resources\nRESULT      PASS / quote is executable and reproducible';});
+</script>
+</body>
+</html>
