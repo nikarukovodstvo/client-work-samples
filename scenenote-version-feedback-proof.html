@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>SceneNote Version-Safe Feedback Lab</title>
+  <style>
+    :root{--bg:#f4f2ed;--ink:#17171a;--muted:#6c6970;--paper:#fffdfa;--line:#d9d4ca;--blue:#3558d4;--mint:#16856d;--amber:#b56b18;--red:#b5424a;--navy:#17234c}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 12% 0,#dce6ff 0,transparent 32%),radial-gradient(circle at 95% 20%,#d8f2e9 0,transparent 27%),var(--bg);color:var(--ink);font:15px/1.5 Inter,Segoe UI,Arial,sans-serif}main{max-width:1220px;margin:auto;padding:36px 22px 52px}.kicker{display:inline-flex;gap:8px;align-items:center;color:var(--blue);font:800 12px/1 ui-monospace,monospace;letter-spacing:.1em;text-transform:uppercase}.kicker:before{content:"";width:8px;height:8px;border-radius:50%;background:var(--mint)}header{display:grid;grid-template-columns:1fr 340px;gap:22px;align-items:start}h1{font-size:clamp(39px,6vw,70px);line-height:.95;letter-spacing:-.05em;margin:15px 0;max-width:780px}header p{font-size:17px;color:var(--muted);max-width:790px}.card,.boundary{background:linear-gradient(145deg,#fffefa,#f7f4ec);border:1px solid var(--line);border-radius:20px;box-shadow:0 18px 45px #443d3014}.boundary{padding:20px;font-size:13px;color:var(--muted)}.boundary strong{color:var(--ink)}.layout{display:grid;grid-template-columns:1.25fr .75fr;gap:18px;margin-top:22px}.card{padding:20px}.card h2{margin:0 0 5px;font-size:21px}.sub{color:var(--muted);margin:0 0 14px}.controls{display:flex;flex-wrap:wrap;gap:9px;margin:15px 0}button{border:1px solid #c6c1b7;border-radius:11px;background:#fff;color:var(--navy);padding:10px 13px;font-weight:850;cursor:pointer}button:hover,button:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px #3558d421}button.primary{background:var(--blue);border-color:var(--blue);color:white}button.warn{background:#fff5e6;border-color:#dfb26f}.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}.metric{border:1px solid var(--line);border-radius:12px;padding:11px;background:#fff}.metric span{display:block;color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.08em}.metric b{display:block;font:850 18px/1.35 ui-monospace,monospace;margin-top:4px}.good{color:var(--mint)}.bad{color:var(--red)}.hold{color:var(--amber)}table{width:100%;border-collapse:collapse;margin-top:13px;font-size:13px}th,td{text-align:left;padding:9px 7px;border-bottom:1px solid var(--line)}th{color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.08em}.pill{display:inline-block;padding:3px 8px;border-radius:99px;font-size:10px;font-weight:900}.allow{background:#dff5ee;color:#116c58}.block{background:#f9e2e4;color:#9f333d}.review{background:#fff0d5;color:#94510c}.trace{min-height:220px;border-radius:13px;background:var(--navy);color:#e9ecff;padding:15px;font:12.5px/1.72 ui-monospace,Consolas,monospace;white-space:pre-wrap}.checks{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:13px}.check{border:1px solid var(--line);border-radius:9px;padding:7px 8px;color:var(--muted);font-size:11px;background:white}.check:before{content:"[ ]";margin-right:5px}.check.pass{border-color:#7db9a8;color:var(--mint)}.check.pass:before{content:"[x]"}.offer{margin-top:18px;border-color:#aaaedb}.offer-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.offer-grid div{border-left:3px solid var(--blue);padding-left:10px}.offer-grid b{display:block}.offer-grid span{color:var(--muted);font-size:12px}.foot{margin:14px 0 0;color:var(--muted);font-size:12px}@media(max-width:880px){header,.layout{grid-template-columns:1fr}.offer-grid{grid-template-columns:1fr 1fr}}@media(max-width:560px){.metrics,.checks,.offer-grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body><main>
+  <header>
+    <div><div class="kicker">Synthetic SceneNote engineering proof</div><h1>Keep feedback attached to the cut.</h1><p>An interactive acceptance model for versioned media review: frame-accurate notes, explicit cross-version carry-forward, replay-safe collaboration, and editor-ready CSV / EDL exports.</p></div>
+    <aside class="boundary"><strong>Evidence boundary</strong><br>Built from SceneNote's public product and privacy descriptions. Synthetic media metadata only. No SceneNote account, project link, customer media, voice note, personal data, external request, or claim about the current implementation.</aside>
+  </header>
+
+  <section class="layout">
+    <article class="card">
+      <h2>Feedback integrity simulator</h2>
+      <p class="sub">A review note must stay bound to the exact source version and survive concurrency or export without silently moving.</p>
+      <div class="controls"><button class="primary" id="stable">Stable v2 note</button><button id="version">Publish v3</button><button class="warn" id="concurrent">Concurrent replay</button><button id="export">Export markers</button><button id="reset">Reset</button></div>
+      <div class="metrics"><div class="metric"><span>Decision</span><b id="decision">WAITING</b></div><div class="metric"><span>Markers</span><b id="markers">0</b></div><div class="metric"><span>Duplicates</span><b id="duplicates">0</b></div><div class="metric"><span>Review queue</span><b id="queue">0</b></div></div>
+      <table><thead><tr><th>Control</th><th>Evidence</th><th>Policy</th></tr></thead><tbody id="signals"></tbody></table>
+    </article>
+
+    <aside class="card">
+      <h2>Acceptance receipt</h2>
+      <p class="sub">Every scenario emits a deterministic, reviewer-readable record.</p>
+      <div class="trace" id="trace">Select a feedback scenario.</div>
+      <div class="checks" id="checks"></div>
+    </aside>
+  </section>
+
+  <section class="card offer">
+    <h2>Bounded paid reliability milestone</h2>
+    <p class="sub">One selected SceneNote version / collaboration / export reliability slice against an agreed repository revision and acceptance matrix.</p>
+    <div class="offer-grid"><div><b>700 USDT / USDC</b><span>Exact asset and network agreed in writing</span></div><div><b>2 business days</b><span>After scope and fixtures are locked</span></div><div><b>24+ deterministic tests</b><span>Version, replay, timebase, export and privacy paths</span></div><div><b>Safe payment gate</b><span>Escrow or 50% prepayment before production work</span></div></div>
+    <p class="foot">Acceptance: feedback remains bound to its source version and canonical timecode; a new cut never silently inherits old notes; duplicate client events produce one note; ambiguous concurrent edits enter review; CSV quoting and Unicode survive round-trip; EDL frame-rate and drop-frame policy are explicit; marker counts reconcile; no customer media or production data is required; tests, implementation notes, and a concise operator runbook are included.</p>
+  </section>
+</main>
+<script>
+const body=document.getElementById('signals'),decision=document.getElementById('decision'),markers=document.getElementById('markers'),duplicates=document.getElementById('duplicates'),queue=document.getElementById('queue'),trace=document.getElementById('trace');
+const names=['Source URL fingerprinted','Version ID immutable','Frame rate declared','Canonical timecode stored','Range end validated','Coordinates normalized','Original dimensions recorded','Stable event ID','Idempotent replay','Author identity scoped','Transcript labeled AI','Transcript remains editable','No silent version carry','Carry-forward requires review','Conflict is visible','CSV fields escaped','Unicode preserved','EDL timebase explicit','Drop-frame policy explicit','Marker count reconciled','No video bytes stored','Share secret redacted','Synthetic fixtures only','No external requests'];
+const checks=document.getElementById('checks');checks.innerHTML=names.map(x=>`<div class="check">${x}</div>`).join('');
+function row(control,evidence,policy,kind){return `<tr><td>${control}</td><td><code>${evidence}</code></td><td><span class="pill ${kind}">${policy}</span></td></tr>`}
+function paint(label,kind,markerCount,dupCount,queueCount,rows,lines,passCount){decision.textContent=label;decision.className=kind;markers.textContent=markerCount;markers.className='good';duplicates.textContent=dupCount;duplicates.className=dupCount==='0'?'good':'bad';queue.textContent=queueCount;queue.className=queueCount==='0'?'good':'hold';body.innerHTML=rows.join('');trace.textContent=lines.join('\n');document.querySelectorAll('.check').forEach((x,i)=>x.classList.toggle('pass',i<passCount))}
+function reset(){paint('WAITING','hold','0','0','0',[],['Select a feedback scenario.'],0)}
+document.getElementById('stable').onclick=()=>paint('ATTACH','good','1','0','0',[row('Version','cut-v2 / sha256:4c91','immutable','allow'),row('Time','00:01:12:18 @ 25fps','canonical','allow'),row('Annotation','x=.42 y=.36','normalized','allow')],['event_id: note_01J8M4D7','source_version: cut-v2','source_fingerprint: sha256:4c91','timecode: 00:01:12:18','frame_index: 1818','result: attached exactly to v2'],12);
+document.getElementById('version').onclick=()=>paint('REVIEW CARRY','hold','1','0','1',[row('New source','cut-v3 / sha256:88ad','separate','allow'),row('Old note','cut-v2 / frame 1818','locked','allow'),row('Carry-forward','timing may differ','human review','review')],['publish: cut-v3','prior_note: remains on cut-v2','candidate_mapping: semantic region only','automatic_move: blocked','review_queue: carry note_01J8M4D7?','result: no silent feedback drift'],14);
+document.getElementById('concurrent').onclick=()=>paint('MERGE ONCE','good','1','1','1',[row('Replay','same event ID twice','deduplicate','block'),row('Edit clocks','client A=7 / B=7','conflict','review'),row('Visible note','one canonical record','preserved','allow')],['event_id: note_01J8M4D7','delivery_attempts: 2','accepted_records: 1','duplicate_records: 1 suppressed','edit_conflict: queued, original preserved','result: one effect and visible conflict'],16);
+document.getElementById('export').onclick=()=>paint('ROUND-TRIP','good','3','0','0',[row('CSV','RFC4180 quote + UTF-8','valid','allow'),row('EDL','25fps non-drop','declared','allow'),row('Reconcile','3 notes -> 3 markers','exact','allow')],['export_profile: premiere_csv + cmx3600_edl','source_version: cut-v2','timebase: 25/1 non-drop','markers_expected: 3','markers_written: 3','round_trip_text: preserved','result: export receipt passed'],24);
+document.getElementById('reset').onclick=reset;reset();
+</script></body></html>
+
