@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>LemonLime Training Claim Alignment Proof</title>
+  <style>
+    :root{--ink:#17221d;--muted:#5b6d64;--lime:#b7ef54;--dark:#102219;--paper:#f7faf5;--line:#dbe5da;--warn:#fff4cd;--ok:#e9f8d8;--white:#fff}
+    *{box-sizing:border-box}body{margin:0;background:linear-gradient(145deg,#eef6e9,#fbfcf8 52%,#e4f5d3);color:var(--ink);font:15px/1.55 Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif}
+    .wrap{max-width:1120px;margin:auto;padding:32px 20px 56px}.top{display:flex;justify-content:space-between;gap:20px;align-items:flex-start;margin-bottom:28px}.eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#527540;font-weight:800}.brand{font-size:14px;font-weight:800;background:var(--dark);color:var(--lime);padding:9px 13px;border-radius:999px;white-space:nowrap}h1{font-size:clamp(34px,6vw,68px);line-height:.98;letter-spacing:-.055em;margin:10px 0 16px;max-width:850px}.lead{font-size:18px;color:var(--muted);max-width:780px}.panel{background:rgba(255,255,255,.9);border:1px solid var(--line);border-radius:24px;padding:22px;box-shadow:0 18px 55px rgba(34,66,45,.08);margin-top:18px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.claim{border:1px solid var(--line);border-radius:18px;padding:18px;background:var(--white);min-height:220px}.claim h2{font-size:16px;margin:10px 0 8px}.claim p{color:var(--muted);margin:0}.tag{display:inline-flex;align-items:center;gap:7px;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.09em;padding:6px 9px;border-radius:99px}.tag.market{background:var(--ok);color:#315323}.tag.policy{background:var(--warn);color:#725c10}.tag.fix{background:#e8efff;color:#2d4f8b}.quote{font-size:18px;line-height:1.35;color:var(--ink)!important;margin-top:16px!important}.arrow{font-size:24px;margin:7px 0;color:#77906f}.controls{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0 6px}button{border:0;border-radius:12px;padding:11px 14px;font:inherit;font-weight:800;cursor:pointer;background:#e8eee7;color:var(--ink)}button.active{background:var(--dark);color:var(--lime)}button:focus-visible{outline:3px solid #67a041;outline-offset:2px}.matrix{overflow-x:auto}.matrix table{width:100%;border-collapse:collapse;min-width:760px}.matrix th,.matrix td{text-align:left;padding:12px;border-bottom:1px solid var(--line);vertical-align:top}.matrix th{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}.status{font-weight:800}.ambiguous{color:#8a6410}.aligned{color:#2f6f35}.recommendation{display:grid;grid-template-columns:1.25fr .75fr;gap:18px}.copy{background:var(--dark);color:#edf8ea;border-radius:18px;padding:20px}.copy p{color:#c5d6c8}.copy strong{color:var(--lime)}.offer{border:1px solid var(--line);border-radius:18px;padding:20px}.price{font-size:34px;font-weight:900;letter-spacing:-.04em}.small{font-size:13px;color:var(--muted)}ul{padding-left:18px}.receipt{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;background:#eef3ed;border-radius:14px;padding:14px;font-size:12px;white-space:pre-wrap}.footer{margin-top:20px;color:var(--muted);font-size:12px}.hidden{display:none}@media(max-width:800px){.grid,.recommendation{grid-template-columns:1fr}.top{display:block}.brand{display:inline-block;margin-top:10px}.claim{min-height:0}}
+  </style>
+</head>
+<body>
+<main class="wrap">
+  <div class="top"><div><div class="eyebrow">Public trust-surface audit / synthetic proof</div><h1>One promise. Three surfaces. One clearer data boundary.</h1><p class="lead">A compact, non-invasive review of LemonLime's public About, Privacy, and Terms language. The issue is not proof of unsafe processing; it is that an absolute marketing promise sits beside materially qualified policy language.</p></div><div class="brand">LemonLime / Claim Alignment</div></div>
+
+  <section class="panel">
+    <div class="grid">
+      <article class="claim"><span class="tag market">About page</span><h2>Absolute buyer-facing promise</h2><p class="quote">"LemonLime never trains models on your data."</p><div class="arrow">&#8595;</div><p>Easy to understand, but broad enough to sound like it covers LemonLime and every routed model provider.</p></article>
+      <article class="claim"><span class="tag policy">Privacy policy</span><h2>Qualified operational boundary</h2><p class="quote">Third-party provider training is governed by that provider's terms and defaults; no-training settings are "generally" configured where available.</p><div class="arrow">&#8595;</div><p>This creates a real exception boundary that the About claim does not surface.</p></article>
+      <article class="claim"><span class="tag fix">Recommended fix</span><h2>Precise, still concise</h2><p class="quote">"LemonLime does not train its models on Customer Data. For routed third-party models, controls depend on the selected provider and configuration."</p><div class="arrow">&#8595;</div><p>Add a direct link to the provider matrix and configuration controls.</p></article>
+    </div>
+  </section>
+
+  <section class="panel">
+    <div class="eyebrow">Interactive evidence matrix</div>
+    <div class="controls" role="group" aria-label="Evidence view"><button class="active" data-mode="all">All surfaces</button><button data-mode="risk">Buyer-risk only</button><button data-mode="fix">Fix plan</button></div>
+    <div class="matrix"><table><thead><tr><th>Surface</th><th>Current public meaning</th><th>Buyer inference</th><th>Recommended control</th><th>Status</th></tr></thead><tbody>
+      <tr data-row="risk"><td>About</td><td>Never trains models on your data</td><td>No provider in the delivery chain trains on Customer Data</td><td>Scope the subject: LemonLime-operated models</td><td class="status ambiguous">Ambiguous</td></tr>
+      <tr data-row="risk"><td>Privacy 6.2</td><td>Provider policies and defaults govern training; no-training is generally configured</td><td>Some routes may have provider-dependent behavior</td><td>Name provider-specific posture and default tier</td><td class="status ambiguous">Qualified</td></tr>
+      <tr data-row="risk"><td>Terms 6.4</td><td>Customer may restrict providers; provider terms still govern routed data</td><td>Control exists, but buyer must find it in legal text</td><td>Expose the control before connection and checkout</td><td class="status ambiguous">Hidden control</td></tr>
+      <tr data-row="fix"><td>About</td><td>Use scoped promise</td><td>Buyer understands exactly who does not train</td><td>Replace one sentence and link to policy</td><td class="status aligned">Ready</td></tr>
+      <tr data-row="fix"><td>Provider matrix</td><td>Provider, tier, retention, training default, override</td><td>Buyer can evaluate a route before enabling it</td><td>Publish one maintainable source of truth</td><td class="status aligned">Ready</td></tr>
+      <tr data-row="fix"><td>Regression gate</td><td>Marketing and policy claims checked together</td><td>No silent drift after provider or copy changes</td><td>CI/content checklist plus quarterly review</td><td class="status aligned">Ready</td></tr>
+    </tbody></table></div>
+  </section>
+
+  <section class="panel recommendation">
+    <div class="copy"><div class="eyebrow">Proposed production copy</div><h2>Keep the promise strong without making it broader than the system.</h2><p><strong>LemonLime does not use Customer Data to train, fine-tune, or improve LemonLime-operated or shared models.</strong> When a customer selects a third-party model, that provider's enterprise terms and configured controls determine retention and training behavior. Customers can restrict eligible providers before data is routed.</p><p class="small">This proof uses only public pages and does not assert that any provider currently trains on LemonLime data.</p></div>
+    <aside class="offer"><div class="eyebrow">Fixed alignment sprint</div><div class="price">900 USDT / USDC</div><p><b>3 business days</b> after written scope and payment gate.</p><ul><li>Claim inventory across About, Knowledge, Privacy, Terms and Security</li><li>Approved copy matrix with owner and source</li><li>Provider-boundary explainer and disclosure pattern</li><li>Regression checklist for future model/provider changes</li><li>One revision and QA receipt</li></ul><p class="small">50% upfront or escrow. Exact asset and network agreed in writing.</p></aside>
+  </section>
+
+  <section class="panel"><div class="eyebrow">QA receipt</div><div class="receipt" id="receipt">PUBLIC DATA ONLY: PASS
+EXTERNAL REQUESTS: 0
+CUSTOMER DATA / CREDENTIALS: 0
+ALLEGATION OF BREACH: NONE
+SURFACES MAPPED: ABOUT / PRIVACY / TERMS
+DELIVERABLE: COPY + CONTROL MATRIX + REGRESSION CHECK
+PAYMENT GATE REQUIRED BEFORE PRODUCTION</div></section>
+  <p class="footer">Prepared independently by Mikhail Nikitenkov. Public-source diagnostic, not legal advice or a security finding.</p>
+</main>
+<script>
+  const buttons=[...document.querySelectorAll('button[data-mode]')];
+  const rows=[...document.querySelectorAll('tbody tr')];
+  buttons.forEach(button=>button.addEventListener('click',()=>{
+    buttons.forEach(item=>item.classList.toggle('active',item===button));
+    const mode=button.dataset.mode;
+    rows.forEach(row=>row.classList.toggle('hidden',mode!=='all'&&row.dataset.row!==mode));
+    document.getElementById('receipt').textContent=`VIEW: ${mode.toUpperCase()}\nVISIBLE CONTROLS: ${rows.filter(row=>!row.classList.contains('hidden')).length}\nPUBLIC DATA ONLY: PASS\nEXTERNAL REQUESTS: 0\nCUSTOMER DATA / CREDENTIALS: 0\nPAYMENT GATE REQUIRED BEFORE PRODUCTION`;
+  }));
+</script>
+</body>
+</html>
+
