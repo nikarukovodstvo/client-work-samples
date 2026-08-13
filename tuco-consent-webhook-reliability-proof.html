@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Tuco AI Consent and Webhook Reliability Lab</title>
+  <style>
+    :root{--bg:#07100e;--panel:#0d1a17;--panel2:#12231f;--ink:#f4f6ed;--muted:#96aaa3;--lime:#b9f34b;--mint:#40d6ae;--amber:#ffb94d;--red:#ff6f79;--line:#29413a}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 12% -8%,#194c3e 0,transparent 31%),radial-gradient(circle at 96% 8%,#40350f 0,transparent 25%),var(--bg);color:var(--ink);font:15px/1.5 Inter,Segoe UI,Arial,sans-serif}main{max-width:1220px;margin:auto;padding:36px 22px 52px}.kicker{display:inline-flex;align-items:center;gap:8px;color:var(--lime);font:850 12px/1 ui-monospace,monospace;letter-spacing:.1em;text-transform:uppercase}.kicker:before{content:"";width:8px;height:8px;border-radius:50%;background:var(--mint);box-shadow:0 0 15px var(--mint)}header{display:grid;grid-template-columns:1fr 345px;gap:22px;align-items:start}h1{font-size:clamp(39px,6vw,70px);line-height:.95;letter-spacing:-.05em;margin:15px 0;max-width:860px}header p{font-size:17px;color:var(--muted);max-width:800px}.card,.boundary{border:1px solid var(--line);background:linear-gradient(145deg,#10201c,#091310);border-radius:20px;box-shadow:0 18px 45px #0008}.boundary{padding:20px;color:var(--muted);font-size:13px}.boundary strong{color:var(--ink)}.layout{display:grid;grid-template-columns:1.25fr .75fr;gap:18px;margin-top:22px}.card{padding:20px}.card h2{margin:0 0 5px;font-size:21px}.sub{color:var(--muted);margin:0 0 14px}.controls{display:flex;flex-wrap:wrap;gap:9px;margin:15px 0}button{border:1px solid #466158;border-radius:11px;background:#13241f;color:var(--ink);padding:10px 13px;font-weight:850;cursor:pointer}button:hover,button:focus{outline:none;border-color:var(--lime);box-shadow:0 0 0 3px #b9f34b20}button.primary{background:var(--lime);border-color:var(--lime);color:#10210a}button.warn{background:#3c2b12;border-color:#76501e}.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}.metric{border:1px solid var(--line);border-radius:12px;padding:11px;background:var(--panel2)}.metric span{display:block;color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.08em}.metric b{display:block;font:850 18px/1.35 ui-monospace,monospace;margin-top:4px}.good{color:var(--mint)}.bad{color:var(--red)}.hold{color:var(--amber)}table{width:100%;border-collapse:collapse;margin-top:13px;font-size:13px}th,td{text-align:left;padding:9px 7px;border-bottom:1px solid var(--line)}th{color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.08em}.pill{display:inline-block;padding:3px 8px;border-radius:99px;font-size:10px;font-weight:900}.allow{background:#143c32;color:#80eccb}.block{background:#472027;color:#ff9ca5}.review{background:#493619;color:#ffdc8c}.trace{min-height:220px;border-radius:13px;background:#050b09;color:#dcebe5;padding:15px;font:12.5px/1.72 ui-monospace,Consolas,monospace;white-space:pre-wrap}.checks{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:13px}.check{border:1px solid var(--line);border-radius:9px;padding:7px 8px;color:var(--muted);font-size:11px;background:#08110e}.check:before{content:"[ ]";margin-right:5px}.check.pass{border-color:#347963;color:var(--mint)}.check.pass:before{content:"[x]"}.offer{margin-top:18px;border-color:#65802f}.offer-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.offer-grid div{border-left:3px solid var(--lime);padding-left:10px}.offer-grid b{display:block}.offer-grid span{color:var(--muted);font-size:12px}.foot{margin:14px 0 0;color:var(--muted);font-size:12px}@media(max-width:880px){header,.layout{grid-template-columns:1fr}.offer-grid{grid-template-columns:1fr 1fr}}@media(max-width:560px){.metrics,.checks,.offer-grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body><main>
+  <header>
+    <div><div class="kicker">Synthetic Tuco AI engineering proof</div><h1>One warm lead. One durable outcome.</h1><p>An interactive acceptance model for consent-first iMessage operations: signed webhooks, BullMQ-style retry boundaries, exactly-once CRM effects, and immediate DNC enforcement.</p></div>
+    <aside class="boundary"><strong>Evidence boundary</strong><br>Built from Tuco AI's public product, integrations, and hiring descriptions. Synthetic contacts and events only. No Tuco account, Apple ID, phone number, CRM, API key, real recipient, outbound message, carrier action, or claim about the current implementation.</aside>
+  </header>
+
+  <section class="layout">
+    <article class="card">
+      <h2>Webhook-to-CRM simulator</h2>
+      <p class="sub">Every inbound event must be authenticated, replay-safe, consent-aware, and visible when it cannot complete safely.</p>
+      <div class="controls"><button class="primary" id="warm">Warm lead reply</button><button id="duplicate">Duplicate webhook</button><button class="warn" id="dnc">Opt-out arrives</button><button id="retry">CRM timeout</button><button id="reset">Reset</button></div>
+      <div class="metrics"><div class="metric"><span>Decision</span><b id="decision">WAITING</b></div><div class="metric"><span>Queue jobs</span><b id="jobs">0</b></div><div class="metric"><span>CRM effects</span><b id="effects">0</b></div><div class="metric"><span>Open incidents</span><b id="incidents">0</b></div></div>
+      <table><thead><tr><th>Control</th><th>Evidence</th><th>Policy</th></tr></thead><tbody id="signals"></tbody></table>
+    </article>
+
+    <aside class="card">
+      <h2>Delivery receipt</h2>
+      <p class="sub">The API, queue worker, and CRM adapter share one durable event record.</p>
+      <div class="trace" id="trace">Select an event scenario.</div>
+      <div class="checks" id="checks"></div>
+    </aside>
+  </section>
+
+  <section class="card offer">
+    <h2>Listed paid trial boundary</h2>
+    <p class="sub">One agreed Node.js / TypeScript backend task from the published Tuco AI paid-trial backlog, implemented against a pinned revision and explicit acceptance criteria.</p>
+    <div class="offer-grid"><div><b>200 USDT / USDC</b><span>Matches the listed $150-200 trial range</span></div><div><b>1 business day</b><span>After task and fixtures are locked</span></div><div><b>24+ deterministic tests</b><span>Signature, replay, DNC, retry, DLQ and CRM paths</span></div><div><b>Safe payment gate</b><span>Escrow or 50% prepayment before production work</span></div></div>
+    <p class="foot">Acceptance: invalid signatures fail before enqueue; one event ID creates at most one CRM effect; duplicate delivery returns the original receipt; opt-out immediately blocks queued or future sends; consent provenance is preserved; CRM timeouts retry with bounded backoff and no duplicated side effect; exhausted jobs enter a visible dead-letter queue; logs redact message content and credentials; tests, implementation notes, and a concise runbook are included. Work is restricted to consented/warm contacts and does not include bypassing Apple, carrier, platform, or anti-spam controls.</p>
+  </section>
+</main>
+<script>
+const body=document.getElementById('signals'),decision=document.getElementById('decision'),jobs=document.getElementById('jobs'),effects=document.getElementById('effects'),incidents=document.getElementById('incidents'),trace=document.getElementById('trace');
+const names=['Webhook signature verified','Timestamp window enforced','Stable event ID','Raw body hash retained','Payload schema validated','Consent source recorded','Warm-contact gate','DNC checked before enqueue','DNC checked before effect','Idempotency key propagated','Queue attempt bounded','Backoff includes jitter','CRM write has receipt','Duplicate effect suppressed','Out-of-order event handled','Opt-out is terminal','Pending send cancelled','DLQ is visible','Replay tooling is scoped','Message content redacted','Secrets absent from logs','Synthetic fixtures only','No outbound messages','No external requests'];
+const checks=document.getElementById('checks');checks.innerHTML=names.map(x=>`<div class="check">${x}</div>`).join('');
+function row(control,evidence,policy,kind){return `<tr><td>${control}</td><td><code>${evidence}</code></td><td><span class="pill ${kind}">${policy}</span></td></tr>`}
+function paint(label,kind,jobCount,effectCount,incidentCount,rows,lines,passCount){decision.textContent=label;decision.className=kind;jobs.textContent=jobCount;jobs.className='good';effects.textContent=effectCount;effects.className='good';incidents.textContent=incidentCount;incidents.className=incidentCount==='0'?'good':'hold';body.innerHTML=rows.join('');trace.textContent=lines.join('\n');document.querySelectorAll('.check').forEach((x,i)=>x.classList.toggle('pass',i<passCount))}
+function reset(){paint('WAITING','hold','0','0','0',[],['Select an event scenario.'],0)}
+document.getElementById('warm').onclick=()=>paint('COMMIT','good','1','1','0',[row('Signature','hmac-sha256 / age 4s','valid','allow'),row('Consent','demo_form_2026-08-12','warm','allow'),row('CRM receipt','activity:evt_7f31','durable','allow')],['event_id: evt_7f31','type: inbound.reply','contact: synthetic_0042','consent: form_submit / current','queue_job: q_evt_7f31','crm_effect: activity created','result: committed exactly once'],14);
+document.getElementById('duplicate').onclick=()=>paint('NO-OP','good','0','0','0',[row('Delivery','event evt_7f31 again','duplicate','block'),row('Receipt','activity:evt_7f31','found','allow'),row('Queue','new job','suppressed','block')],['event_id: evt_7f31','delivery_attempt: 2','receipt_lookup: committed','queue_job: not created','crm_effect: not repeated','result: original receipt returned'],16);
+document.getElementById('dnc').onclick=()=>paint('CANCEL','good','0','0','0',[row('Event','contact.opt_out','terminal','allow'),row('Pending send','q_send_188','cancelled','block'),row('Future send','contact synthetic_0042','DNC','block')],['event_id: evt_dnc_51','consent_state: revoked','pending_job: cancelled before effect','crm_property: dnc=true','future_enqueue: denied','result: opt-out wins over campaign state'],20);
+document.getElementById('retry').onclick=()=>paint('DLQ REVIEW','hold','3','0','1',[row('CRM adapter','timeout after 4s','retryable','review'),row('Attempts','3 of 3','exhausted','block'),row('Side effect','no receipt','not assumed','review')],['event_id: evt_910a','attempts: 1@2s 2@9s 3@31s','crm_receipt: absent','duplicate_guard: still held','dlq: crm_timeout / operator visible','replay: explicit scoped action only','result: no blind fourth attempt'],24);
+document.getElementById('reset').onclick=reset;reset();
+</script></body></html>
+
