@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>OpenFang Autonomy Recovery Lab</title>
+  <style>
+    :root{--bg:#08080b;--panel:#111116;--panel2:#18181f;--ink:#f7f4ed;--muted:#aaa5b2;--violet:#a78bfa;--blue:#67e8f9;--green:#6ee7b7;--amber:#fbbf24;--red:#fb7185;--line:#302d38}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 14% -8%,#342661 0,transparent 32%),radial-gradient(circle at 95% 10%,#103949 0,transparent 27%),var(--bg);color:var(--ink);font:15px/1.5 Inter,Segoe UI,Arial,sans-serif}main{max-width:1220px;margin:auto;padding:36px 22px 54px}.eyebrow{display:inline-flex;align-items:center;gap:9px;color:var(--blue);font:800 12px/1 ui-monospace,monospace;letter-spacing:.11em;text-transform:uppercase}.eyebrow:before{content:"";width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 16px var(--green)}header{display:grid;grid-template-columns:1fr 340px;gap:24px;align-items:start;margin-bottom:20px}h1{font-size:clamp(36px,6vw,68px);line-height:.96;letter-spacing:-.045em;margin:14px 0 16px;max-width:860px}header p{max-width:790px;color:var(--muted);font-size:17px}.boundary,.card{border:1px solid var(--line);background:linear-gradient(145deg,#14131a,#0d0d12);border-radius:18px;padding:20px;box-shadow:0 18px 45px #0007}.boundary{font-size:13px;color:var(--muted)}.boundary strong{color:var(--ink)}.layout{display:grid;grid-template-columns:1.25fr .75fr;gap:18px}.card h2{font-size:20px;margin:0 0 6px}.sub{color:var(--muted);margin:0 0 15px}.controls{display:flex;flex-wrap:wrap;gap:9px;margin:14px 0}button{border:1px solid #45404f;border-radius:10px;background:#201e28;color:var(--ink);padding:10px 13px;font-weight:800;cursor:pointer}button:hover,button:focus{border-color:var(--violet);outline:none}button.primary{background:var(--violet);border-color:var(--violet);color:#100a21}button.warn{background:#402d17;border-color:#6c5123}.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin:15px 0}.metric{padding:12px;border:1px solid var(--line);border-radius:11px;background:var(--panel2)}.metric span{display:block;color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.08em}.metric b{display:block;font:800 19px/1.3 ui-monospace,monospace;margin-top:4px}.good{color:var(--green)}.bad{color:var(--red)}.hold{color:var(--amber)}table{width:100%;border-collapse:collapse;font-size:13px}th,td{text-align:left;padding:9px 7px;border-bottom:1px solid var(--line)}th{color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.08em}.pill{display:inline-block;padding:3px 8px;border-radius:99px;font-size:10px;font-weight:900}.allow{background:#143c32;color:#82f3cd}.block{background:#43222b;color:#ff9bab}.review{background:#493719;color:#ffdc8c}.trace{min-height:205px;padding:14px;border-radius:12px;background:#09090d;color:#c9c3d4;font:12.5px/1.7 ui-monospace,Consolas,monospace;white-space:pre-wrap}.checks{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:13px}.check{padding:7px 9px;border:1px solid var(--line);border-radius:8px;background:#0c0c11;color:var(--muted);font-size:11px}.check:before{content:"[ ]";margin-right:6px}.check.pass{color:var(--green);border-color:#27614f}.check.pass:before{content:"[x]"}.offer{margin-top:18px;border-color:#51437a}.offer-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.offer-grid div{border-left:2px solid var(--violet);padding-left:10px}.offer-grid b{display:block}.offer-grid span{color:var(--muted);font-size:12px}.foot{color:#85808e;font-size:12px;margin:14px 0 0}@media(max-width:880px){header,.layout{grid-template-columns:1fr}.offer-grid{grid-template-columns:1fr 1fr}}@media(max-width:560px){.metrics,.checks,.offer-grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body><main>
+  <header>
+    <div><div class="eyebrow">Synthetic OpenFang engineering proof</div><h1>Wake once. Recover without doing it twice.</h1><p>An interactive acceptance model for autonomous Hands and scheduled agents: explicit opt-in, stable occurrence keys, bounded recovery, ambiguous completion quarantine, and zero surprise token burn while idle.</p></div>
+    <aside class="boundary"><strong>Evidence boundary</strong><br>Built from OpenFang's public architecture and current public issues about heartbeat timeout, recovery churn, and aggressive sample schedules. Synthetic runs only. No OpenFang account, proprietary data, provider keys, live agents, or external actions.</aside>
+  </header>
+
+  <section class="layout">
+    <article class="card">
+      <h2>Autonomy lease simulator</h2>
+      <p class="sub">One scheduled Researcher occurrence. The runtime must make progress or stop safely; a restart must never blindly repeat a side effect.</p>
+      <div class="controls"><button class="primary" id="normal">Healthy occurrence</button><button id="duplicate">Duplicate wake</button><button class="warn" id="crash">Ambiguous crash</button><button id="idle">Idle boot</button><button id="reset">Reset</button></div>
+      <div class="metrics"><div class="metric"><span>Decision</span><b id="decision">WAITING</b></div><div class="metric"><span>Model calls</span><b id="calls">0</b></div><div class="metric"><span>Side effects</span><b id="effects">0</b></div><div class="metric"><span>Open incidents</span><b id="incidents">0</b></div></div>
+      <table><thead><tr><th>Control</th><th>Evidence</th><th>Policy</th></tr></thead><tbody id="signals"></tbody></table>
+    </article>
+
+    <aside class="card">
+      <h2>Run receipt</h2>
+      <p class="sub">The scheduler, heartbeat monitor, and recovery worker share one durable decision record.</p>
+      <div class="trace" id="trace">Select a runtime scenario.</div>
+      <div class="checks" id="checks"></div>
+    </aside>
+  </section>
+
+  <section class="card offer">
+    <h2>Bounded paid reliability milestone</h2>
+    <p class="sub">One selected OpenFang scheduler / heartbeat recovery slice, implemented against an agreed issue and pinned repository revision.</p>
+    <div class="offer-grid"><div><b>900 USDT / USDC</b><span>Exact asset and network agreed in writing</span></div><div><b>2 business days</b><span>After issue and acceptance are locked</span></div><div><b>24+ deterministic tests</b><span>Idle, duplicate, timeout, crash, retry and budget paths</span></div><div><b>Safe payment gate</b><span>Escrow or 50% prepayment before production work</span></div></div>
+    <p class="foot">Acceptance: configured heartbeat timeout is honored; idle sample agents do not spend tokens unless explicitly activated; each schedule occurrence has a stable idempotency key; duplicate wakes create no extra effects; uncertain post-effect crashes enter review instead of blind replay; recovery attempts and cost budgets are capped; cargo test / clippy receipt and operator runbook included.</p>
+  </section>
+</main>
+<script>
+const signalBody=document.getElementById('signals'),decision=document.getElementById('decision'),calls=document.getElementById('calls'),effects=document.getElementById('effects'),incidents=document.getElementById('incidents'),trace=document.getElementById('trace');
+const names=['Schedule is explicit opt-in','Stable occurrence ID','Durable lease owner','Lease expiry bounded','Heartbeat config honored','Progress timestamp observed','Call budget enforced','Recovery attempt cap','Idempotency key propagated','Pre-effect receipt stored','Post-effect receipt stored','Duplicate wake suppressed','Ambiguous completion quarantined','No blind side-effect replay','Idle boot costs zero','Sample schedules disabled','Run state persisted','Restart state reconciled','Operator stop available','Failure reason visible','Audit receipt exported','Synthetic fixtures only','No secrets or keys','No external requests'];
+const checks=document.getElementById('checks');checks.innerHTML=names.map(x=>`<div class="check">${x}</div>`).join('');
+function row(control,evidence,policy,kind){return `<tr><td>${control}</td><td><code>${evidence}</code></td><td><span class="pill ${kind}">${policy}</span></td></tr>`}
+function paint(label,kind,callCount,effectCount,incidentCount,rows,lines,passCount){decision.textContent=label;decision.className=kind;calls.textContent=callCount;calls.className=callCount==='0'?'good':'hold';effects.textContent=effectCount;effects.className=effectCount==='0'?'good':'hold';incidents.textContent=incidentCount;incidents.className=incidentCount==='0'?'good':'bad';signalBody.innerHTML=rows.join('');trace.textContent=lines.join('\n');document.querySelectorAll('.check').forEach((x,i)=>x.classList.toggle('pass',i<passCount))}
+function reset(){paint('WAITING','hold','0','0','0',[],['Select a runtime scenario.'],0)}
+document.getElementById('normal').onclick=()=>paint('COMMIT','good','1','1','0',[row('Occurrence','researcher:2026-08-13T06:00Z','unique','allow'),row('Lease','worker-07 / 180s','active','allow'),row('Effect receipt','report:sha256:9d31','durable','allow')],['occurrence_id: researcher/2026-08-13T06:00:00Z','lease: worker-07 expires +180s','budget: 1/3 calls, 18k/60k tokens','effect_intent: publish report v17','effect_receipt: report sha256:9d31','result: committed exactly once'],19);
+document.getElementById('duplicate').onclick=()=>paint('SUPPRESS','good','0','0','0',[row('Occurrence','same stable key','already committed','block'),row('Receipt','report:sha256:9d31','proof found','allow'),row('Retry','scheduler restart','no-op','block')],['occurrence_id: researcher/2026-08-13T06:00:00Z','lookup: committed receipt found','lease: not acquired','model_call: skipped','side_effect: skipped','result: duplicate suppressed'],21);
+document.getElementById('crash').onclick=()=>paint('QUARANTINE','bad','1','1','1',[row('Crash point','after effect / before ack','ambiguous','review'),row('Recovery','attempt 1 of 3','proof required','review'),row('Replay','effect status unknown','never blind','block')],['occurrence_id: collector/2026-08-13T06:05:00Z','effect_intent: send approved digest','worker_exit: lost before acknowledgement','receipt_lookup: inconclusive','recovery: paused','incident: operator proof or compensation required'],23);
+document.getElementById('idle').onclick=()=>paint('STAY IDLE','good','0','0','0',[row('Sample config','schedule disabled','explicit opt-in','allow'),row('Heartbeat','configured 86400s','honored','allow'),row('Token budget','0 calls while idle','bounded','allow')],['boot: 3 sample agents discovered','schedule_policy: disabled by default','heartbeat_timeout_secs: 86400','auto_recovery: no false crash','provider_calls: 0','result: ready, silent, zero idle spend'],24);
+document.getElementById('reset').onclick=reset;reset();
+</script></body></html>
+
