@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>FlowTask | Public positioning integrity audit</title>
+  <style>
+    :root{--ink:#15202b;--muted:#617080;--line:#dfe5e9;--paper:#fff;--wash:#f3f7f6;--green:#0d7b62;--dark:#093b34;--red:#a33142;--amber:#9a6300}
+    *{box-sizing:border-box}body{margin:0;background:var(--wash);color:var(--ink);font:15px/1.5 Inter,Segoe UI,Arial,sans-serif}main{max-width:1080px;margin:auto;padding:34px 20px 64px}
+    header{padding:34px;border-radius:24px;color:#fff;background:linear-gradient(130deg,#073c34,#119b78);box-shadow:0 18px 46px #0b4b3c30}.eye{font-size:11px;font-weight:850;letter-spacing:.14em;text-transform:uppercase;color:#bff4e7}h1{font-size:clamp(30px,5vw,48px);line-height:1.06;margin:8px 0 12px}header p{max-width:820px;margin:0;color:#e8fff9;font-size:17px}
+    .metrics,.grid{display:grid;gap:13px}.metrics{grid-template-columns:repeat(4,1fr);margin:18px 0}.metric,.card{background:var(--paper);border:1px solid var(--line);border-radius:16px}.metric{padding:16px}.metric b{display:block;color:var(--green);font-size:24px}.metric span,.small{color:var(--muted);font-size:12px}.grid{grid-template-columns:1fr 1fr}.card{padding:22px}.card h2{margin:0 0 12px;font-size:19px}.full{grid-column:1/-1}
+    table{width:100%;border-collapse:collapse}th,td{padding:11px 10px;border-top:1px solid #e7ecea;text-align:left;vertical-align:top}th{font-size:11px;text-transform:uppercase;color:#69768a}.match{color:#066452;background:#e7faf4}.drift{color:#8b2437;background:#fff0f3}.warn{color:#785000;background:#fff8e6}.evidence{padding:12px 14px;border-left:4px solid var(--red);background:#fff2f4;border-radius:0 10px 10px 0}
+    .checks{list-style:none;margin:0;padding:0}.checks li{padding:9px 0;border-top:1px solid #edf1ef}.checks li:before{content:'CHECK';display:inline-block;margin-right:8px;padding:2px 7px;color:#056353;background:#dff7f1;border-radius:999px;font:850 10px/1.4 Inter,Arial}.offer{margin-top:14px;padding:20px;border:1px solid #a8dfd1;border-radius:14px;background:#eaf9f5}.offer strong{color:var(--dark)}button{cursor:pointer;border:0;border-radius:10px;padding:10px 13px;color:#fff;background:var(--green);font-weight:800}button.alt{background:#617080}.result{min-height:62px;margin-top:12px;padding:12px;border:1px dashed #aab7b3;border-radius:9px;background:#f8fbfa}.tag{display:inline-block;margin:2px 4px 2px 0;padding:3px 8px;border-radius:999px;background:#eef2f1;color:#485b56;font-size:12px}
+    @media(max-width:760px){.metrics,.grid{grid-template-columns:minmax(0,1fr)}.full{grid-column:auto}header{padding:25px}.card{min-width:0;overflow:hidden}.card.full:first-child{overflow-x:auto}table{min-width:690px;font-size:13px}}
+  </style>
+</head>
+<body><main>
+  <header><div class="eye">Public-surface audit / no account access / verified 13 Aug 2026</div><h1>Keep the Company Brain story consistent end to end</h1><p>FlowTask's current public homepage introduces an approval-controlled Company Brain, but lower-page metadata, proof and editorial modules still describe a sales-engagement product. This audit turns that migration gap into a bounded repair with automated release checks.</p></header>
+  <section class="metrics">
+    <div class="metric"><b>1</b><span>live public homepage inspected</span></div>
+    <div class="metric"><b>5</b><span>content systems showing drift</span></div>
+    <div class="metric"><b>0</b><span>accounts, messages or private data used</span></div>
+    <div class="metric"><b>2 days</b><span>proposed paid repair sprint</span></div>
+  </section>
+  <section class="grid">
+    <article class="card full"><h2>Reproducible evidence map</h2><table><thead><tr><th>Public surface</th><th>Current signal</th><th>Assessment</th></tr></thead><tbody>
+      <tr><td>Title, description and hero</td><td>Company Brain for AI agents; Slack, email and docs become living memory.</td><td class="match">Matches the current launch.</td></tr>
+      <tr><td>Structured data</td><td>Service type still identifies an AI sales-engagement SaaS.</td><td class="drift">Search and crawler positioning conflict.</td></tr>
+      <tr><td>Editorial cards</td><td>Legacy articles promote Duo Inbox, sequencing and prospect-email workflows.</td><td class="drift">Old product taxonomy remains discoverable.</td></tr>
+      <tr><td>Customer proof carousel</td><td>Multiple quotes describe lead databases, phone enrichment, cold calling, outbound sequences and replacing Outreach, ZoomInfo or Apollo.</td><td class="drift">Proof does not validate the new Company Brain promise.</td></tr>
+      <tr><td>Terms support route</td><td>One cancellation paragraph points to support@ftowtask.work while other legal sections use support@flowtask.work.</td><td class="warn">A public support typo can misroute a user.</td></tr>
+    </tbody></table><p class="evidence"><strong>Why it matters:</strong> the mismatch can make a new buyer unsure whether FlowTask is a company-memory product or an outbound-sales platform. It also weakens crawler context and makes the strongest proof on the page support a different buying decision.</p></article>
+    <article class="card"><h2>Bounded repair</h2><ul class="checks"><li>Inventory every public claim, quote, schema field and article card.</li><li>Define one canonical Company Brain positioning schema.</li><li>Keep only attributable proof that supports the current product.</li><li>Correct legal and support routes without changing policy meaning.</li><li>Add a pre-publish content-integrity test.</li></ul></article>
+    <article class="card"><h2>Acceptance checks</h2><ul class="checks"><li>Hero, JSON-LD, Open Graph and page copy share one category.</li><li>No outbound-sales legacy terms remain outside an approved history page.</li><li>Every testimonial has an owner, source and current-use tag.</li><li>Every public mailto uses the canonical support address.</li><li>A regression check blocks stale terms from returning.</li></ul></article>
+    <article class="card full"><h2>Interactive release-gate preview</h2><div><span class="tag">positioning</span><span class="tag">structured data</span><span class="tag">customer proof</span><span class="tag">editorial</span><span class="tag">legal links</span></div><p><button id="current">Replay current release</button> <button class="alt" id="fixed">Preview gated release</button></p><div id="result" class="result" aria-live="polite">Choose a scenario.</div></article>
+  </section>
+  <section class="offer"><strong>Fixed pilot: 700 USDT or USDC / 2 business days.</strong> Deliverables: public-content inventory, canonical positioning map, corrected homepage metadata/proof/editorial modules and mail routes, plus an automated content-integrity regression check and QA receipt. Acceptance: every audited public surface describes the Company Brain consistently, legacy sales-engagement claims are removed or deliberately isolated, canonical contact links pass, and the release gate detects reintroduced drift. Written asset/network terms plus escrow or 50% prepayment before implementation.</section>
+  <p class="small">Prepared from public pages only. This file sends no requests and contains no credentials, private analytics, connected inbox data, personal contact lists or application access. Findings describe the observed public release, not the private product.</p>
+  <script>
+    const out=document.getElementById('result');
+    document.getElementById('current').addEventListener('click',()=>out.textContent='Current release: Company Brain hero and metadata coexist with sales-engagement structured data, outbound proof, legacy editorial cards and one inconsistent support address. Result: FAIL / five content systems disagree.');
+    document.getElementById('fixed').addEventListener('click',()=>out.textContent='Gated release: one versioned positioning record drives metadata and approved modules; testimonials require provenance and product-fit tags; canonical contacts are link-tested; banned legacy terms fail CI. Result: PASS.');
+  </script>
+</main></body></html>
