@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Info-Beihilfe | Staging-First Migration Control</title>
+  <style>
+    :root{--bg:#08111f;--panel:#101d31;--line:#263956;--ink:#edf6ff;--muted:#9eb2c9;--cyan:#46d7d0;--green:#5ce29a;--amber:#ffca6b;--red:#ff778c}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 90% 0,#153b52 0,transparent 34%),var(--bg);color:var(--ink);font:15px/1.5 Inter,Segoe UI,Arial,sans-serif}main{max-width:1180px;margin:auto;padding:30px 18px 55px}header{padding:28px;border:1px solid var(--line);border-radius:20px;background:linear-gradient(135deg,#10243d,#0d1a2c);box-shadow:0 22px 55px #0005}.eyebrow{color:var(--cyan);font-size:11px;font-weight:850;letter-spacing:.15em;text-transform:uppercase}h1{font-size:clamp(31px,5vw,53px);line-height:1.04;margin:8px 0 12px}header p{max-width:850px;color:#c8d8e9;font-size:17px}.badges{display:flex;gap:9px;flex-wrap:wrap;margin-top:17px}.badge{padding:6px 10px;border:1px solid #36516e;border-radius:999px;color:#c9d9e8;font-size:12px}.grid{display:grid;grid-template-columns:1.2fr .8fr;gap:16px;margin-top:17px}.card{padding:20px;border:1px solid var(--line);border-radius:17px;background:#0e1a2bde}.card h2{margin:0 0 12px;font-size:19px}.pipeline{display:grid;gap:8px}.stage{display:grid;grid-template-columns:42px 1fr auto;align-items:center;gap:12px;padding:12px;border:1px solid #29405d;border-radius:12px;background:#111f34}.n{display:grid;place-items:center;width:33px;height:33px;border-radius:10px;background:#19344e;color:var(--cyan);font-weight:900}.stage b{display:block}.stage small{color:var(--muted)}.state{padding:4px 8px;border-radius:999px;font-size:10px;font-weight:850;background:#1e354a;color:#a9bfd5}.stage.active{border-color:var(--cyan);box-shadow:0 0 0 2px #46d7d018}.stage.active .state{background:#143f3b;color:#85f1d2}.facts{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}.fact{padding:13px;border-radius:12px;background:#132238;border:1px solid #29405d}.fact b{display:block;color:var(--cyan);font-size:22px}.fact span{color:var(--muted);font-size:12px}.controls{display:flex;flex-wrap:wrap;gap:9px;margin-top:14px}button{cursor:pointer;border:1px solid #41647f;border-radius:10px;padding:10px 13px;color:var(--ink);background:#172a43;font-weight:800}button:hover{border-color:var(--cyan)}button.danger{border-color:#713849;color:#ffc2cc}.receipt{margin-top:12px;padding:14px;border-radius:12px;background:#07111e;border:1px solid #223a55;color:#bad0e5;font:12px/1.55 ui-monospace,Consolas,monospace;min-height:112px;white-space:pre-wrap}.checks{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.check{padding:10px;border-radius:10px;border:1px solid #29405d;color:#aebfd2}.check.pass{color:#baf6d4;border-color:#245f49;background:#102c25}.check.fail{color:#ffc0ca;border-color:#713849;background:#321922}.offer{margin-top:17px;padding:20px;border:1px solid #3e755f;border-radius:17px;background:linear-gradient(135deg,#102a28,#102034)}.offer strong{color:var(--green)}.boundary{margin-top:17px;padding:14px 17px;border-left:4px solid var(--amber);background:#2d2515;color:#ffe3aa;border-radius:0 12px 12px 0}.audit li{margin:6px 0;color:#b4c7da}.audit b{color:#e7f3ff}@media(max-width:800px){.grid{grid-template-columns:1fr}.checks{grid-template-columns:1fr 1fr}}@media(max-width:500px){.facts,.checks{grid-template-columns:1fr}.stage{grid-template-columns:38px 1fr}.state{grid-column:2}}
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="eyebrow">Tailored readiness proof | synthetic data only</div>
+    <h1>Staging-First Migration Control</h1>
+    <p>A reviewable control plane for the published Info-Beihilfe WordPress cleanup and migration brief: isolate first, inventory before deletion, prove compatibility, reconcile content and forms, then release behind a rollback gate.</p>
+    <div class="badges"><span class="badge">WordPress 6.8.5</span><span class="badge">170 pages + 96 posts</span><span class="badge">12 forms</span><span class="badge">18 plugins</span><span class="badge">PHP 8.2+</span><span class="badge">No live editing</span></div>
+  </header>
+
+  <section class="grid">
+    <article class="card">
+      <h2>Migration gate sequence</h2>
+      <div class="pipeline" id="pipeline">
+        <div class="stage active"><span class="n">1</span><div><b>Immutable acquisition</b><small>Hashes, database dump, uploads and configuration inventory</small></div><span class="state">READY</span></div>
+        <div class="stage"><span class="n">2</span><div><b>Isolated staging clone</b><small>Outbound mail blocked, forms redirected, secrets replaced</small></div><span class="state">LOCKED</span></div>
+        <div class="stage"><span class="n">3</span><div><b>Malware and legacy triage</b><small>Evidence ledger; quarantine before deletion; no unknown executable</small></div><span class="state">LOCKED</span></div>
+        <div class="stage"><span class="n">4</span><div><b>Database and plugin audit</b><small>Orphans, transients, PHP 8.2 compatibility and dependency map</small></div><span class="state">LOCKED</span></div>
+        <div class="stage"><span class="n">5</span><div><b>Content and form reconciliation</b><small>Page/post counts, WPBakery structures and 12 synthetic submissions</small></div><span class="state">LOCKED</span></div>
+        <div class="stage"><span class="n">6</span><div><b>Cutover and rollback gate</b><small>DNS plan, maintenance window, smoke suite and signed release receipt</small></div><span class="state">LOCKED</span></div>
+      </div>
+      <div class="controls"><button id="advance">Advance safe gate</button><button id="replay">Replay idempotency</button><button class="danger" id="tamper">Simulate mismatch</button><button id="reset">Reset</button></div>
+      <div class="receipt" id="receipt">RUN MIG-20260813-01
+STATE: acquisition manifest ready
+LIVE WRITES: blocked
+ROLLBACK: available
+NEXT: isolated staging clone</div>
+    </article>
+
+    <aside class="card">
+      <h2>Published-scope inventory</h2>
+      <div class="facts">
+        <div class="fact"><b>266</b><span>published content records</span></div>
+        <div class="fact"><b>12</b><span>forms requiring test receipts</span></div>
+        <div class="fact"><b>18</b><span>plugins in compatibility matrix</span></div>
+        <div class="fact"><b>350 MB</b><span>database before measured cleanup</span></div>
+        <div class="fact"><b>7 GB</b><span>webspace under migration control</span></div>
+        <div class="fact"><b>2</b><span>obsolete installs: archive, verify, remove</span></div>
+      </div>
+      <h2 style="margin-top:18px">Acceptance checks</h2>
+      <div class="checks" id="checks"></div>
+    </aside>
+  </section>
+
+  <section class="grid">
+    <article class="card audit">
+      <h2>Evidence ledger</h2>
+      <ul>
+        <li><b>Malware handling:</b> every flagged path gets hash, classification, disposition and restoration note.</li>
+        <li><b>Database safety:</b> each purge rule has before/after row counts and a reversible export.</li>
+        <li><b>Plugin safety:</b> active use, owner, version, PHP support, replacement and regression test are explicit.</li>
+        <li><b>Forms:</b> test records verify validation, consent, routing and notification without using real visitor data.</li>
+        <li><b>Cutover:</b> content hashes, URLs, redirects, certificates, cache and analytics are checked before DNS release.</li>
+      </ul>
+    </article>
+    <article class="card audit">
+      <h2>Stop conditions</h2>
+      <ul>
+        <li>Unknown executable or credential-bearing artifact: quarantine and request human review.</li>
+        <li>Page, post or form reconciliation mismatch: stop cutover.</li>
+        <li>PHP fatal, mail leak, broken consent path or security regression: rollback.</li>
+        <li>No destructive deletion without verified backup and written owner approval.</li>
+        <li>No access to production until written scope, payment gate and staging boundary are accepted.</li>
+      </ul>
+    </article>
+  </section>
+
+  <section class="offer"><strong>Proposed paid first stage:</strong> Package A at 4,000 USDT/USDC equivalent, 8 business days after access to a sanitized backup and target hosting. Acceptance: staging clone; malware evidence ledger; plugin/PHP matrix; reversible DB cleanup; exact reconciliation of 170 pages, 96 posts and 12 forms; migration runbook; rollback package; no live edits before written cutover approval. Package B theme migration is quoted separately after the audit.</section>
+  <div class="boundary"><b>Security boundary:</b> this artifact is a local synthetic demonstration. It makes no network request, contains no client file, credential, scanner output or personal data, and cannot change a live WordPress installation.</div>
+</main>
+<script>
+  const labels=['Backup hashes recorded','Staging outbound mail blocked','Flagged files dispositioned','18 plugins classified','PHP 8.2 smoke checks','170 pages reconciled','96 posts reconciled','12 forms tested','Redirect map verified','TLS and cache smoke test','Rollback package verified','Live write gate closed'];
+  const checks=document.getElementById('checks'), stages=[...document.querySelectorAll('.stage')], receipt=document.getElementById('receipt'); let gate=0, mismatch=false;
+  function render(){checks.innerHTML='';labels.forEach((x,i)=>{const e=document.createElement('div');e.className='check '+((i<Math.min(12,(gate+1)*2)&&!mismatch)||i===11?'pass':'');if(mismatch&&[5,6,7].includes(i))e.className='check fail';e.textContent=(e.classList.contains('pass')?'PASS  ':'WAIT  ')+x;checks.appendChild(e)});stages.forEach((s,i)=>{s.classList.toggle('active',i===gate);s.querySelector('.state').textContent=i<gate?'PASS':i===gate?(mismatch?'HOLD':'READY'):'LOCKED'});}
+  document.getElementById('advance').onclick=()=>{if(mismatch){receipt.textContent+='\nBLOCKED: reconcile content/form mismatch before progression';return}if(gate<5)gate++;receipt.textContent=`RUN MIG-20260813-01\nGATE ${gate+1}/6: ${stages[gate].querySelector('b').textContent}\nPREVIOUS GATES: ${gate} passed\nLIVE WRITES: blocked\nROLLBACK: verified`;render()};
+  document.getElementById('replay').onclick=()=>{receipt.textContent+=`\nREPLAY: no duplicate mutation; gate remains ${gate+1}/6`};
+  document.getElementById('tamper').onclick=()=>{mismatch=true;receipt.textContent+='\nHOLD: synthetic page/post/form count mismatch detected\nCUTOVER: denied';render()};
+  document.getElementById('reset').onclick=()=>{gate=0;mismatch=false;receipt.textContent='RUN MIG-20260813-01\nSTATE: acquisition manifest ready\nLIVE WRITES: blocked\nROLLBACK: available\nNEXT: isolated staging clone';render()};render();
+</script>
+</body>
+</html>
+
