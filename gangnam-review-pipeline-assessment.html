@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Gangnam Review Pipeline</title>
+<style>
+body{font:15px/1.5 system-ui;margin:0;background:#f5f7fa;color:#172033}.wrap{max-width:1000px;margin:auto;padding:32px}h1{font-size:36px;margin:.2em 0}.muted{color:#637083}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}.card{background:white;border:1px solid #dfe5ec;border-radius:12px;padding:16px}.stage{border-left:5px solid #536dfe}.pass{color:#087f5b}.hold{color:#b35c00}button{border:0;border-radius:8px;background:#3157d5;color:white;padding:11px 15px;font-weight:700;cursor:pointer}button.secondary{background:#334155}pre{white-space:pre-wrap;background:#101827;color:#dbeafe;padding:16px;border-radius:10px;min-height:170px}.pill{display:inline-block;padding:4px 9px;border-radius:99px;background:#e8edff;color:#3157d5;font-weight:700}.tests li{margin:6px 0}@media(max-width:600px){.wrap{padding:18px}h1{font-size:29px}}
+</style>
+</head>
+<body><main class="wrap">
+<span class="pill">Synthetic working artifact · no network calls</span>
+<h1>Gangnam Review Pipeline</h1>
+<p class="muted">A deterministic multi-step agent workflow that normalizes, de-duplicates, translates and validates synthetic clinic reviews before publishing. It fails closed when provenance or semantic checks are weak.</p>
+<div class="grid">
+ <section class="card stage"><b>1 · Intake agent</b><p>Validates source URL, review ID, clinic alias, rating and Korean text.</p></section>
+ <section class="card stage"><b>2 · Entity agent</b><p>Maps aliases to a canonical clinic ID and computes a stable content fingerprint.</p></section>
+ <section class="card stage"><b>3 · Translation agent</b><p>Uses a local deterministic dictionary, retaining the original Korean text.</p></section>
+ <section class="card stage"><b>4 · Trust agent</b><p>Checks provenance, duplicate fingerprints, rating range and translation coverage.</p></section>
+ <section class="card stage"><b>5 · Publisher</b><p>Publishes only validated records; everything else gets a reasoned hold receipt.</p></section>
+</div>
+<p><button id="run">Run normal batch</button> <button class="secondary" id="hostile">Inject duplicate + bad source</button> <button class="secondary" id="tests">Run tests</button></p>
+<pre id="out" aria-live="polite">Ready.</pre>
+<section class="card"><h2>Acceptance receipt</h2><ul class="tests" id="receipt"><li>Not run yet.</li></ul></section>
+</main>
+<script>
+const aliases={"Seoul Glow Clinic":"clinic_101","서울글로우":"clinic_101","Han River Aesthetics":"clinic_202","한강미학":"clinic_202"};
+const dictionary={"상담이 친절했고 대기시간이 짧았습니다":"The consultation was kind and the wait was short.","가격 설명이 명확했고 회복 안내가 자세했습니다":"Pricing was explained clearly and recovery guidance was detailed."};
+const fixtures=[
+ {sourceUrl:"https://reviews.example.kr/r/11",sourceReviewId:"r11",clinic:"서울글로우",rating:5,textKo:"상담이 친절했고 대기시간이 짧았습니다",verifiedProcedure:true},
+ {sourceUrl:"https://reviews.example.kr/r/12",sourceReviewId:"r12",clinic:"한강미학",rating:4,textKo:"가격 설명이 명확했고 회복 안내가 자세했습니다",verifiedProcedure:false}
+];
+function hash(s){let h=2166136261;for(const c of s){h^=c.charCodeAt(0);h=Math.imul(h,16777619)}return (h>>>0).toString(16)}
+function intake(row){const errors=[];if(!/^https:\/\/reviews\.example\.kr\/r\/\d+$/.test(row.sourceUrl))errors.push("source_not_allowlisted");if(!row.sourceReviewId)errors.push("missing_source_id");if(!(row.rating>=1&&row.rating<=5))errors.push("rating_out_of_range");if(!row.textKo)errors.push("missing_original_text");return {...row,errors}}
+function normalize(row){const clinicId=aliases[row.clinic];const errors=[...row.errors];if(!clinicId)errors.push("unknown_clinic_alias");return {...row,clinicId,fingerprint:hash(`${clinicId}|${row.rating}|${row.textKo}`),errors}}
+function translate(row){const textEn=dictionary[row.textKo];const errors=[...row.errors];if(!textEn)errors.push("translation_unverified");return {...row,textEn,errors}}
+function validate(rows){const seen=new Set;return rows.map(row=>{const errors=[...row.errors];if(seen.has(row.fingerprint))errors.push("duplicate_content");seen.add(row.fingerprint);return {...row,status:errors.length?"held":"publishable",errors}})}
+function publish(rows){return rows.map(row=>row.status==="publishable"?{status:"published",clinicId:row.clinicId,rating:row.rating,textOriginal:row.textKo,textEnglish:row.textEn,trust:{source:row.sourceUrl,verifiedProcedure:row.verifiedProcedure},receipt:hash(row.fingerprint+"published")}:{status:"held",sourceReviewId:row.sourceReviewId,reasons:row.errors,receipt:hash(row.fingerprint+row.errors.join("|"))})}
+function pipeline(input){return publish(validate(input.map(intake).map(normalize).map(translate)))}
+function show(data){document.querySelector("#out").textContent=JSON.stringify(data,null,2)}
+document.querySelector("#run").onclick=()=>show(pipeline(fixtures));
+document.querySelector("#hostile").onclick=()=>show(pipeline([...fixtures,{...fixtures[0],sourceReviewId:"r99"},{...fixtures[1],sourceReviewId:"evil",sourceUrl:"https://evil.example/x"}]));
+document.querySelector("#tests").onclick=()=>{
+ const normal=pipeline(fixtures), hostile=pipeline([...fixtures,{...fixtures[0],sourceReviewId:"r99"},{...fixtures[1],sourceReviewId:"evil",sourceUrl:"https://evil.example/x"}]);
+ const checks=[
+  ["two valid fixtures publish",normal.length===2&&normal.every(x=>x.status==="published")],
+  ["original Korean text is retained",normal.every(x=>x.textOriginal)],
+  ["English translation is present",normal.every(x=>x.textEnglish)],
+  ["canonical clinic IDs are emitted",normal.map(x=>x.clinicId).join(",")==="clinic_101,clinic_202"],
+  ["stable audit receipts are emitted",normal.every(x=>x.receipt)],
+  ["duplicate content is held",hostile[2].status==="held"&&hostile[2].reasons.includes("duplicate_content")],
+  ["untrusted source is held",hostile[3].status==="held"&&hostile[3].reasons.includes("source_not_allowlisted")],
+  ["failed records expose reasons",hostile.filter(x=>x.status==="held").every(x=>x.reasons.length)],
+  ["no external request API is used",!document.documentElement.innerHTML.match(/fetch\s*\(|XMLHttpRequest|WebSocket/)],
+  ["replay is deterministic",JSON.stringify(pipeline(fixtures))===JSON.stringify(normal)]
+ ];
+ document.querySelector("#receipt").innerHTML=checks.map(([n,ok])=>`<li class="${ok?'pass':'hold'}">${ok?'PASS':'FAIL'} · ${n}</li>`).join("");show({passed:checks.filter(x=>x[1]).length,total:checks.length});
+};
+</script></body></html>
+
