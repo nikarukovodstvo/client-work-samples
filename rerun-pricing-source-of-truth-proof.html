@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Rerun pricing source-of-truth audit</title>
+  <style>
+    :root{--ink:#eef2ff;--muted:#aeb8d5;--panel:#11182c;--line:#293657;--accent:#9cffc8;--warn:#ffd78a;--bad:#ff9caa;--bg:#070b16}*{box-sizing:border-box}html,body{max-width:100%;overflow-x:hidden}body{margin:0;background:radial-gradient(circle at 80% 0,#182347 0,transparent 38%),var(--bg);color:var(--ink);font:15px/1.55 Inter,ui-sans-serif,system-ui,sans-serif}main{max-width:1120px;margin:auto;padding:46px 22px 70px}.eyebrow{color:var(--accent);font-size:12px;font-weight:800;letter-spacing:.15em;text-transform:uppercase}h1{max-width:850px;margin:12px 0 14px;font-size:clamp(36px,6vw,72px);line-height:1.02;letter-spacing:-.045em;overflow-wrap:anywhere}h2{margin:0 0 10px;font-size:20px}p{margin:0;color:var(--muted)}.hero{padding:34px;border:1px solid var(--line);border-radius:28px;background:linear-gradient(140deg,rgba(17,24,44,.96),rgba(13,18,34,.78));box-shadow:0 30px 80px #0007}.pill{display:inline-block;max-width:100%;margin-top:22px;padding:8px 12px;border:1px solid #3c527d;border-radius:999px;color:#cbd7f6;background:#131d37}.grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:16px;margin-top:18px}.card{min-width:0;grid-column:span 6;padding:24px;border:1px solid var(--line);border-radius:22px;background:var(--panel)}.full{grid-column:1/-1}.surface{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;padding:17px 0;border-top:1px solid var(--line)}.surface>div{min-width:0}.surface:first-of-type{border-top:0}.tag{flex:none;padding:5px 9px;border-radius:999px;font-size:12px;font-weight:800}.live{background:#15392c;color:var(--accent)}.stale{background:#402733;color:var(--bad)}.money{font-size:28px;font-weight:850;letter-spacing:-.04em;color:var(--ink);overflow-wrap:anywhere}.checks{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:16px}.check{padding:12px;border-radius:14px;background:#0b1121;color:#c5cdea}.check b{display:block;color:var(--accent);font-size:12px;text-transform:uppercase}.controls{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}button{border:1px solid #405681;border-radius:12px;background:#17233f;color:var(--ink);padding:11px 15px;font:inherit;font-weight:750;cursor:pointer}button.active{background:var(--accent);border-color:var(--accent);color:#062016}.result{margin-top:15px;padding:16px;border-radius:16px;background:#090f1e;border:1px solid var(--line);min-height:82px}.result strong{color:var(--warn)}.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:16px}.step{padding:15px;border-left:3px solid var(--accent);background:#0b1121;border-radius:8px}.step b{display:block;margin-bottom:5px}.scope{color:#d5def8}.fine{margin-top:18px;font-size:12px;color:#8793b3}@media(max-width:760px){main{padding:24px 14px 44px}.hero{padding:24px}.card{grid-column:1/-1}.checks,.steps{grid-template-columns:1fr}.surface{display:grid;grid-template-columns:minmax(0,1fr)}.money{font-size:24px}}
+  </style>
+</head>
+<body>
+<main>
+  <section class="hero">
+    <div class="eyebrow">Public-surface QA / 13 Aug 2026</div>
+    <h1>One Rerun product, two pricing models.</h1>
+    <p>The live marketing page presents one plan from $24/month. The current Terms still enumerate Solo $14, Team $34 and Scale $64. This compact audit turns the mismatch into a maintainable source-of-truth plan.</p>
+    <span class="pill">Read-only evidence / no account / no trial / no payment data</span>
+  </section>
+
+  <section class="grid">
+    <article class="card">
+      <h2>Observed public state</h2>
+      <div class="surface"><div><b>Marketing pricing</b><p>One plan, add-ons as needed</p></div><div><span class="tag live">LIVE</span><div class="money">From $24</div></div></div>
+      <div class="surface"><div><b>Terms section 5</b><p>Named Solo, Team and Scale plans</p></div><div><span class="tag stale">STALE</span><div class="money">$14 / $34 / $64</div></div></div>
+      <div class="surface"><div><b>Trial language</b><p>Both surfaces mention seven days; Terms additionally define conversion and billing behavior.</p></div><span class="tag live">REVIEW</span></div>
+    </article>
+
+    <article class="card">
+      <h2>Why it matters</h2>
+      <p>A buyer comparing the pricing screen with the contract cannot tell whether the old tiers still exist, whether $24 replaces Solo, or which amount governs renewal. That creates a support question exactly at the conversion boundary.</p>
+      <div class="checks">
+        <div class="check"><b>Trust</b>Contract and storefront agree</div>
+        <div class="check"><b>Conversion</b>No pause to clarify plans</div>
+        <div class="check"><b>Operations</b>One update changes every surface</div>
+      </div>
+    </article>
+
+    <article class="card full">
+      <h2>Interactive consistency gate</h2>
+      <p>Select a release state. The gate describes what should happen before pricing copy ships.</p>
+      <div class="controls">
+        <button data-mode="current" class="active">Current public state</button>
+        <button data-mode="terms">Terms updated only</button>
+        <button data-mode="canonical">Canonical manifest</button>
+      </div>
+      <div class="result" id="result" aria-live="polite"></div>
+    </article>
+
+    <article class="card full">
+      <h2>Two-day repair milestone</h2>
+      <div class="steps">
+        <div class="step"><b>1. Canonical manifest</b>Plan ID, display price, currency, interval, trial and renewal rules.</div>
+        <div class="step"><b>2. Generated surfaces</b>Marketing cards, FAQ summary and legal pricing table consume the same reviewed data.</div>
+        <div class="step"><b>3. Release check</b>CI compares plan names, amounts and trial language across rendered public URLs.</div>
+        <div class="step"><b>4. QA receipt</b>Desktop/mobile review, link checks, structured-data check and timestamped evidence.</div>
+      </div>
+      <p class="fine"><span class="scope">Fixed scope: 750 USDT or USDC / two business days after written approval and payment gate.</span> Acceptance: one approved pricing manifest; current public surfaces reconciled; automated mismatch check; desktop/mobile QA receipt; no billing-account or customer-data access required.</p>
+    </article>
+  </section>
+</main>
+<script>
+  const states={
+    current:'<strong>BLOCK RELEASE.</strong> Marketing says one plan from $24; Terms name three plans at $14, $34 and $64. Resolve product intent before changing copy.',
+    terms:'<strong>PARTIAL PASS.</strong> Legal wording may be current, but hand-edited pages can drift again. Add an automated comparison before release.',
+    canonical:'<strong>PASS.</strong> One versioned pricing manifest generates customer-facing summaries and supplies assertions for legal review and CI.'
+  };
+  const result=document.getElementById('result');
+  function render(mode){result.innerHTML=states[mode];document.querySelectorAll('button').forEach(b=>b.classList.toggle('active',b.dataset.mode===mode));}
+  document.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>render(b.dataset.mode)));
+  render('current');
+</script>
+</body>
+</html>
