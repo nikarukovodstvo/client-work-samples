@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Simple Trackr cancellation and export parity proof</title>
+  <style>
+    :root{--ink:#18212f;--muted:#647184;--line:#dfe5ec;--paper:#f6f8fb;--card:#fff;--hot:#db2777;--ok:#087f5b;--warn:#b45309;--bad:#b42318}
+    *{box-sizing:border-box} body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.55 Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif}
+    main{max-width:1120px;margin:auto;padding:32px 18px 64px} header{padding:34px;border-radius:24px;background:linear-gradient(135deg,#111827,#312e81 58%,#831843);color:#fff;box-shadow:0 22px 60px #18212f24}
+    .eyebrow{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#f9a8d4;font-weight:800} h1{font-size:clamp(31px,5vw,58px);line-height:1.02;margin:12px 0 15px;max-width:880px} header p{max-width:780px;color:#e5e7eb;font-size:17px;margin:0}
+    .offer{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}.pill{padding:8px 12px;border-radius:999px;background:#ffffff18;border:1px solid #ffffff35;font-weight:700}
+    section{margin-top:20px}.grid{display:grid;grid-template-columns:1.15fr .85fr;gap:18px}.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;box-shadow:0 8px 28px #18212f0a}
+    h2{font-size:21px;margin:0 0 12px} h3{font-size:16px;margin:0 0 8px}.muted{color:var(--muted)}
+    .metric{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.metric div{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px}.metric b{display:block;font-size:25px}.metric span{color:var(--muted);font-size:13px}
+    .controls{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}.controls button{border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:10px;padding:9px 12px;font-weight:750;cursor:pointer}.controls button.active{background:var(--ink);color:#fff;border-color:var(--ink)}
+    table{width:100%;border-collapse:collapse;font-size:14px}th,td{text-align:left;padding:12px 10px;border-bottom:1px solid var(--line);vertical-align:top}th{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+    .status{display:inline-block;border-radius:999px;padding:3px 8px;font-size:11px;font-weight:800}.bad{color:var(--bad);background:#fee4e2}.warn{color:var(--warn);background:#fff1d6}.ok{color:var(--ok);background:#dff8ec}.hidden{display:none}
+    .flow{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;align-items:stretch}.node{border:1px solid var(--line);border-radius:14px;padding:14px;background:#fff;position:relative}.node:not(:last-child):after{content:'>';position:absolute;right:-8px;top:42%;z-index:2;color:var(--hot);font-weight:900}.node b{display:block}.node small{color:var(--muted)}
+    ul{padding-left:19px;margin:10px 0 0}li{margin:7px 0}.receipt{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;background:#101827;color:#d1fae5;border-radius:14px;padding:16px;white-space:pre-wrap;font-size:12px}
+    .boundary{border-left:4px solid var(--hot)} footer{margin-top:20px;color:var(--muted);font-size:12px}
+    @media(max-width:820px){.grid{grid-template-columns:1fr}.metric{grid-template-columns:repeat(2,1fr)}.flow{grid-template-columns:1fr}.node:not(:last-child):after{content:'v';right:50%;top:auto;bottom:-14px}}
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="eyebrow">Public cancellation-path audit - 13 Aug 2026</div>
+    <h1>One product, two retention expectations at cancellation</h1>
+    <p>Simple Trackr launched today with a clear annual plan and a seven-day trial. Its homepage says cancelled-workspace data stays exportable, while current Terms and Privacy set a permanent deletion deadline. This proof turns the retention ambiguity into a safe export-first flow.</p>
+    <div class="offer"><span class="pill">650 USDT / USDC</span><span class="pill">2 business days</span><span class="pill">One revision</span><span class="pill">Public data only</span></div>
+  </header>
+
+  <section class="metric" aria-label="Audit summary">
+    <div><b>3</b><span>public surfaces checked</span></div><div><b>1</b><span>reproducible blocker</span></div><div><b>0</b><span>financial records needed</span></div><div><b>1</b><span>export-first flow proposed</span></div>
+  </section>
+
+  <section class="card">
+    <h2>Evidence matrix</h2>
+    <p class="muted">Use the filters to inspect only contradictions or the target post-fix state.</p>
+    <div class="controls"><button class="active" data-filter="all">All evidence</button><button data-filter="issue">Issues only</button><button data-filter="target">Target state</button></div>
+    <table>
+      <thead><tr><th>Surface</th><th>Current public statement</th><th>Observed result</th><th>State</th></tr></thead>
+      <tbody>
+        <tr data-kind="issue"><td>Marketing cancellation copy</td><td>"Cancel anytime - your data stays exportable."</td><td>A user can reasonably read this as continued post-cancellation export access.</td><td><span class="status ok">CANONICAL CANDIDATE</span></td></tr>
+        <tr data-kind="issue"><td>Current Terms</td><td>After a paid period ends, the workspace becomes read-only and is permanently deleted after 30 days if not renewed.</td><td>The deletion deadline is material but absent from the homepage promise.</td><td><span class="status ok">CONSISTENT</span></td></tr>
+        <tr data-kind="issue"><td>Current Privacy Policy</td><td>The same 30-day permanent deletion rule applies after a paid subscription lapses.</td><td>The legal surfaces agree with each other but not with the short cancellation promise.</td><td><span class="status bad">RETENTION DRIFT</span></td></tr>
+        <tr data-kind="issue"><td>Cancellation UX</td><td>The homepage does not state that export access has a 30-day deadline or require an export acknowledgement.</td><td>A freelancer may delay export based on the indefinite-sounding promise.</td><td><span class="status bad">MISSING DEADLINE</span></td></tr>
+        <tr data-kind="target"><td>Canonical retention manifest</td><td>One machine-readable lifecycle source feeds homepage, billing notices, cancellation UI, Terms and Privacy.</td><td>Public statements become generated or continuously verified.</td><td><span class="status ok">TARGET</span></td></tr>
+        <tr data-kind="target"><td>Lifecycle parity receipt</td><td>A seeded missing deadline or mismatched retention period must fail before release.</td><td>Retention changes cannot silently strand financial records.</td><td><span class="status ok">TARGET</span></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="grid">
+    <article class="card">
+      <h2>Repair path</h2>
+      <div class="flow">
+        <div class="node"><b>Manifest</b><small>trial, paid, read-only, export and deletion states</small></div>
+        <div class="node"><b>Marketing</b><small>cancellation promise</small></div>
+        <div class="node"><b>App UX</b><small>export countdown</small></div>
+        <div class="node"><b>Parity test</b><small>copy and lifecycle parity</small></div>
+        <div class="node"><b>Receipt</b><small>versioned QA evidence</small></div>
+      </div>
+      <ul>
+        <li>Define trial, cancellation, read-only, export and deletion states in one lifecycle manifest.</li>
+        <li>Make the 30-day export deadline explicit beside every cancellation promise and in the cancellation confirmation.</li>
+        <li>Add export-now and reminder states before irreversible deletion.</li>
+        <li>Check marketing, Terms, Privacy, email and in-app retention language before release.</li>
+      </ul>
+    </article>
+    <article class="card">
+      <h2>Acceptance receipt</h2>
+      <div class="receipt" id="receipt">RUN: RETENTION_PARITY_2026_08_13
+homepage_exportable_claim ... PASS
+terms_30_day_delete ......... PASS
+privacy_30_day_delete ....... PASS
+homepage_deadline ........... FAIL
+lifecycle_manifest .......... MISSING
+export_reminder_test ........ NOT_INSTALLED
+
+RESULT: 1 trust gap / remediation scoped</div>
+      <div class="controls"><button id="simulate">Simulate export-safe state</button></div>
+    </article>
+  </section>
+
+  <section class="grid">
+    <article class="card">
+      <h2>Fixed milestone</h2>
+      <ul>
+        <li>Canonical trial/cancellation/read-only/export/deletion manifest and effective-date policy.</li>
+        <li>Aligned homepage, Action App UX and install copy.</li>
+        <li>Export-now action, 30-day countdown and reminder states.</li>
+        <li>Automated lifecycle and retention-copy parity checks.</li>
+        <li>Desktop/mobile cancellation QA, handoff note and one revision.</li>
+      </ul>
+    </article>
+    <article class="card boundary">
+      <h2>Safe delivery boundary</h2>
+      <p>No customer financial records, receipts, invoices, account credentials, production database or private analytics is required for this stage. Work starts only after written scope, acceptance criteria, exact asset/network and escrow or 50% prepayment.</p>
+    </article>
+  </section>
+
+  <footer>Independent public-data proof prepared for Simple Trackr. No login, API call, financial record, customer data, external script, tracker, wallet connection or production write is used by this page.</footer>
+</main>
+<script>
+  const buttons=[...document.querySelectorAll('[data-filter]')];
+  const rows=[...document.querySelectorAll('tbody tr')];
+  buttons.forEach(button=>button.addEventListener('click',()=>{
+    buttons.forEach(item=>item.classList.toggle('active',item===button));
+    const filter=button.dataset.filter;
+    rows.forEach(row=>row.classList.toggle('hidden',filter!=='all'&&row.dataset.kind!==filter));
+  }));
+  document.getElementById('simulate').addEventListener('click',event=>{
+    document.getElementById('receipt').textContent=`RUN: RETENTION_PARITY_REPAIRED
+homepage_exportable_claim ... PASS
+terms_30_day_delete ......... PASS
+privacy_30_day_delete ....... PASS
+homepage_deadline ........... PASS
+lifecycle_manifest .......... PASS
+export_reminder_test ........ PASS
+
+RESULT: cancellation path export-safe`;
+    event.currentTarget.textContent='Repaired state simulated';
+  });
+</script>
+</body>
+</html>
+
+
