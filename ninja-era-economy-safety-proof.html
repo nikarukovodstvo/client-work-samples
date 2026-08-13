@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Synthetic testnet-only safety proof for a server-authoritative game economy.">
+  <title>Ninja Era | Economy Safety Proof</title>
+  <style>
+    :root{--ink:#161a22;--muted:#687080;--paper:#fffefa;--wash:#f1efe7;--line:#d9d5c8;--red:#b53e32;--red2:#7f241e;--gold:#d99e32;--green:#19705c;--navy:#1e2940;--code:#101722;--soft:#f7f4eb;--shadow:0 18px 48px rgba(34,32,25,.11)}
+    *{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 8% 0,#fff7df 0,transparent 27%),var(--wash);color:var(--ink);font:15px/1.55 Inter,Segoe UI,Arial,sans-serif}button{font:inherit}
+    main{max-width:1240px;margin:auto;padding:24px 20px 60px}.hero{position:relative;overflow:hidden;display:grid;grid-template-columns:minmax(0,1.35fr) minmax(290px,.65fr);gap:30px;padding:36px;border-radius:24px;color:#fff;background:linear-gradient(135deg,#161c2b,#293653 58%,#7f241e);box-shadow:var(--shadow)}
+    .hero:after{content:"";position:absolute;right:-90px;top:-160px;width:390px;height:390px;border:76px solid rgba(255,255,255,.045);border-radius:50%}.eyebrow{position:relative;z-index:1;color:#f5c567;font-size:11px;font-weight:900;letter-spacing:.16em;text-transform:uppercase}h1{position:relative;z-index:1;margin:8px 0 13px;font-size:clamp(34px,5vw,58px);line-height:1.02;letter-spacing:-.035em}.hero p{position:relative;z-index:1;max-width:760px;margin:0;color:#e8e6df;font-size:16px}.scope{position:relative;z-index:1;align-self:end;padding:18px;border:1px solid rgba(255,255,255,.18);border-radius:15px;background:rgba(255,255,255,.08);backdrop-filter:blur(5px)}.scope b{display:block;margin-bottom:4px;color:#f5c567}.scope span{color:#e6e3db;font-size:13px}
+    .ribbon{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin-top:14px}.ribbon div{padding:13px 9px;border:1px solid var(--line);border-radius:12px;background:var(--paper);text-align:center}.ribbon b{display:block;color:var(--red2);font-size:18px}.ribbon span{color:var(--muted);font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+    .grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:15px;margin-top:15px}.card{grid-column:span 6;min-width:0;padding:22px;border:1px solid var(--line);border-radius:18px;background:var(--paper);box-shadow:0 8px 28px rgba(31,29,22,.045)}.wide{grid-column:1/-1}.third{grid-column:span 4}.card h2{margin:0 0 4px;font-size:20px;letter-spacing:-.015em}.sub{margin:0 0 15px;color:var(--muted);font-size:13px}.flow{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px;align-items:center}.node{padding:12px 7px;border:1px solid var(--line);border-radius:11px;background:var(--soft);text-align:center;font-size:11px;font-weight:850}.arrow{text-align:center;color:var(--red);font-weight:900}.formula{padding:15px;border-radius:12px;color:#dce4f0;background:var(--code);font:12px/1.72 ui-monospace,SFMono-Regular,Consolas,monospace}.formula b{color:#f5c567}.boundary-list{display:grid;gap:8px}.boundary-list div{padding:11px 12px;border-left:4px solid var(--green);border-radius:8px;background:#edf7f3}.boundary-list b{display:block;font-size:13px}.boundary-list span{color:var(--muted);font-size:12px}
+    .state-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px}.metric{padding:12px;border:1px solid var(--line);border-radius:11px;background:var(--soft)}.metric span{display:block;color:var(--muted);font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}.metric b{display:block;margin-top:3px;font-size:19px}.metric small{color:var(--muted)}
+    .controls{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}.btn{cursor:pointer;padding:9px 12px;border:0;border-radius:9px;color:#fff;background:var(--red2);font-weight:800}.btn:hover{filter:brightness(1.08)}.btn.secondary{color:var(--ink);background:#ebe7db}.btn.gold{color:#2b2417;background:var(--gold)}.btn.green{background:var(--green)}
+    .receipt{min-height:175px;max-height:260px;overflow:auto;padding:13px;border-radius:12px;color:#cbd6e6;background:var(--code);font:11px/1.62 ui-monospace,SFMono-Regular,Consolas,monospace}.receipt div{padding:3px 0;border-bottom:1px solid rgba(255,255,255,.055)}.receipt .ok{color:#7ee0bd}.receipt .deny{color:#ff9d92}.receipt .muted{color:#91a0b4}.tag{display:inline-block;padding:2px 7px;border-radius:999px;font-size:9px;font-weight:900;letter-spacing:.05em}.tag.ok{color:#12604f;background:#d8f2e8}.tag.deny{color:#832e27;background:#fae1dd}.tag.info{color:#66501c;background:#f8e9be}
+    .test-summary{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:10px}.score{font-size:22px;font-weight:900;color:var(--green)}.tests{width:100%;table-layout:fixed;border-collapse:collapse}.tests th,.tests td{padding:8px;border-top:1px solid var(--line);text-align:left;vertical-align:top;overflow-wrap:anywhere}.tests th{color:var(--muted);font-size:9px;letter-spacing:.1em;text-transform:uppercase}.tests th:nth-child(1){width:5%}.tests th:nth-child(2){width:22%}.tests th:nth-child(4){width:11%}.tests td{font-size:11px}.tests td:nth-child(1){color:var(--muted);font-weight:900}.checks-wrap{max-height:430px;overflow:auto;border-bottom:1px solid var(--line)}
+    .roadmap{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:9px}.roadmap div{position:relative;padding:14px;border:1px solid var(--line);border-radius:11px;background:var(--soft)}.roadmap b{display:block;margin-bottom:4px}.roadmap span{color:var(--muted);font-size:11px}.roadmap em{display:block;margin-bottom:7px;color:var(--red2);font-size:10px;font-style:normal;font-weight:900;letter-spacing:.08em;text-transform:uppercase}.terms{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}.terms div{padding:16px;border-radius:12px;color:#f5f3ec;background:var(--navy)}.terms b{display:block;color:#f5c567;font-size:18px}.terms span{color:#ccd1da;font-size:12px}.note{margin:15px 2px 0;color:var(--muted);font-size:11px}
+    @media(max-width:900px){.hero{grid-template-columns:1fr}.ribbon{grid-template-columns:repeat(2,1fr)}.card,.third{grid-column:1/-1}.state-grid{grid-template-columns:repeat(3,1fr)}.roadmap{grid-template-columns:1fr}.terms{grid-template-columns:1fr}.flow{grid-template-columns:1fr}.arrow{transform:rotate(90deg)}}
+  </style>
+</head>
+<body><main>
+  <header class="hero">
+    <div><div class="eyebrow">Mikhail Nikitenkov / Ninja Era technical sample</div><h1>Game Economy Safety Proof</h1><p>A testnet-only vertical slice for server-authoritative earn and spend flows, item ownership, bounded supply, replay resistance, role separation, and tamper-evident audit receipts.</p></div>
+    <aside class="scope"><b>Hard safety boundary</b><span>Synthetic players and assets only. Mock wallet adapter. No wallet connection, private keys, signatures, real funds, mainnet calls, custody, production deployment, or audit claim.</span></aside>
+  </header>
+
+  <section class="ribbon" aria-label="Proof facts">
+    <div><b>30</b><span>Deterministic checks</span></div><div><b>0</b><span>External requests</span></div><div><b>1</b><span>Atomic event path</span></div><div><b>100K</b><span>Season mint cap</span></div><div><b>Mock</b><span>Wallet boundary</span></div>
+  </section>
+
+  <section class="grid">
+    <article class="card wide"><h2>Server-authoritative event path</h2><p class="sub">The chain adapter never decides game outcomes. It receives an already-authorized, replay-safe transition.</p>
+      <div class="flow"><div class="node">Game server result</div><div class="arrow">-&gt;</div><div class="node">Policy gate</div><div class="arrow">-&gt;</div><div class="node">Atomic ledger</div><div class="arrow">-&gt;</div><div class="node">Mock chain receipt</div></div>
+    </article>
+
+    <article class="card"><h2>Canonical event envelope</h2><p class="sub">One typed contract keeps authorization, replay protection, accounting, and audit evidence aligned.</p>
+      <div class="formula"><b>event_id</b>: season + match + sequence<br><b>actor</b>: player_id + server_role<br><b>intent</b>: EARN | SPEND | MINT_ITEM | BURN_ITEM<br><b>amount</b>: positive integer, policy bounded<br><b>precondition</b>: expected ledger version<br><b>receipt</b>: previous_hash + canonical event + result_hash</div>
+    </article>
+    <article class="card"><h2>Trust and role boundary</h2><p class="sub">Privileges are narrow, explicit, and fail closed.</p>
+      <div class="boundary-list"><div><b>GAME_SERVER</b><span>Submits verified match rewards and player purchase requests.</span></div><div><b>ECONOMY_ADMIN</b><span>Changes a queued policy only through delayed, separately audited activation.</span></div><div><b>CHAIN_RELAY</b><span>Relays committed intents; cannot alter balances, owners, or caps.</span></div><div><b>PLAYER</b><span>Can read state and request an action; cannot author authoritative rewards.</span></div></div>
+    </article>
+
+    <article class="card wide"><h2>Interactive synthetic ledger</h2><p class="sub">Every control executes locally against the same reducer used by the deterministic checks.</p>
+      <div class="state-grid">
+        <div class="metric"><span>Balance</span><b id="balance">0</b><small>SHIN synthetic</small></div>
+        <div class="metric"><span>Minted</span><b id="minted">0</b><small>of 100,000</small></div>
+        <div class="metric"><span>Burned</span><b id="burned">0</b><small>lifetime</small></div>
+        <div class="metric"><span>Items owned</span><b id="items">0</b><small>synthetic NFTs</small></div>
+        <div class="metric"><span>Ledger version</span><b id="version">0</b><small>optimistic gate</small></div>
+        <div class="metric"><span>Audit head</span><b id="auditHead">GENESIS</b><small>receipt chain</small></div>
+      </div>
+      <div class="controls"><button class="btn green" id="earn">Earn 120</button><button class="btn gold" id="buy">Buy item / 45</button><button class="btn" id="replay">Replay last event</button><button class="btn" id="cap">Exceed mint cap</button><button class="btn" id="intrude">Player admin call</button><button class="btn secondary" id="reset">Reset model</button></div>
+      <div class="receipt" id="receipts" aria-live="polite"></div>
+    </article>
+
+    <article class="card wide"><div class="test-summary"><div><h2>Deterministic acceptance checks</h2><p class="sub">A visible, repeatable model suite. Run it after any architecture change.</p></div><div class="score" id="score">30 / 30 PASS</div></div>
+      <div class="controls"><button class="btn green" id="runTests">Run all 30 checks</button></div>
+      <div class="checks-wrap"><table class="tests"><thead><tr><th>#</th><th>Invariant</th><th>Evidence</th><th>Result</th></tr></thead><tbody id="testRows"></tbody></table></div>
+    </article>
+
+    <article class="card wide"><h2>Proposed funded first milestone</h2><p class="sub">A bounded production foundation that can be reviewed before broader implementation.</p>
+      <div class="roadmap"><div><em>Day 1</em><b>Architecture</b><span>Domain model, trust boundaries, state transitions, interfaces, and asset lifecycle.</span></div><div><em>Day 1</em><b>Threat model</b><span>Replay, authorization, cap bypass, double spend, stale version, relay tampering, and admin risk.</span></div><div><em>Day 2</em><b>Foundry skeleton</b><span>Testnet-only contracts, custom errors, roles, mocks, invariants, and deployment placeholders.</span></div><div><em>Day 2-3</em><b>Backend adapter</b><span>Idempotent event consumer, outbox contract, receipt store, retries, and reconciliation hooks.</span></div><div><em>Day 3</em><b>Read-only UI</b><span>Balances, items, event status, cap utilization, audit receipt viewer, and failure states.</span></div></div>
+      <div class="terms"><div><b>1,500 USDT</b><span>Funded LaborX milestone before production starts.</span></div><div><b>3 business days</b><span>From written scope acceptance and funded escrow.</span></div><div><b>Acceptance</b><span>Buildable skeleton, tests, interface docs, threat model, demo, and handoff notes.</span></div></div>
+    </article>
+  </section>
+  <p class="note">Evaluation sample built from synthetic data. It is not a deployed product, security audit, certification, prior client work, investment product, or representation that an unimplemented economy is safe.</p>
+</main>
+<script>
+"use strict";
+const CAP=100000;
+const FIXED_TIME="2026-08-13T00:00:00.000Z";
+function hashText(text){let h=2166136261;for(let i=0;i<text.length;i++){h^=text.charCodeAt(i);h=Math.imul(h,16777619)}return (h>>>0).toString(16).padStart(8,"0").toUpperCase()}
+function freshState(){return{balance:0,minted:0,burned:0,version:0,items:{},seen:{},lastEvent:null,head:"GENESIS",receipts:[],policy:{cap:CAP,itemPrice:45,paused:false},nextItem:1}}
+function envelope(id,intent,amount,role="GAME_SERVER",expectedVersion=null,player="player_alpha"){return{id,season:"SYNTH_S1",player,role,intent,amount,expectedVersion,at:FIXED_TIME}}
+function canonical(e){return[e.id,e.season,e.player,e.role,e.intent,e.amount,e.expectedVersion,e.at].join("|")}
+function reject(state,e,code){const receipt={eventId:e.id,status:"DENIED",code,version:state.version,previousHash:state.head,hash:hashText(state.head+"|"+canonical(e)+"|DENIED|"+code)};return{ok:false,state,receipt}}
+function applyEvent(state,e){
+  if(!e||typeof e.id!=="string"||!e.id)return reject(state,e||envelope("invalid","INVALID",0),"INVALID_ENVELOPE");
+  if(state.seen[e.id])return reject(state,e,"REPLAY_REJECTED");
+  if(e.role!=="GAME_SERVER")return reject(state,e,"ROLE_DENIED");
+  if(state.policy.paused)return reject(state,e,"ECONOMY_PAUSED");
+  if(e.intent!=="BURN_ITEM"&&(!Number.isInteger(e.amount)||e.amount<=0))return reject(state,e,"INVALID_AMOUNT");
+  if(e.intent==="BURN_ITEM"&&(typeof e.amount!=="string"||!/^ITEM_[0-9]{3,}$/.test(e.amount)))return reject(state,e,"INVALID_ITEM_ID");
+  if(e.expectedVersion!==null&&e.expectedVersion!==state.version)return reject(state,e,"STALE_VERSION");
+  const n={...state,items:{...state.items},seen:{...state.seen},receipts:state.receipts.slice(),policy:{...state.policy}};
+  let itemId=null;
+  if(e.intent==="EARN"){
+    if(n.minted+e.amount>n.policy.cap)return reject(state,e,"MINT_CAP_EXCEEDED");
+    n.balance+=e.amount;n.minted+=e.amount;
+  }else if(e.intent==="SPEND"){
+    if(n.balance<e.amount)return reject(state,e,"INSUFFICIENT_BALANCE");
+    n.balance-=e.amount;n.burned+=e.amount;
+  }else if(e.intent==="MINT_ITEM"){
+    if(e.amount!==n.policy.itemPrice)return reject(state,e,"PRICE_MISMATCH");
+    if(n.balance<e.amount)return reject(state,e,"INSUFFICIENT_BALANCE");
+    n.balance-=e.amount;n.burned+=e.amount;itemId="ITEM_"+String(n.nextItem).padStart(3,"0");n.nextItem++;n.items[itemId]=e.player;
+  }else if(e.intent==="BURN_ITEM"){
+    itemId=String(e.amount);
+    if(n.items[itemId]!==e.player)return reject(state,e,"OWNERSHIP_DENIED");
+    delete n.items[itemId];
+  }else{return reject(state,e,"UNKNOWN_INTENT")}
+  n.seen[e.id]=true;n.version++;
+  const result=[n.balance,n.minted,n.burned,n.version,itemId||"none",Object.keys(n.items).sort().join(",")].join("|");
+  const receipt={eventId:e.id,status:"COMMITTED",code:"OK",version:n.version,previousHash:n.head,hash:hashText(n.head+"|"+canonical(e)+"|"+result),itemId};
+  n.head=receipt.hash;n.lastEvent={...e};n.receipts.push(receipt);return{ok:true,state:n,receipt};
+}
+function mockWalletAdapter(command){return{network:"local-testnet-mock",connected:false,submitted:false,txHash:null,commandDigest:hashText(JSON.stringify(command)),note:"No wallet or network operation performed"}}
+let app=freshState(),sequence=1;
+const el=id=>document.getElementById(id);
+function paint(){el("balance").textContent=app.balance.toLocaleString("en-US");el("minted").textContent=app.minted.toLocaleString("en-US");el("burned").textContent=app.burned.toLocaleString("en-US");el("items").textContent=Object.keys(app.items).length;el("version").textContent=app.version;el("auditHead").textContent=app.head}
+function logReceipt(r,adapter){const line=document.createElement("div");line.className=r.status==="COMMITTED"?"ok":"deny";line.textContent=r.status+"  "+r.eventId+"  "+r.code+"  v"+r.version+"  "+r.previousHash+" -> "+r.hash+(adapter?"  relay="+adapter.network:" ");el("receipts").prepend(line)}
+function execute(e){const out=applyEvent(app,e);if(out.ok){app=out.state;const adapter=mockWalletAdapter(out.receipt);logReceipt(out.receipt,adapter)}else{logReceipt(out.receipt)}paint();return out}
+function id(prefix){return prefix+"_"+String(sequence++).padStart(3,"0")}
+el("earn").onclick=()=>execute(envelope(id("MATCH"),"EARN",120,"GAME_SERVER",app.version));
+el("buy").onclick=()=>execute(envelope(id("BUY"),"MINT_ITEM",45,"GAME_SERVER",app.version));
+el("replay").onclick=()=>app.lastEvent?execute({...app.lastEvent}):execute(envelope("NO_EVENT_REPLAY","EARN",1,"PLAYER",app.version));
+el("cap").onclick=()=>execute(envelope(id("CAP"),"EARN",CAP+1,"GAME_SERVER",app.version));
+el("intrude").onclick=()=>execute(envelope(id("ADMIN"),"EARN",999,"PLAYER",app.version));
+el("reset").onclick=()=>{app=freshState();sequence=1;el("receipts").innerHTML="";const d=document.createElement("div");d.className="muted";d.textContent="READY  synthetic ledger reset at GENESIS";el("receipts").appendChild(d);paint()};
+function runSuite(){
+  const checks=[];const check=(name,evidence,condition)=>checks.push({name,evidence,pass:Boolean(condition)});
+  let s=freshState(),a,b,c;
+  a=applyEvent(s,envelope("match_001","EARN",120,"GAME_SERVER",0));check("Authorized earn commits","balance 0 -> 120",a.ok&&a.state.balance===120);s=a.state;
+  check("Mint accounting increments","minted equals 120",s.minted===120);
+  check("Version increments once","version equals 1",s.version===1);
+  check("Event id is recorded","match_001 marked seen",s.seen.match_001===true);
+  check("Receipt is committed","receipt status COMMITTED",a.receipt.status==="COMMITTED");
+  check("Receipt links genesis","previous hash GENESIS",a.receipt.previousHash==="GENESIS");
+  check("Audit head advances","head equals receipt hash",s.head===a.receipt.hash&&s.head!=="GENESIS");
+  b=applyEvent(s,envelope("match_001","EARN",120,"GAME_SERVER",1));check("Replay is rejected","code REPLAY_REJECTED",!b.ok&&b.receipt.code==="REPLAY_REJECTED");
+  check("Replay preserves balance","balance remains 120",b.state.balance===120);
+  check("Replay preserves version","version remains 1",b.state.version===1);
+  b=applyEvent(s,envelope("intrusion_001","EARN",500,"PLAYER",1));check("Player cannot mint rewards","code ROLE_DENIED",!b.ok&&b.receipt.code==="ROLE_DENIED");
+  b=applyEvent(s,envelope("relay_001","EARN",500,"CHAIN_RELAY",1));check("Relay cannot decide rewards","code ROLE_DENIED",!b.ok&&b.receipt.code==="ROLE_DENIED");
+  b=applyEvent(s,envelope("cap_001","EARN",CAP,"GAME_SERVER",1));check("Season cap is enforced","cap overflow denied",!b.ok&&b.receipt.code==="MINT_CAP_EXCEEDED");
+  b=applyEvent(s,envelope("zero_001","EARN",0,"GAME_SERVER",1));check("Zero amount is invalid","code INVALID_AMOUNT",!b.ok&&b.receipt.code==="INVALID_AMOUNT");
+  b=applyEvent(s,envelope("fraction_001","EARN",1.5,"GAME_SERVER",1));check("Fractional amount is invalid","integer-only policy",!b.ok&&b.receipt.code==="INVALID_AMOUNT");
+  b=applyEvent(s,envelope("stale_001","SPEND",5,"GAME_SERVER",0));check("Stale write is rejected","code STALE_VERSION",!b.ok&&b.receipt.code==="STALE_VERSION");
+  b=applyEvent(s,envelope("overspend_001","SPEND",121,"GAME_SERVER",1));check("Overspend is rejected","code INSUFFICIENT_BALANCE",!b.ok&&b.receipt.code==="INSUFFICIENT_BALANCE");
+  b=applyEvent(s,envelope("spend_001","SPEND",20,"GAME_SERVER",1));check("Authorized spend commits","balance 120 -> 100",b.ok&&b.state.balance===100);s=b.state;
+  check("Burn accounting increments","burned equals 20",s.burned===20);
+  b=applyEvent(s,envelope("bad_price_001","MINT_ITEM",44,"GAME_SERVER",2));check("Item price is server fixed","code PRICE_MISMATCH",!b.ok&&b.receipt.code==="PRICE_MISMATCH");
+  b=applyEvent(s,envelope("item_001","MINT_ITEM",45,"GAME_SERVER",2));check("Item purchase is atomic","balance 100 -> 55",b.ok&&b.state.balance===55);s=b.state;
+  check("Item owner is recorded","ITEM_001 owned by player_alpha",s.items.ITEM_001==="player_alpha");
+  check("Item spend is burned","burned equals 65",s.burned===65);
+  b=applyEvent(s,envelope("foreign_burn_001","BURN_ITEM","ITEM_001","GAME_SERVER",3,"player_beta"));check("Foreign item burn is denied","code OWNERSHIP_DENIED",!b.ok&&b.receipt.code==="OWNERSHIP_DENIED");
+  b=applyEvent(s,envelope("item_burn_001","BURN_ITEM","ITEM_001","GAME_SERVER",3,"player_alpha"));check("Owner item burn commits","ITEM_001 removed",b.ok&&!b.state.items.ITEM_001);s=b.state;
+  const paused={...s,policy:{...s.policy,paused:true}};b=applyEvent(paused,envelope("paused_001","EARN",1,"GAME_SERVER",4));check("Pause fails closed","code ECONOMY_PAUSED",!b.ok&&b.receipt.code==="ECONOMY_PAUSED");
+  const w=mockWalletAdapter({eventId:"sample"});check("Wallet adapter stays mocked","network local-testnet-mock",w.network==="local-testnet-mock");
+  check("No wallet connection occurs","connected is false",w.connected===false);
+  check("No transaction is submitted","submitted false and txHash null",w.submitted===false&&w.txHash===null);
+  c=applyEvent(freshState(),envelope("stable_001","EARN",9,"GAME_SERVER",0));const d=applyEvent(freshState(),envelope("stable_001","EARN",9,"GAME_SERVER",0));check("Receipts are deterministic","matching canonical inputs match",c.receipt.hash===d.receipt.hash);
+  return checks;
+}
+function renderTests(){const checks=runSuite();el("testRows").innerHTML=checks.map((t,i)=>"<tr><td>"+(i+1)+"</td><td>"+t.name+"</td><td>"+t.evidence+"</td><td><span class=\"tag "+(t.pass?"ok":"deny")+"\">"+(t.pass?"PASS":"FAIL")+"</span></td></tr>").join("");const passed=checks.filter(t=>t.pass).length;el("score").textContent=passed+" / "+checks.length+" "+(passed===checks.length?"PASS":"REVIEW");el("score").style.color=passed===checks.length?"var(--green)":"var(--red)";return{passed,total:checks.length}}
+el("runTests").onclick=renderTests;
+el("reset").click();renderTests();
+</script></body></html>
+
