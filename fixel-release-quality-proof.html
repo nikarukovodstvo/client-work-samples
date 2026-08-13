@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Fixel Release Quality Gate</title>
+  <style>
+    :root{--ink:#0d1720;--muted:#5d6b75;--paper:#f5f6f1;--card:#fff;--lime:#d8ff45;--cyan:#56e1e8;--red:#ff6a5e;--line:#dce1dc;--shadow:0 18px 50px rgba(13,23,32,.09)}
+    *{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.5 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+    button{font:inherit}.shell{max-width:1220px;margin:auto;padding:28px}.hero{display:grid;grid-template-columns:1.4fr .8fr;gap:28px;padding:38px;border:1px solid var(--ink);background:var(--ink);color:#fff;border-radius:28px;box-shadow:var(--shadow);overflow:hidden;position:relative}
+    .hero:after{content:"";position:absolute;width:300px;height:300px;border-radius:50%;right:-130px;top:-150px;background:var(--lime);opacity:.9}.eyebrow{text-transform:uppercase;letter-spacing:.15em;font-size:12px;color:var(--lime);font-weight:800}.hero h1{font-size:clamp(38px,7vw,78px);line-height:.92;letter-spacing:-.055em;margin:16px 0 18px;max-width:760px}.hero p{max-width:690px;color:#d6dde1;font-size:17px}.hero-card{align-self:end;position:relative;z-index:1;background:#fff;color:var(--ink);border-radius:20px;padding:22px}.hero-card b{display:block;font-size:32px}.hero-card span{color:var(--muted)}
+    .strip{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0 26px}.pill{border:1px solid #52606a;border-radius:999px;padding:8px 12px;font-size:12px;color:#e7edf0}.pill strong{color:var(--lime)}
+    .grid{display:grid;grid-template-columns:300px 1fr;gap:22px;margin-top:22px}.panel{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:22px;box-shadow:var(--shadow)}.panel h2{margin:0 0 8px;font-size:18px}.panel p{color:var(--muted);margin:0 0 16px}.scenarios{display:grid;gap:10px}.scenario{width:100%;text-align:left;border:1px solid var(--line);border-radius:14px;background:#fff;padding:14px;cursor:pointer;transition:.18s}.scenario:hover,.scenario.active{border-color:var(--ink);transform:translateY(-1px)}.scenario.active{background:var(--ink);color:#fff}.scenario small{display:block;color:var(--muted);margin-top:4px}.scenario.active small{color:#cbd4d8}
+    .status-line{display:flex;justify-content:space-between;gap:16px;align-items:center;margin-bottom:18px}.status{display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:8px 12px;background:#edf1ee;font-weight:800;font-size:12px;text-transform:uppercase;letter-spacing:.08em}.dot{width:9px;height:9px;border-radius:50%;background:var(--cyan)}.status.block .dot{background:var(--red)}.status.pass .dot{background:#72c93f}.run{border:0;background:var(--lime);padding:11px 16px;border-radius:999px;font-weight:850;cursor:pointer}.run:hover{filter:brightness(.95)}
+    .pipeline{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:18px}.node{min-height:98px;padding:14px;border-radius:15px;border:1px solid var(--line);background:#fafbf8}.node b,.node span{display:block}.node b{font-size:13px}.node span{font-size:11px;color:var(--muted);margin-top:7px}.node.good{border-color:#a8cf67;background:#f5ffe3}.node.warn{border-color:#f0a39d;background:#fff1ef}.node.info{border-color:#8bd4d9;background:#eefdff}
+    .two{display:grid;grid-template-columns:1fr 1fr;gap:16px}.metric{border:1px solid var(--line);border-radius:16px;padding:16px}.metric-head{display:flex;justify-content:space-between;align-items:center;gap:12px}.metric strong{font-size:26px}.bar{height:8px;background:#e7ebe6;border-radius:9px;overflow:hidden;margin-top:12px}.bar i{display:block;height:100%;background:var(--cyan);width:0;transition:.4s}.metric.fail .bar i{background:var(--red)}
+    .receipt{margin-top:16px;border-radius:16px;background:#101921;color:#dfe8ec;padding:17px;font:12px/1.7 ui-monospace,SFMono-Regular,Consolas,monospace;white-space:pre-wrap;min-height:126px}.receipt .ok{color:var(--lime)}.receipt .bad{color:#ff9187}
+    .checks{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:16px}.check{border:1px solid var(--line);border-radius:12px;padding:10px;font-size:12px;background:#fff}.check:before{content:"PASS";font-weight:900;font-size:9px;color:#39731e;margin-right:7px}.check.blocked:before{content:"BLOCK";color:#aa342c}
+    .offer{margin-top:22px;display:grid;grid-template-columns:1.2fr .8fr;gap:20px;background:var(--cyan);border:1px solid var(--ink);border-radius:24px;padding:26px}.offer h2{font-size:30px;letter-spacing:-.03em;margin:0 0 10px}.offer ul{margin:10px 0 0;padding-left:20px}.price{background:var(--ink);color:#fff;border-radius:18px;padding:20px}.price b{display:block;color:var(--lime);font-size:32px}.fine{font-size:12px;color:var(--muted);margin-top:18px}.fine strong{color:var(--ink)}
+    @media(max-width:860px){.hero,.grid,.offer{grid-template-columns:1fr}.hero-card{max-width:360px}.pipeline{grid-template-columns:1fr 1fr}.checks{grid-template-columns:1fr 1fr}}
+    @media(max-width:540px){.shell{padding:12px}.hero{padding:25px}.pipeline,.two,.checks{grid-template-columns:1fr}.status-line{align-items:flex-start;flex-direction:column}}
+  </style>
+</head>
+<body>
+<main class="shell">
+  <section class="hero">
+    <div>
+      <div class="eyebrow">Fixel-fit working proof / synthetic data only</div>
+      <h1>Release quality, without the client-fire drill.</h1>
+      <p>A compact WordPress delivery gate for a remote studio shipping custom ACF blocks, migrations, updates, and polished B2B tech sites. It makes the risky path visible: what changed, what was tested, what must stop, and what can ship.</p>
+      <div class="strip"><span class="pill"><strong>30</strong> deterministic checks</span><span class="pill"><strong>0</strong> production writes</span><span class="pill">ACF + block themes</span><span class="pill">WCAG + CWV</span><span class="pill">migration receipts</span></div>
+    </div>
+    <aside class="hero-card"><b>Release R-042</b><span>Demo client: Northstar Security<br>Environment: synthetic staging<br>Policy: fail closed on critical checks</span></aside>
+  </section>
+
+  <section class="grid">
+    <aside class="panel">
+      <h2>Choose a release path</h2><p>Each scenario produces the evidence a developer or strategist needs before a client update.</p>
+      <div class="scenarios">
+        <button class="scenario active" data-case="clean"><b>Clean ACF block release</b><small>Safe promotion with evidence</small></button>
+        <button class="scenario" data-case="migration"><b>CMS migration rehearsal</b><small>URLs, forms, and content parity</small></button>
+        <button class="scenario" data-case="regression"><b>Accessibility regression</b><small>Keyboard trap blocks release</small></button>
+        <button class="scenario" data-case="plugin"><b>Plugin update conflict</b><small>Rollback before client impact</small></button>
+      </div>
+      <p class="fine"><strong>Boundary:</strong> this is a public, local demonstration using invented records. It requests no repository access, credentials, analytics, or client data.</p>
+    </aside>
+
+    <section class="panel">
+      <div class="status-line"><div><h2 id="case-title">Clean ACF block release</h2><div class="status" id="status"><span class="dot"></span><span id="status-text">Ready to evaluate</span></div></div><button class="run" id="run">Run release gate</button></div>
+      <div class="pipeline">
+        <div class="node" id="n1"><b>01 / Intake</b><span>scope + changed paths</span></div>
+        <div class="node" id="n2"><b>02 / Build</b><span>lint + unit + asset build</span></div>
+        <div class="node" id="n3"><b>03 / Experience</b><span>a11y + visual + responsive</span></div>
+        <div class="node" id="n4"><b>04 / Content</b><span>forms + links + redirects</span></div>
+        <div class="node" id="n5"><b>05 / Promote</b><span>approval or rollback</span></div>
+      </div>
+      <div class="two">
+        <div class="metric" id="m1"><div class="metric-head"><span>Release confidence</span><strong id="confidence">--</strong></div><div class="bar"><i id="confidence-bar"></i></div></div>
+        <div class="metric" id="m2"><div class="metric-head"><span>Regression coverage</span><strong id="coverage">--</strong></div><div class="bar"><i id="coverage-bar"></i></div></div>
+      </div>
+      <div class="receipt" id="receipt">Select a scenario, then run the gate. No external request will be made.</div>
+      <div class="checks" id="checks"></div>
+    </section>
+  </section>
+
+  <section class="offer">
+    <div><h2>Proposed paid trial: one real staging release</h2><p>A two-business-day, fixed-scope quality slice: map one existing WordPress change, implement or harden it, and return a reusable release receipt.</p><ul><li>One ACF/block-theme feature or bounded maintenance change</li><li>Responsive, keyboard, accessibility, form, link, and performance checks</li><li>Rollback notes, test evidence, and concise client-facing handoff</li><li>No production credentials in the welcome sample; staging access only after written terms</li></ul></div>
+    <div class="price"><span>Fixed first milestone</span><b>650 USDT / USDC</b><span>2 business days<br>Exact asset and network agreed in writing<br>Escrow or 50% prepaid for the first engagement</span></div>
+  </section>
+</main>
+<script>
+  const cases={
+    clean:{title:'Clean ACF block release',decision:'PASS',confidence:96,coverage:94,nodes:['good','good','good','good','good'],lines:['scope_hash=acf-threat-card-v2','build=PASS | php_lint=PASS | assets=PASS','keyboard=PASS | responsive=PASS | contrast=PASS','forms=PASS | links=PASS | cache=PURGED','decision=SHIP_TO_APPROVAL'],blocked:[]},
+    migration:{title:'CMS migration rehearsal',decision:'PASS',confidence:92,coverage:97,nodes:['good','good','good','good','good'],lines:['inventory=146_urls | 3_forms | 412_assets','content_hash_match=146/146','redirects=146/146 | loops=0 | chains=0','form_receipts=3/3 | email_side_effects=MOCKED','decision=READY_FOR_SCHEDULED_CUTOVER'],blocked:[]},
+    regression:{title:'Accessibility regression',decision:'BLOCK',confidence:42,coverage:91,nodes:['good','good','warn','good','warn'],lines:['changed_component=mobile-navigation','automated_checks=PASS_WITH_WARNING','manual_keyboard=FAIL | focus_trapped=true','client_data=NONE | production_write=NONE','decision=BLOCK_RELEASE | owner=frontend'],blocked:[8,9,10,11]},
+    plugin:{title:'Plugin update conflict',decision:'BLOCK',confidence:38,coverage:88,nodes:['good','good','good','warn','warn'],lines:['update=forms-plugin 4.8 -> 4.9','php_lint=PASS | unit=PASS','checkout_form=FAIL | validation_hook_changed','rollback_rehearsal=PASS | data_loss=0','decision=ROLLBACK_STAGING_AND_PATCH'],blocked:[17,18,19,20]}
+  };
+  const labels=['Scope bounded','Changed paths known','Staging only','Secrets absent','PHP lint','JS build','Unit checks','Dependency review','Keyboard path','Focus order','Visible labels','Contrast','Responsive 375px','Responsive 768px','Responsive 1440px','Visual diff','Primary form','Error state','Success receipt','Duplicate submit','Links sampled','Redirect map','Content parity','Cache policy','Core Web Vitals','Rollback tested','Approval recorded','Handoff ready','External requests zero','Client data zero'];
+  let active='clean';
+  const $=s=>document.querySelector(s); const $$=s=>[...document.querySelectorAll(s)];
+  function select(key){active=key; $$('.scenario').forEach(x=>x.classList.toggle('active',x.dataset.case===key)); $('#case-title').textContent=cases[key].title; $('#status').className='status'; $('#status-text').textContent='Ready to evaluate'; $('#confidence').textContent='--'; $('#coverage').textContent='--'; $('#confidence-bar').style.width='0'; $('#coverage-bar').style.width='0'; $('#receipt').textContent='Gate reset. Run to produce a deterministic release receipt.'; $$('.node').forEach(x=>x.className='node'); $('#checks').innerHTML='';}
+  function run(){const c=cases[active]; c.nodes.forEach((v,i)=>$('#n'+(i+1)).className='node '+v); $('#confidence').textContent=c.confidence+'%'; $('#coverage').textContent=c.coverage+'%'; $('#confidence-bar').style.width=c.confidence+'%'; $('#coverage-bar').style.width=c.coverage+'%'; $('#m1').classList.toggle('fail',c.decision==='BLOCK'); $('#status').className='status '+(c.decision==='PASS'?'pass':'block'); $('#status-text').textContent=c.decision==='PASS'?'Evidence complete / approval ready':'Release blocked / remediation required'; $('#receipt').innerHTML=c.lines.map((x,i)=>'<span class="'+(i===c.lines.length-1?(c.decision==='PASS'?'ok':'bad'):'')+'">'+x+'</span>').join('\n'); $('#checks').innerHTML=labels.map((x,i)=>'<div class="check '+(c.blocked.includes(i)?'blocked':'')+'">'+x+'</div>').join('');}
+  $$('.scenario').forEach(x=>x.addEventListener('click',()=>select(x.dataset.case))); $('#run').addEventListener('click',run); select('clean');
+</script>
+</body>
+</html>
+
