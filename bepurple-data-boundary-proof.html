@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>BePurple data boundary clarity audit</title>
+  <style>
+    :root{--bg:#100d19;--paper:#191426;--line:#403454;--ink:#faf7ff;--muted:#c8bdd9;--purple:#b684ff;--cyan:#72e7e1;--amber:#ffd977;--red:#ff8d9e}*{box-sizing:border-box}html,body{max-width:100%;overflow-x:hidden}body{margin:0;background:radial-gradient(circle at 15% 0,#352355 0,transparent 38%),var(--bg);color:var(--ink);font:15px/1.55 Inter,ui-sans-serif,system-ui,sans-serif}main{max-width:1140px;margin:auto;padding:42px 20px 70px}.hero{padding:38px;border:1px solid var(--line);border-radius:28px;background:linear-gradient(140deg,#211731,#14101e);box-shadow:0 30px 80px #0008}.eyebrow{font-size:12px;font-weight:900;letter-spacing:.15em;text-transform:uppercase;color:var(--cyan)}h1{max-width:900px;margin:13px 0;font-size:clamp(39px,6.5vw,74px);line-height:.99;letter-spacing:-.052em}p{margin:0;color:var(--muted)}.boundary{display:inline-block;margin-top:20px;padding:8px 12px;border:1px solid #66537f;border-radius:999px}.grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:16px;margin-top:16px}.card{grid-column:span 4;min-width:0;padding:23px;border:1px solid var(--line);border-radius:20px;background:var(--paper)}.wide{grid-column:span 8}.full{grid-column:1/-1}.source{font-size:11px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:var(--cyan)}.claim{margin:12px 0;font-size:25px;font-weight:900;line-height:1.15}.local .claim{color:var(--purple)}.cloud .claim{color:var(--amber)}.policy .claim{color:var(--red)}.status{display:inline-block;margin-top:14px;padding:5px 9px;border-radius:99px;background:#2c223c;font-size:11px;font-weight:900}.matrix{display:grid;grid-template-columns:1.2fr repeat(4,minmax(0,1fr));gap:1px;margin-top:17px;overflow:hidden;border:1px solid var(--line);border-radius:13px;background:var(--line)}.cell{padding:11px;background:#181322}.head{font-weight:850;color:var(--cyan)}.unknown{color:var(--amber);font-weight:900}.controls{display:flex;flex-wrap:wrap;gap:10px;margin-top:17px}button{border:1px solid #67557e;border-radius:12px;background:#21182e;color:var(--ink);padding:11px 14px;font:inherit;font-weight:850;cursor:pointer}button.active{border-color:var(--purple);background:var(--purple);color:#170b25}.result{margin-top:14px;min-height:82px;padding:16px;border:1px solid var(--line);border-radius:14px;background:#0d0a14}.result strong{color:var(--cyan)}.flow{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:17px}.step{padding:15px;border-top:3px solid var(--purple);border-radius:9px;background:#100c18}.step b{display:block}.offer{margin-top:17px;padding-top:16px;border-top:1px solid var(--line);font-size:13px}@media(max-width:800px){main{padding:20px 12px 45px}.hero{padding:25px}.card,.wide{grid-column:1/-1}.flow{grid-template-columns:1fr}.matrix{grid-template-columns:1.2fr 1fr}.matrix .cell:nth-child(n+3){display:none}}
+  </style>
+</head>
+<body>
+<main>
+  <section class="hero">
+    <div class="eyebrow">Public trust-surface audit / 13 Aug 2026</div>
+    <h1>"Local-first" needs one explicit data map.</h1>
+    <p>BePurple's homepage, privacy policy and Terms each describe a different part of the same boundary. None is necessarily wrong; together they make it hard for a security-minded buyer to answer what stays local, what syncs to BePurple and what reaches a model provider.</p>
+    <span class="boundary">Public policy and product copy only / no install / no repo / no account / no credentials</span>
+  </section>
+
+  <section class="grid">
+    <article class="card local"><div class="source">Homepage promise</div><div class="claim">"Your code never leaves your machine."</div><p>The strongest buyer-facing summary suggests a fully local code boundary.</p><span class="status">LOCAL CLAIM</span></article>
+    <article class="card cloud"><div class="source">Homepage detail</div><div class="claim">Docs and workspace setup sync through BePurple cloud.</div><p>The page also says prompts go to Anthropic and relevant context is sent for model calls.</p><span class="status">REMOTE PROCESSING</span></article>
+    <article class="card policy"><div class="source">Privacy and Terms</div><div class="claim">Files, code and specifications may be stored or transferred.</div><p>The policies describe uploaded content, service providers, U.S. processing and a service license for user content.</p><span class="status">POLICY SCOPE</span></article>
+
+    <article class="card wide">
+      <h2>What an enterprise buyer still has to infer</h2>
+      <div class="matrix">
+        <div class="cell head">Data class</div><div class="cell head">Local</div><div class="cell head">BePurple cloud</div><div class="cell head">Model provider</div><div class="cell head">Retention</div>
+        <div class="cell">Repository files</div><div class="cell">Yes</div><div class="cell unknown">Unclear exceptions</div><div class="cell unknown">Relevant context</div><div class="cell unknown">Unclear</div>
+        <div class="cell">Generated standards</div><div class="cell">Yes</div><div class="cell">Synced</div><div class="cell unknown">Unclear</div><div class="cell unknown">Unclear</div>
+        <div class="cell">Prompts/specs</div><div class="cell">Created locally</div><div class="cell unknown">Policy permits storage</div><div class="cell">Sent</div><div class="cell unknown">Unclear</div>
+        <div class="cell">Telemetry</div><div class="cell">Collected</div><div class="cell">Processed</div><div class="cell">N/A</div><div class="cell unknown">Criteria only</div>
+      </div>
+    </article>
+    <article class="card"><h2>Commercial impact</h2><p>A security review cannot safely turn a slogan into a control decision. Ambiguity adds procurement questions, slows trials and makes the broad "never leaves" statement harder to defend.</p></article>
+
+    <article class="card full">
+      <h2>Interactive trust gate</h2>
+      <p>Choose the public disclosure state that release QA should evaluate.</p>
+      <div class="controls"><button class="active" data-mode="current">Current surfaces</button><button data-mode="faq">FAQ patched</button><button data-mode="contract">Generated data contract</button></div>
+      <div id="result" class="result" aria-live="polite"></div>
+    </article>
+
+    <article class="card full">
+      <h2>Three-day clarification milestone</h2>
+      <div class="flow">
+        <div class="step"><b>1. Inventory</b>Map every claim in marketing, Privacy, Terms and product setup.</div>
+        <div class="step"><b>2. Classify</b>Define data classes, destinations, purpose, retention and deletion behavior.</div>
+        <div class="step"><b>3. Publish</b>Create one concise data-boundary page plus aligned FAQ and policy summaries.</div>
+        <div class="step"><b>4. Gate</b>Add checks that flag absolute claims when an exception or remote path exists.</div>
+      </div>
+      <p class="offer"><strong>Fixed first stage:</strong> 900 USDT or USDC / 3 business days / acceptance: evidence-linked claim inventory, approved data-flow matrix, revised public copy, machine-readable data contract, automated contradiction check, desktop/mobile QA receipt. Product or policy owners approve final legal wording. Production begins only after written scope, deadline, asset/network and escrow or 50% prepayment.</p>
+    </article>
+  </section>
+</main>
+<script>
+const states={current:'<strong>REVIEW REQUIRED</strong><br>The absolute local claim coexists with cloud sync, model-provider context and broader policy language. A buyer must infer the boundary.',faq:'<strong>IMPROVED, NOT DURABLE</strong><br>A clear FAQ reduces ambiguity, but future product or policy changes can make it stale again.',contract:'<strong>PASS</strong><br>Marketing, Privacy, Terms and security responses resolve from one versioned data-flow contract with named owners and effective dates.'};
+const result=document.getElementById('result');function select(mode){result.innerHTML=states[mode];document.querySelectorAll('button').forEach(b=>b.classList.toggle('active',b.dataset.mode===mode));}document.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>select(b.dataset.mode)));select('current');
+</script>
+</body>
+</html>
+
