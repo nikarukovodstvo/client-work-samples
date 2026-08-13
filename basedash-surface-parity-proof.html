@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Basedash Public Surface Parity Audit</title>
+  <style>
+    :root{--ink:#111318;--muted:#656b76;--paper:#fff;--line:#dfe3e8;--blue:#165dff;--soft:#eef4ff;--warn:#a96200;--good:#147a4e;--bad:#b23445}
+    *{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 8% 0,#dfeaff,transparent 32%),linear-gradient(160deg,#fbfcff,#f3f5f8);color:var(--ink);font:15px/1.55 Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif}.wrap{max-width:1180px;margin:auto;padding:38px 22px 64px}.top{display:flex;justify-content:space-between;gap:24px;align-items:flex-start}.eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:.14em;font-weight:850;color:var(--blue)}h1{font-size:clamp(38px,6vw,72px);line-height:.96;letter-spacing:-.055em;margin:10px 0 17px;max-width:940px}.lead{font-size:18px;color:var(--muted);max-width:850px}.badge{padding:9px 13px;border-radius:999px;background:var(--ink);color:white;font-size:12px;font-weight:800;white-space:nowrap}.panel{margin-top:20px;padding:22px;border:1px solid var(--line);border-radius:24px;background:rgba(255,255,255,.93);box-shadow:0 18px 54px rgba(28,45,75,.08)}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.card{padding:18px;border:1px solid var(--line);border-radius:18px;background:var(--paper)}.card h2{font-size:18px;margin:8px 0}.card p{margin:0;color:var(--muted)}.source{display:inline-block;padding:5px 9px;border-radius:99px;background:var(--soft);font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:.08em}.controls{display:flex;gap:9px;flex-wrap:wrap;margin:16px 0}button{border:1px solid var(--line);background:#f2f4f7;color:var(--ink);font:inherit;font-weight:800;padding:10px 13px;border-radius:12px;cursor:pointer}button.active{background:var(--blue);border-color:var(--blue);color:white}button:focus-visible{outline:3px solid #a9c3ff;outline-offset:2px}.tablewrap{overflow:auto}table{border-collapse:collapse;width:100%;min-width:910px}th,td{text-align:left;padding:12px;border-bottom:1px solid var(--line);vertical-align:top}th{font-size:10px;text-transform:uppercase;letter-spacing:.09em;color:var(--muted)}.bad{color:var(--bad);font-weight:850}.good{color:var(--good);font-weight:850}.warn{color:var(--warn);font-weight:850}.hidden{display:none}.fixgrid{display:grid;grid-template-columns:1.15fr .85fr;gap:16px}.canon{background:var(--ink);color:white;border-radius:18px;padding:21px}.canon p{color:#d3d8e1}.canon strong{color:#9cbdff}.offer{border:1px solid var(--line);border-radius:18px;padding:21px}.price{font-size:35px;font-weight:900;letter-spacing:-.04em}.small{font-size:12px;color:var(--muted)}ul{padding-left:18px}.receipt{font:12px/1.65 ui-monospace,SFMono-Regular,Consolas,monospace;background:#f0f3f8;border-radius:14px;padding:15px;white-space:pre-wrap}.footer{font-size:12px;color:var(--muted);margin-top:18px}@media(max-width:840px){.top{display:block}.badge{display:inline-block;margin-top:10px}.cards,.fixgrid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+<main class="wrap">
+  <div class="top"><div><div class="eyebrow">Public pricing + developer-docs audit</div><h1>One product should publish one commercial contract.</h1><p class="lead">Basedash's current AI-BI pricing page and current docs agree on the new $1,000 Startup model. A still-live legacy pricing route publishes a different Free / $25 / $50 per-user product, while the public API overview describes a 32-character key using a 28-character example. These are small surface defects with outsized evaluation and implementation cost.</p></div><div class="badge">Basedash / Surface Parity</div></div>
+
+  <section class="panel"><div class="cards">
+    <article class="card"><span class="source">Current pricing</span><h2>$1,000 Startup + AI usage</h2><p>Up to 25 users, $1,000 monthly AI credits, 750+ sources, automations, insights, MCP, and Slack.</p></article>
+    <article class="card"><span class="source">Legacy route still live</span><h2>Free / $25 / $50 per user</h2><p><code>admin.basedash.com/pricing</code> remains publicly reachable and presents an older internal-tools model based on pages and per-user pricing.</p></article>
+    <article class="card"><span class="source">API overview</span><h2>Declared length does not match example</h2><p>The docs say the key secret is 32 characters. The displayed example secret contains 28 characters, weakening copy-paste validation.</p></article>
+  </div></section>
+
+  <section class="panel">
+    <div class="eyebrow">Interactive evidence matrix</div>
+    <div class="controls" role="group" aria-label="Audit evidence filter"><button class="active" data-mode="all">All evidence</button><button data-mode="pricing">Pricing drift</button><button data-mode="developer">Developer docs</button></div>
+    <div class="tablewrap"><table><thead><tr><th>Public surface</th><th>Observed contract</th><th>Cross-surface result</th><th>Recommended control</th></tr></thead><tbody>
+      <tr data-row="pricing"><td>Current marketing pricing</td><td>Startup: $1,000/month + AI usage; up to 25 users</td><td class="good">Aligned with current docs</td><td>Canonical current plan manifest</td></tr>
+      <tr data-row="pricing"><td>Current pricing documentation</td><td>Startup: $1,000/month + AI usage; up to 25 users</td><td class="good">Aligned with marketing</td><td>Render from same plan manifest</td></tr>
+      <tr data-row="pricing"><td>Legacy admin pricing</td><td>Free; Startup $25/user; Business $50/user; page-count limits</td><td class="bad">Contradicts current product model</td><td>Redirect, retire, or label legacy explicitly</td></tr>
+      <tr data-row="developer"><td>API key contract</td><td>Secret length documented as 32 characters</td><td class="warn">Example secret is 28 characters</td><td>Generate docs examples from schema fixtures</td></tr>
+      <tr data-row="developer"><td>Public API lifecycle</td><td>API is unversioned; breaking changes communicated when possible</td><td class="warn">High documentation dependency</td><td>Contract tests + dated compatibility policy</td></tr>
+      <tr data-row="developer"><td>Release gate</td><td>Marketing, docs, legacy routes, examples</td><td class="bad">No visible parity gate</td><td>Automated crawl + assertion receipt</td></tr>
+    </tbody></table></div>
+  </section>
+
+  <section class="panel fixgrid">
+    <div class="canon"><div class="eyebrow">Delivery pattern</div><h2>Make public promises executable.</h2><p><strong>Commercial contract:</strong> one versioned plan manifest drives pricing, docs, signup copy, entitlements, and legacy redirects. <strong>Developer contract:</strong> example keys and payloads are generated from validation fixtures, then checked against rendered documentation. A lightweight public-surface crawler fails the release when a retired route or invalid example returns.</p><p class="small">This proof uses public, read-only pages only. It does not create an account, use an API key, access customer data, or test private billing behavior.</p></div>
+    <aside class="offer"><div class="eyebrow">Fixed parity sprint</div><div class="price">900 USDT / USDC</div><p><b>3 business days</b> after written scope and payment gate.</p><ul><li>Canonical pricing and entitlement inventory</li><li>Legacy-route retirement or explicit labeling</li><li>Generated API-key and response examples</li><li>Public-surface parity regression checks</li><li>Desktop/mobile QA receipt and one revision</li></ul><p class="small">50% upfront or escrow. Exact asset and network agreed in writing.</p></aside>
+  </section>
+
+  <section class="panel"><div class="eyebrow">Audit receipt</div><div class="receipt" id="receipt">PUBLIC READ-ONLY SURFACES: 3
+ACCOUNT / API / BILLING ACTIONS: 0
+CUSTOMER DATA / CREDENTIALS: 0
+CURRENT PRICING SURFACES ALIGNED: 2
+LIVE LEGACY PRICING CONTRADICTIONS: 1
+INVALID DOCUMENTATION EXAMPLES: 1
+PRODUCTION REQUIRES WRITTEN PAYMENT GATE</div></section>
+  <p class="footer">Prepared independently by Mikhail Nikitenkov from Basedash's public pricing, documentation, legacy pricing route, Privacy Policy, and Terms of Service.</p>
+</main>
+<script>
+const buttons=[...document.querySelectorAll('button[data-mode]')];
+const rows=[...document.querySelectorAll('tbody tr')];
+buttons.forEach(button=>button.addEventListener('click',()=>{
+  buttons.forEach(item=>item.classList.toggle('active',item===button));
+  const mode=button.dataset.mode;
+  rows.forEach(row=>row.classList.toggle('hidden',mode!=='all'&&row.dataset.row!==mode));
+  const visible=rows.filter(row=>!row.classList.contains('hidden')).length;
+  document.getElementById('receipt').textContent=`VIEW: ${mode.toUpperCase()}\nVISIBLE EVIDENCE ROWS: ${visible}\nPUBLIC READ-ONLY SURFACES ONLY: PASS\nACCOUNT / API / BILLING ACTIONS: 0\nCUSTOMER DATA / CREDENTIALS: 0\nPRODUCTION REQUIRES WRITTEN PAYMENT GATE`;
+}));
+</script>
+</body>
+</html>
+
