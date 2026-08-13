@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>ProtoFlow Free Entitlement Parity Audit</title>
+  <style>
+    :root{--ink:#172038;--muted:#667085;--paper:#f6f8fc;--card:#fff;--line:#dce2ec;--blue:#3157d5;--cyan:#10a7b7;--red:#b42318;--amber:#b54708;--green:#067647}
+    *{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.55 Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif}.wrap{max-width:1180px;margin:auto;padding:34px 22px 64px}header{position:relative;overflow:hidden;background:linear-gradient(125deg,#10172c 0%,#1b2d69 58%,#0d7b88 100%);color:#fff;border-radius:24px;padding:34px;box-shadow:0 22px 52px #18264b24}header:after{content:"";position:absolute;width:300px;height:300px;border:1px solid #ffffff2b;border-radius:50%;right:-80px;top:-145px;box-shadow:0 0 0 45px #ffffff08,0 0 0 90px #ffffff06}.eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#9eeaf2;font-weight:800}.hero{display:grid;grid-template-columns:1.4fr .8fr;gap:26px;align-items:end}.hero h1{font-size:clamp(34px,5vw,62px);line-height:1.02;margin:10px 0 16px;max-width:800px}.hero p{max-width:760px;color:#dbe7ff;font-size:17px}.score{position:relative;z-index:1;background:#ffffff12;border:1px solid #ffffff2b;border-radius:18px;padding:20px}.score strong{font-size:42px}.score span{display:block;color:#b9c8eb}.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}.chip{border:1px solid #ffffff35;border-radius:999px;padding:7px 11px;color:#eaf2ff;background:#ffffff0d}.section{margin-top:28px}.titleline{display:flex;align-items:end;justify-content:space-between;gap:16px}.titleline h2{font-size:27px;margin:0}.titleline p{margin:0;color:var(--muted)}.evidence{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:16px}.quote{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px;min-height:220px;box-shadow:0 8px 20px #23315a0c}.quote .source{font-weight:800;color:var(--blue)}.quote blockquote{font-size:18px;margin:18px 0 10px;padding-left:15px;border-left:3px solid var(--cyan)}.quote a{color:var(--blue);word-break:break-word}.tag{display:inline-block;border-radius:999px;padding:5px 9px;font-size:12px;font-weight:800}.tag.claim{background:#e8f2ff;color:#1649a6}.tag.gate{background:#fff1e8;color:#9a3412}.tag.fix{background:#e8f8ef;color:#067647}.controls{display:flex;gap:8px;flex-wrap:wrap;margin:15px 0}.controls button{cursor:pointer;border:1px solid #c8d1e0;background:#fff;color:var(--ink);padding:9px 13px;border-radius:11px;font-weight:750}.controls button.active{background:var(--blue);color:white;border-color:var(--blue)}.matrix{background:white;border:1px solid var(--line);border-radius:18px;overflow:hidden}.row{display:grid;grid-template-columns:1.5fr .8fr 1fr 1.5fr;gap:12px;padding:14px 18px;border-top:1px solid #edf0f5;align-items:center}.row:first-child{border-top:0}.row.head{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:#667085;background:#f8fafc;font-weight:850}.status{font-weight:800}.status.conflict{color:var(--red)}.status.clear{color:var(--green)}.status.scope{color:var(--amber)}.recommended{font-size:13px;color:#475467}.impact{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:16px}.metric{background:#111a31;color:#fff;border-radius:16px;padding:18px}.metric strong{font-size:28px;display:block}.metric span{color:#bac8e5}.scope{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}.panel{background:white;border:1px solid var(--line);border-radius:18px;padding:21px}.panel h3{margin-top:0}.panel ul{padding-left:20px;margin-bottom:0}.offer{margin-top:28px;background:linear-gradient(115deg,#eaf0ff,#e8fbf8);border:1px solid #bed0f1;border-radius:20px;padding:23px;display:grid;grid-template-columns:1.2fr .8fr;gap:20px}.price{background:white;border:1px solid #cbd9ec;border-radius:16px;padding:18px}.price strong{font-size:34px;color:var(--blue);display:block}.receipt{margin-top:18px;border:1px dashed #95a3b8;background:#fbfcfe;border-radius:14px;padding:14px;font:13px/1.6 ui-monospace,SFMono-Regular,Consolas,monospace;color:#344054}.small{font-size:13px;color:var(--muted)}footer{margin-top:24px;color:var(--muted);font-size:13px}.hidden{display:none!important}@media(max-width:850px){.hero,.offer,.scope{grid-template-columns:1fr}.evidence,.impact{grid-template-columns:1fr}.row{grid-template-columns:1fr 1fr}.row.head{display:none}.recommended{grid-column:1/-1}}
+  </style>
+</head>
+<body>
+<main class="wrap">
+  <header>
+    <div class="hero">
+      <div>
+        <div class="eyebrow">Read-only public surface audit / 13 Aug 2026</div>
+        <h1>ProtoFlow free-tier entitlement parity</h1>
+        <p>A focused conversion and support-risk audit across the homepage, documentation, and pricing matrix. The issue is not the paid plan itself; it is that three official surfaces currently describe different boundaries for the same capabilities.</p>
+        <div class="chips"><span class="chip">No account access</span><span class="chip">No billing test</span><span class="chip">Public pages only</span><span class="chip">Reproducible evidence</span></div>
+      </div>
+      <div class="score"><span>Public copy parity</span><strong>6 / 10</strong><span>Clear product value, but plan boundaries diverge at the decision point.</span></div>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="titleline"><h2>Three surfaces, one entitlement question</h2><p>Observed on official ProtoFlow pages</p></div>
+    <div class="evidence">
+      <article class="quote"><span class="tag claim">Homepage claim</span><div class="source">protoflow.ai</div><blockquote>"every user gets free access to the full editor and AI features"</blockquote><p class="small">This reads as feature-complete access with only higher usage limits behind an upgrade.</p><a href="https://www.protoflow.ai/">Source page</a></article>
+      <article class="quote"><span class="tag claim">Docs claim</span><div class="source">protoflow.ai/docs</div><blockquote>"Everything in these docs is free to use"</blockquote><p class="small">The same documentation index exposes collaboration, AI tools, file workflows, and component generation.</p><a href="https://www.protoflow.ai/docs">Source page</a></article>
+      <article class="quote"><span class="tag gate">Pricing boundary</span><div class="source">protoflow.ai/pricing</div><blockquote>Free shows "None" for premium models, file uploads, custom symbols, advanced parameters, and plan mode + live collaboration.</blockquote><p class="small">This is a valid product boundary, but it is narrower than the two broad free-access promises.</p><a href="https://www.protoflow.ai/pricing">Source page</a></article>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="titleline"><h2>Entitlement matrix</h2><p>Use the filters to review the remediation contract</p></div>
+    <div class="controls"><button class="active" data-filter="all">All rows</button><button data-filter="conflict">Conflicts only</button><button data-filter="clear">Already clear</button></div>
+    <div class="matrix" id="matrix">
+      <div class="row head"><div>Capability</div><div>Homepage / docs</div><div>Pricing Free</div><div>Recommended canonical copy</div></div>
+      <div class="row" data-state="clear"><strong>PCB editor workspace</strong><span>Free</span><span class="status clear">Full</span><span class="recommended">Keep: full editor access is included.</span></div>
+      <div class="row" data-state="scope"><strong>AI schematic workflow</strong><span>All AI features</span><span class="status scope">Basic + quota</span><span class="recommended">Say: core AI workflow included with model and usage limits.</span></div>
+      <div class="row" data-state="conflict"><strong>Premium AI models</strong><span>All AI features</span><span class="status conflict">None</span><span class="recommended">Name premium model access as a paid capability.</span></div>
+      <div class="row" data-state="conflict"><strong>File uploads in AI chat</strong><span>Docs demonstrate it</span><span class="status conflict">None</span><span class="recommended">Add a Pro badge and upgrade note in the relevant docs.</span></div>
+      <div class="row" data-state="conflict"><strong>AI custom symbol creation</strong><span>AI features / docs</span><span class="status conflict">None</span><span class="recommended">Separate free monthly part generation from paid custom-symbol creation.</span></div>
+      <div class="row" data-state="conflict"><strong>Advanced parameters</strong><span>All AI features</span><span class="status conflict">None</span><span class="recommended">Label the advanced controls as Pro while keeping basic controls free.</span></div>
+      <div class="row" data-state="conflict"><strong>Plan mode</strong><span>All AI features</span><span class="status conflict">None</span><span class="recommended">Describe free chat/generation versus Pro planning explicitly.</span></div>
+      <div class="row" data-state="conflict"><strong>Live collaboration</strong><span>Homepage + docs</span><span class="status conflict">None</span><span class="recommended">Add a Pro entitlement badge on collaboration claims and docs.</span></div>
+      <div class="row" data-state="clear"><strong>AI part generator</strong><span>Free to try</span><span class="status clear">10 units/mo</span><span class="recommended">Keep the exact quota adjacent to the claim.</span></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="titleline"><h2>Why this is worth fixing</h2><p>Commercial impact, not cosmetic copy editing</p></div>
+    <div class="impact"><div class="metric"><strong>1</strong><span>canonical entitlement manifest instead of hand-maintained claims</span></div><div class="metric"><strong>3</strong><span>decision surfaces aligned: homepage, docs, pricing</span></div><div class="metric"><strong>0</strong><span>ambiguous "all features" claims at checkout evaluation</span></div></div>
+  </section>
+
+  <section class="section">
+    <div class="titleline"><h2>Fixed remediation scope</h2><p>Small, testable, and reversible</p></div>
+    <div class="scope">
+      <div class="panel"><h3><span class="tag fix">Deliverables</span></h3><ul><li>Create a canonical Free / Pro / Max entitlement manifest.</li><li>Rewrite the two broad free-access claims without weakening the free-tier value proposition.</li><li>Add plan badges and upgrade notes to gated documentation pages.</li><li>Drive pricing rows and public badges from the same manifest where practical.</li><li>Add a parity regression check for contradictory plan claims.</li></ul></div>
+      <div class="panel"><h3><span class="tag fix">Acceptance</span></h3><ul><li>Homepage, docs, and pricing agree for every audited capability.</li><li>Each gated docs feature displays its required plan before the user follows instructions.</li><li>Free quotas remain visible and accurate.</li><li>Automated parity test fails on an introduced contradiction.</li><li>Desktop/mobile copy QA and one revision included.</li></ul></div>
+    </div>
+  </section>
+
+  <section class="offer">
+    <div><div class="eyebrow" style="color:#3157d5">Proposed first milestone</div><h2>Public entitlement parity remediation</h2><p>Delivered in 3 business days after access to the relevant content/config repository. No production billing changes, customer data, or PCB design files are needed.</p><div class="receipt">SCOPE: homepage + pricing + docs entitlement copy<br>GATE: written scope + exact asset/network + 50% upfront or escrow<br>QA: parity test + responsive review + source-to-copy receipt<br>BOUNDARY: no payment logic, account data, or live customer projects</div></div>
+    <div class="price"><span>Fixed milestone</span><strong>900 USDT / USDC</strong><span>Exact network agreed in writing before work. Balance after accepted QA receipt.</span></div>
+  </section>
+
+  <footer>This independent sample uses only public information and synthetic remediation logic. It does not assert how ProtoFlow billing behaves inside an authenticated account. Prepared by Mikhail Nikitenkov.</footer>
+</main>
+<script>
+  const buttons=[...document.querySelectorAll('[data-filter]')];
+  const rows=[...document.querySelectorAll('#matrix .row[data-state]')];
+  buttons.forEach(button=>button.addEventListener('click',()=>{
+    buttons.forEach(item=>item.classList.toggle('active',item===button));
+    const filter=button.dataset.filter;
+    rows.forEach(row=>row.classList.toggle('hidden',filter!=='all'&&row.dataset.state!==filter));
+  }));
+</script>
+</body>
+</html>
+
