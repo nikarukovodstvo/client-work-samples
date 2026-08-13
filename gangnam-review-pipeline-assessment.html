@@ -50,7 +50,7 @@ document.querySelector("#tests").onclick=()=>{
   ["duplicate content is held",hostile[2].status==="held"&&hostile[2].reasons.includes("duplicate_content")],
   ["untrusted source is held",hostile[3].status==="held"&&hostile[3].reasons.includes("source_not_allowlisted")],
   ["failed records expose reasons",hostile.filter(x=>x.status==="held").every(x=>x.reasons.length)],
-  ["no external request API is used",!document.documentElement.innerHTML.match(/fetch\s*\(|XMLHttpRequest|WebSocket/)],
+  ["no external resources were requested",performance.getEntriesByType("resource").length===0],
   ["replay is deterministic",JSON.stringify(pipeline(fixtures))===JSON.stringify(normal)]
  ];
  document.querySelector("#receipt").innerHTML=checks.map(([n,ok])=>`<li class="${ok?'pass':'hold'}">${ok?'PASS':'FAIL'} · ${n}</li>`).join("");show({passed:checks.filter(x=>x[1]).length,total:checks.length});
