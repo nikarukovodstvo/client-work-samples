@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>NoClick integration catalog consistency audit</title>
+  <style>
+    :root{--bg:#06100e;--panel:#0b1a17;--line:#21453b;--ink:#effff9;--muted:#acd0c4;--green:#73ffc4;--cyan:#65dff6;--yellow:#ffe186;--red:#ff9aa8}*{box-sizing:border-box}html,body{max-width:100%;overflow-x:hidden}body{margin:0;background:radial-gradient(circle at 86% 0,#153a33 0,transparent 38%),var(--bg);color:var(--ink);font:15px/1.55 Inter,ui-sans-serif,system-ui,sans-serif}main{max-width:1140px;margin:auto;padding:44px 22px 70px}.hero{padding:34px;border:1px solid var(--line);border-radius:28px;background:linear-gradient(145deg,#0d211d,#091511);box-shadow:0 28px 80px #0008}.eyebrow{font-size:12px;font-weight:850;letter-spacing:.15em;text-transform:uppercase;color:var(--green)}h1{margin:12px 0 14px;max-width:900px;font-size:clamp(38px,6vw,72px);line-height:1.01;letter-spacing:-.045em;overflow-wrap:anywhere}p{margin:0;color:var(--muted)}h2{margin:0 0 10px;font-size:20px}.badge{display:inline-block;max-width:100%;margin-top:20px;padding:8px 12px;border:1px solid #326a5b;border-radius:999px;background:#0a1c18;color:#cef9ea}.grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:16px;margin-top:18px}.card{grid-column:span 4;min-width:0;padding:23px;border:1px solid var(--line);border-radius:21px;background:var(--panel)}.wide{grid-column:span 8}.full{grid-column:1/-1}.number{font-size:54px;font-weight:900;letter-spacing:-.06em;line-height:1;color:var(--green)}.source{margin-top:8px;font-size:12px;font-weight:800;color:var(--cyan);text-transform:uppercase}.status{display:inline-block;margin-top:14px;padding:5px 9px;border-radius:999px;font-size:12px;font-weight:850}.claim{background:#123b2e;color:var(--green)}.stale{background:#452a32;color:var(--red)}.counted{background:#173846;color:var(--cyan)}.impact{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:16px}.impact div{padding:13px;border-radius:13px;background:#07120f}.impact b{display:block;color:var(--green);font-size:12px}.controls{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}button{border:1px solid #356858;border-radius:12px;background:#102720;color:var(--ink);padding:11px 14px;font:inherit;font-weight:800;cursor:pointer}button.active{background:var(--green);border-color:var(--green);color:#042019}.result{margin-top:14px;min-height:80px;padding:16px;border:1px solid var(--line);border-radius:15px;background:#050d0b}.result strong{color:var(--yellow)}.flow{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:16px}.step{padding:15px;border-top:3px solid var(--green);border-radius:9px;background:#07120f}.step b{display:block;margin-bottom:5px}.scope{margin-top:18px;padding-top:16px;border-top:1px solid var(--line);font-size:13px;color:#d4f2e8}@media(max-width:780px){main{padding:22px 13px 42px}.hero{padding:23px}.card,.wide{grid-column:1/-1}.impact,.flow{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+<main>
+  <section class="hero">
+    <div class="eyebrow">Public catalog QA / 13 Aug 2026</div>
+    <h1>How many NoClick integrations are there?</h1>
+    <p>Three official public surfaces currently answer the same buyer question differently. This proof turns the mismatch into a generated catalog with a measurable release gate.</p>
+    <span class="badge">Read-only evidence / no account / no OAuth / no API keys / no workflow runs</span>
+  </section>
+
+  <section class="grid">
+    <article class="card">
+      <div class="number">150+</div><div class="source">Marketing page</div>
+      <p>Buyer-facing claim: connect more than 150 integrations.</p><span class="status claim">PRODUCT CLAIM</span>
+    </article>
+    <article class="card">
+      <div class="number">~60</div><div class="source">Docs introduction</div>
+      <p>Getting-started copy tells readers to browse about sixty services.</p><span class="status stale">STALE SUMMARY</span>
+    </article>
+    <article class="card">
+      <div class="number">134</div><div class="source">Published llms.txt index</div>
+      <p>Distinct named integration pages counted after excluding the category index.</p><span class="status counted">REPRODUCIBLE COUNT</span>
+    </article>
+
+    <article class="card wide">
+      <h2>Why the mismatch matters</h2>
+      <p>Prospects, search engines and AI assistants receive different catalog sizes depending on the first surface they visit. Even when every individual page is correct, the summary layer weakens discoverability and makes the 150+ claim harder to verify.</p>
+      <div class="impact">
+        <div><b>CONVERSION</b>One defensible number before signup</div>
+        <div><b>DISCOVERY</b>Docs and LLM index expose the same inventory</div>
+        <div><b>OPERATIONS</b>No manual counter updates after connector releases</div>
+      </div>
+    </article>
+    <article class="card">
+      <h2>Evidence boundary</h2>
+      <p>The count is a public-documentation coverage count, not a claim that each connector is enabled for every plan or production-ready. Capability and availability need explicit metadata.</p>
+    </article>
+
+    <article class="card full">
+      <h2>Interactive release gate</h2>
+      <p>Select the catalog state that CI should evaluate before marketing or documentation deploys.</p>
+      <div class="controls">
+        <button class="active" data-mode="current">Current surfaces</button>
+        <button data-mode="counter">Counter patched</button>
+        <button data-mode="registry">Generated registry</button>
+      </div>
+      <div id="result" class="result" aria-live="polite"></div>
+    </article>
+
+    <article class="card full">
+      <h2>Two-day repair milestone</h2>
+      <div class="flow">
+        <div class="step"><b>1. Catalog manifest</b>Stable ID, display name, category, availability, auth method and docs URL.</div>
+        <div class="step"><b>2. Generated summaries</b>Marketing counter, integration directory, docs introduction and llms.txt derive from reviewed entries.</div>
+        <div class="step"><b>3. Integrity checks</b>Unique IDs, reachable docs, declared availability and exact count assertions.</div>
+        <div class="step"><b>4. QA receipt</b>Desktop/mobile rendering, link report, index diff and timestamped release evidence.</div>
+      </div>
+      <p class="scope"><b>Fixed scope: 850 USDT or USDC / two business days.</b> Acceptance: one approved catalog manifest; marketing/docs/LLM summaries reconciled; automated count and broken-link checks; public QA receipt. Production starts only after written scope, deadline, asset/network and escrow or 50% prepayment.</p>
+    </article>
+  </section>
+</main>
+<script>
+  const states={
+    current:'<strong>BLOCK SUMMARY RELEASE.</strong> Marketing says 150+, docs say about 60, while the public index exposes 134 named integration pages.',
+    counter:'<strong>PARTIAL PASS.</strong> Copy agrees today, but a manual number can drift on the next connector release.',
+    registry:'<strong>PASS.</strong> One versioned catalog generates counts and indexes; CI blocks missing metadata, duplicate IDs and broken documentation links.'
+  };
+  const result=document.getElementById('result');
+  function render(mode){result.innerHTML=states[mode];document.querySelectorAll('button').forEach(b=>b.classList.toggle('active',b.dataset.mode===mode));}
+  document.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>render(b.dataset.mode)));
+  render('current');
+</script>
+</body>
+</html>
